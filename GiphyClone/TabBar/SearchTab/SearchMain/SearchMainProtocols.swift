@@ -113,5 +113,5 @@ protocol SearchMainWireFrameProtocol: class {
     static func createSearchMainModule() -> UIViewController
     
     func presentContentDetail()
-    func presentSearchResult()
+    func presentSearchResult(_ keyword: String)
 }

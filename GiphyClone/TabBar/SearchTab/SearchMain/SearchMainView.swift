@@ -38,11 +38,11 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func showLoading() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//
     }
     
     func hideLoading() {
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//
     }
     
     func showError() {
@@ -68,6 +68,7 @@ extension SearchMainView {
             $0.titleView = title
         }
         searchTextField.do {
+            $0.delegate = self
             $0.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
             $0.backgroundColor = .white
             $0.textColor = .black
@@ -91,6 +92,7 @@ extension SearchMainView {
             $0.text = "Trending Searches"
         }
         autoCompleteTableView.do {
+            $0.separatorStyle = .none
             $0.isScrollEnabled = false
             $0.delegate = self
             $0.dataSource = self
@@ -176,5 +178,12 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectAutoComplete(indexPath)
+    }
+}
+
+extension SearchMainView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let keyword = textField.text else { return false }
+        presenter?.searchKeyword(keyword)
     }
 }

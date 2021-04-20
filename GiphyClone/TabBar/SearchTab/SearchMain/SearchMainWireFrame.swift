@@ -30,7 +30,7 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
         return view
     }
     
-    func presentSearchResult() {
+    func presentSearchResult(_ keyword: String) {
         //검색 결과로 갑시다
     }
     
