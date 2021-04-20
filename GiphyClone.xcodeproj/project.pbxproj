@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,7 @@
 		CC0F4040262EC5450099ABA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */; };
 		CC0F404B262EC5450099ABA4 /* GiphyCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F404A262EC5450099ABA4 /* GiphyCloneTests.swift */; };
 		CC0F4056262EC5450099ABA4 /* GiphyCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4055262EC5450099ABA4 /* GiphyCloneUITests.swift */; };
+		CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F407A262F0EA10099ABA4 /* SearchMainProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		CC0F4051262EC5450099ABA4 /* GiphyCloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiphyCloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0F4055262EC5450099ABA4 /* GiphyCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyCloneUITests.swift; sourceTree = "<group>"; };
 		CC0F4057262EC5450099ABA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC0F407A262F0EA10099ABA4 /* SearchMainProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainProtocols.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +103,6 @@
 				6E7296B8DF8811DFD01D30ED /* Pods-GiphyCloneTests.debug.xcconfig */,
 				DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -140,6 +141,7 @@
 		CC0F4032262EC5430099ABA4 /* GiphyClone */ = {
 			isa = PBXGroup;
 			children = (
+				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
 				CC0F4033262EC5430099ABA4 /* AppDelegate.swift */,
 				CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */,
 				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
@@ -167,6 +169,30 @@
 				CC0F4057262EC5450099ABA4 /* Info.plist */,
 			);
 			path = GiphyCloneUITests;
+			sourceTree = "<group>";
+		};
+		CC0F4077262F0ACA0099ABA4 /* SearchTab */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F4078262F0E510099ABA4 /* SearchMain */,
+				CC0F4079262F0E750099ABA4 /* SearchDetail */,
+			);
+			path = SearchTab;
+			sourceTree = "<group>";
+		};
+		CC0F4078262F0E510099ABA4 /* SearchMain */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F407A262F0EA10099ABA4 /* SearchMainProtocols.swift */,
+			);
+			path = SearchMain;
+			sourceTree = "<group>";
+		};
+		CC0F4079262F0E750099ABA4 /* SearchDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchDetail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,6 +433,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,
