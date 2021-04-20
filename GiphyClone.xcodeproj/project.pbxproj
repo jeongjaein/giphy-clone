@@ -25,6 +25,8 @@
 		CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4091262F1E270099ABA4 /* SearchMainRemoteDataManager.swift */; };
 		CC0F4097262F1E310099ABA4 /* SearchMainLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4096262F1E310099ABA4 /* SearchMainLocalDataManager.swift */; };
 		CC0F409C262F1E3C0099ABA4 /* SearchMainWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F409B262F1E3C0099ABA4 /* SearchMainWireFrame.swift */; };
+		CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */; };
+		CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		CC0F4091262F1E270099ABA4 /* SearchMainRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainRemoteDataManager.swift; sourceTree = "<group>"; };
 		CC0F4096262F1E310099ABA4 /* SearchMainLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainLocalDataManager.swift; sourceTree = "<group>"; };
 		CC0F409B262F1E3C0099ABA4 /* SearchMainWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainWireFrame.swift; sourceTree = "<group>"; };
+		CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultProtocols.swift; sourceTree = "<group>"; };
+		CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Do.swift"; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +157,7 @@
 		CC0F4032262EC5430099ABA4 /* GiphyClone */ = {
 			isa = PBXGroup;
 			children = (
-				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
+				CC0F40AC262F2C280099ABA4 /* TabBar */,
 				CC0F4033262EC5430099ABA4 /* AppDelegate.swift */,
 				CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */,
 				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
@@ -187,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0F4078262F0E510099ABA4 /* SearchMain */,
+				CC0F40A3262F275A0099ABA4 /* SearchResult */,
 				CC0F4079262F0E750099ABA4 /* SearchDetail */,
 			);
 			path = SearchTab;
@@ -211,6 +216,31 @@
 			children = (
 			);
 			path = SearchDetail;
+			sourceTree = "<group>";
+		};
+		CC0F40A3262F275A0099ABA4 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		CC0F40AC262F2C280099ABA4 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40AD262F3A1F0099ABA4 /* Extensions */,
+				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		CC0F40AD262F3A1F0099ABA4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,10 +483,12 @@
 			files = (
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4083262F1E050099ABA4 /* SearchMainView.swift in Sources */,
+				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,
+				CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */,
 				CC0F4088262F1E0F0099ABA4 /* SearchMainPresenter.swift in Sources */,
 				CC0F408D262F1E190099ABA4 /* SearchMainInteractor.swift in Sources */,
 				CC0F4097262F1E310099ABA4 /* SearchMainLocalDataManager.swift in Sources */,
