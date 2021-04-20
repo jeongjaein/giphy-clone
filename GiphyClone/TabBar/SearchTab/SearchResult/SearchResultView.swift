@@ -83,6 +83,7 @@ extension SearchResultView {
                         forCellWithReuseIdentifier: SearchGifCollectionViewCell.id)
             $0.delegate = self
             $0.dataSource = self
+            ($0.collectionViewLayout as? GifCollectionViewLayout)?.delegate = self
         }
     }
     

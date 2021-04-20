@@ -28,6 +28,7 @@ class SearchGifCollectionViewCell: UICollectionViewCell {
     
     func setData(_ data: Data) {
         imageView.image = UIImage(data: data)
+//        imageView.image = UIImage().setSFSymbols(systemName: "line.diagonal.arrow", weight: .bold)
     }
 }
 
@@ -43,7 +44,10 @@ extension SearchGifCollectionViewCell {
     }
     
     func layout() {
-        [imageView].forEach { addSubview($0) }
+        [imageView].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+        }
         
         imageView.do {
             NSLayoutConstraint.activate([
