@@ -12,7 +12,7 @@ protocol SearchMainViewProtocol: class {
     
     func didReceiveTrendingGif()
     func didReceiveRecentSearches()
-    func didReceiveAutoCompletes(_autoCompletes: [String])
+    func didReceiveAutoCompletes()
     
     func showLoading()
     func hideLoading()
@@ -25,10 +25,10 @@ protocol SearchMainPresenterProtocol: class {
     var wireFrame:  SearchMainWireFrameProtocol? { get set }
     var recentSearhes: [String] { get set }
     var trendingGif: [String] { get set }
-    var autoComplete: [String] { get set }
+    var autoCompletes: [AutoComplete] { get set }
     
-    func viewDidLoad(_ keyword: String)
-    func searchBigin(_ keyword: String)
+    func viewDidLoad()
+    func searchTextFieldChanged(_ keyword: String)
     
     /// RecentSearches
     func numberOfRecentSearches() -> Int
@@ -44,6 +44,9 @@ protocol SearchMainPresenterProtocol: class {
     func numberOfAutoComplete() -> Int
     func didSelectAutoComplete(_ indexPath: IndexPath)
     func itemOfAutoComplete(_ indexPath: IndexPath) -> String
+    
+    /// Search
+    func searchKeyword(_ keyword: String)
 }
 
 protocol SearchMainInteractorInputProtocol: class {
@@ -66,7 +69,7 @@ protocol SearchMainInteractorOutputProtocol: class {
     func retrievedRecentSearches()
     
     /// AutoComplete
-    func retrievedAutoComplete(_ autoCompletes: [String])
+    func retrievedAutoComplete(_ autoCompletes: [AutoComplete])
     
     func onError()
 }
@@ -75,18 +78,20 @@ protocol SearchMainRemoteDataManagerInputProtocol: class {
     var interactor: SearchMainRemoteDataManagerOutputProtocol? { get set }
     
     /// RecentSearches
-    func fetchTrendingGif()
+    func callTrendingGifAPI()
     
     /// AutoComplete
-    func fetchAutoComplete(_ keyword: String)
+    func callAutoCompleteAPI(_ keyword: String)
 }
 
 protocol SearchMainRemoteDataManagerOutputProtocol: class {
     /// TrendingGif
-    func retrievedTrendingGif()
+    func callTrendingGifResult()
     
     /// AutoComplete
-    func retrievedAutoComplete(_ autoCompletes: [String])
+    func callAutoCompleteResult(_ autoCompletes: [AutoComplete])
+    
+    func errorFromRemote()
 }
 
 protocol SearchMainLocalDataManagerInputProtocol: class {
@@ -97,10 +102,16 @@ protocol SearchMainLocalDataManagerInputProtocol: class {
 }
 
 protocol SearchMainLocalDataManagerOutputProtocol: class {
+    
     /// RecentSearches
     func retrievedRecentSearches()
+    
+    func errorFromLocal()
 }
 
 protocol SearchMainWireFrameProtocol: class {
     static func createSearchMainModule() -> UIViewController
+    
+    func presentContentDetail()
+    func presentSearchResult(from view: SearchMainViewProtocol,  _ keyword: String)
 }
