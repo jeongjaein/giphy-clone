@@ -185,5 +185,6 @@ extension SearchMainView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text else { return false }
         presenter?.searchKeyword(keyword)
+        return true
     }
 }

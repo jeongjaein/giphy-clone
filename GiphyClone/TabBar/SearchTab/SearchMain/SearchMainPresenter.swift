@@ -15,7 +15,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     
     var recentSearhes: [String] = []
     var trendingGif: [String] = []
-    var autoCompletes: [Keyword] = []
+    var autoCompletes: [AutoComplete] = []
     
     func viewDidLoad() {
         view?.showLoading()
@@ -34,7 +34,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     }
     
     func didSelectRecentSearches(_ indexPath: IndexPath) {
-        wireFrame?.presentSearchResult()
+        wireFrame?.presentSearchResult(recentSearhes[indexPath.row])
     }
     
     func itemOfRecentSearches(_ indexPath: IndexPath) -> String {
@@ -90,7 +90,7 @@ extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
         view?.didReceiveRecentSearches()
     }
     
-    func retrievedAutoComplete(_ autoCompletes: [Keyword]) {
+    func retrievedAutoComplete(_ autoCompletes: [AutoComplete]) {
         self.autoCompletes = autoCompletes
         view?.didReceiveAutoCompletes()
     }

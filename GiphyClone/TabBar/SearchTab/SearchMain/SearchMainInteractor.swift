@@ -29,7 +29,7 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
         presenter?.retrievedTrendingGif()
     }
     
-    func callAutoCompleteResult(_ autoCompletes: [Keyword]) {
+    func callAutoCompleteResult(_ autoCompletes: [AutoComplete]) {
         presenter?.retrievedAutoComplete(autoCompletes)
     }
     

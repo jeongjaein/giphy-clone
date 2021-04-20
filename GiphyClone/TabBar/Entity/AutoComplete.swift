@@ -7,15 +7,8 @@
 
 import Foundation
 
-// MARK: - Welcome
+// MARK: - AutoComplete
 struct AutoComplete: Codable {
-    let data: [Keyword]
-    let pagination: Pagination
-    let meta: Meta
-}
-
-// MARK: - Datum
-struct Keyword: Codable {
     let name, analyticsResponsePayload: String
 
     enum CodingKeys: String, CodingKey {
@@ -24,18 +17,4 @@ struct Keyword: Codable {
     }
 }
 
-// MARK: - Meta
-struct Meta: Codable {
-    let status: Int
-    let msg, responseID: String
 
-    enum CodingKeys: String, CodingKey {
-        case status, msg
-        case responseID = "response_id"
-    }
-}
-
-// MARK: - Pagination
-struct Pagination: Codable {
-    let count, offset: Int
-}

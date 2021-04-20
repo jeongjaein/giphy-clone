@@ -8,11 +8,25 @@
 import Foundation
 
 class SearchResultInteractor: SearchResultInteractorInputProtocol {
+    var presenter: SearchResultInteractorOutputProtocol?
+    var remoteDataManager: SearchResultRemoteDataManagerInputProtocol?
+    var localDataManager: SearchResultLocalDataManagerInputProtocol?
     
+    func fetchSearchGif(_ keyword: String) {
+        remoteDataManager?.callSearchKeywordAPI(keyword)
+    }
 }
 
-class SearchResultInteractor: SearchResultRemoteDataManageroutputProtocol {
+extension SearchResultInteractor: SearchResultRemoteDataManageroutputProtocol {
+    func callSearchKeywordResult(_ searchGif: SearchGif) {
+        presenter?.retrievedSearchKeyword(searchGif)
+    }
     
+    func onError() {
+        presenter?.onError()
+    }
 }
 
-class SearchResultInteractor: SearchResultLocalDataManagerOutputProtocol
+extension SearchResultInteractor: SearchResultLocalDataManagerOutputProtocol {
+    
+}

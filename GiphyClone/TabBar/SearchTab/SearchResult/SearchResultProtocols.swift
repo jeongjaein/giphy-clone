@@ -23,10 +23,11 @@ protocol SearchResultPresenterProtocol: class {
     var keyword: String { get set }
     
     func viewDidLoad()
+    func searchButtonDidTap(_ keyword: String)
 }
 
 protocol SearchResultInteractorInputProtocol: class {
-    var presenter:          SearchResultPresenterProtocol? { get set }
+    var presenter:          SearchResultInteractorOutputProtocol? { get set }
     var remoteDataManager:  SearchResultRemoteDataManagerInputProtocol? { get set }
     var localDataManager:   SearchResultLocalDataManagerInputProtocol? { get set }
     
@@ -37,7 +38,8 @@ protocol SearchResultInteractorInputProtocol: class {
 protocol SearchResultInteractorOutputProtocol: class {
     
     /// SearchKeyword
-    func retrievedSearchKeyword()
+    func retrievedSearchKeyword(_ searchGif: SearchGif)
+    func onError()
 }
 
 protocol SearchResultRemoteDataManagerInputProtocol: class {
@@ -49,7 +51,8 @@ protocol SearchResultRemoteDataManagerInputProtocol: class {
 protocol SearchResultRemoteDataManageroutputProtocol: class {
     
     /// SearchKeyword
-    func callSearchKeywordResult()
+    func callSearchKeywordResult(_ searchGif: SearchGif)
+    func onError()
 }
 
 protocol SearchResultLocalDataManagerInputProtocol: class {

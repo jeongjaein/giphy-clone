@@ -23,7 +23,7 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
                 switch response.result {
                 case .success(let data):
                     do {
-                        let result = try JSONDecoder().decode(AutoComplete.self, from: data)
+                        let result = try JSONDecoder().decode(BaseResponse<[AutoComplete]>.self, from: data)
                         self.interactor?.callAutoCompleteResult(result.data)
                     } catch {
                         self.interactor?.errorFromRemote()

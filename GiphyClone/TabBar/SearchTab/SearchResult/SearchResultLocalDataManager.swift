@@ -7,4 +7,7 @@
 
 import Foundation
 
-class SearchResultLocalDataManager: SearchResultLocalDataManagerInputProtocol
+class SearchResultLocalDataManager: SearchResultLocalDataManagerInputProtocol {
+    var interactor: SearchResultLocalDataManagerOutputProtocol?
+    
+}

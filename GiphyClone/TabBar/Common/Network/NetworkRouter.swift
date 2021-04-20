@@ -14,12 +14,15 @@ enum NetworkRouter: URLRequestConvertible {
     // MARK: Case
     
     case autoComplete   (keyword: String)
+    case searchGif      (keyword: String)
     
     // MARK: Method
     
     var method: HTTPMethod {
         switch self {
         case .autoComplete:
+            return .get
+        case .searchGif:
             return .get
         }
     }
@@ -30,6 +33,8 @@ enum NetworkRouter: URLRequestConvertible {
         switch self {
         case .autoComplete:
             return "/gifs/search/tags"
+        case .searchGif:
+            return "/gifs/search"
         }
     }
     
@@ -38,6 +43,8 @@ enum NetworkRouter: URLRequestConvertible {
     var parameters: Parameters? {
         switch self {
         case let .autoComplete(keyword):
+            return ["q": keyword]
+        case let .searchGif(keyword):
             return ["q": keyword]
         }
     }

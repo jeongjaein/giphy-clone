@@ -41,6 +41,10 @@
 		CC0F4120262F606A0099ABA4 /* SearchResultRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F411F262F606A0099ABA4 /* SearchResultRemoteDataManager.swift */; };
 		CC0F4125262F60760099ABA4 /* SearchResultLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4124262F60760099ABA4 /* SearchResultLocalDataManager.swift */; };
 		CC0F412A262F60840099ABA4 /* SearchResultWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4129262F60840099ABA4 /* SearchResultWireFrame.swift */; };
+		CC0F4132262F63840099ABA4 /* SearchGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4131262F63840099ABA4 /* SearchGif.swift */; };
+		CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4136262F63AE0099ABA4 /* Meta.swift */; };
+		CC0F413C262F63C00099ABA4 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F413B262F63C00099ABA4 /* Pagination.swift */; };
+		CC0F4141262F66C50099ABA4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4140262F66C50099ABA4 /* BaseResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +108,10 @@
 		CC0F411F262F606A0099ABA4 /* SearchResultRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultRemoteDataManager.swift; sourceTree = "<group>"; };
 		CC0F4124262F60760099ABA4 /* SearchResultLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultLocalDataManager.swift; sourceTree = "<group>"; };
 		CC0F4129262F60840099ABA4 /* SearchResultWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultWireFrame.swift; sourceTree = "<group>"; };
+		CC0F4131262F63840099ABA4 /* SearchGif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGif.swift; sourceTree = "<group>"; };
+		CC0F4136262F63AE0099ABA4 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		CC0F413B262F63C00099ABA4 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
+		CC0F4140262F66C50099ABA4 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,6 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
+				CC0F4131262F63840099ABA4 /* SearchGif.swift */,
+				CC0F4136262F63AE0099ABA4 /* Meta.swift */,
+				CC0F413B262F63C00099ABA4 /* Pagination.swift */,
+				CC0F4140262F66C50099ABA4 /* BaseResponse.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -580,6 +592,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */,
+				CC0F413C262F63C00099ABA4 /* Pagination.swift in Sources */,
+				CC0F4132262F63840099ABA4 /* SearchGif.swift in Sources */,
 				CC0F4111262F60420099ABA4 /* SearchResultView.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4116262F604E0099ABA4 /* SearchResultPresenter.swift in Sources */,
@@ -590,7 +604,9 @@
 				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
+				CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
+				CC0F4141262F66C50099ABA4 /* BaseResponse.swift in Sources */,
 				CC0F4100262F53BE0099ABA4 /* AutoComplete.swift in Sources */,
 				CC0F4120262F606A0099ABA4 /* SearchResultRemoteDataManager.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
