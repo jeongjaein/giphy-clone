@@ -34,6 +34,7 @@
 		CC0F40E7262F497D0099ABA4 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40E6262F497D0099ABA4 /* NetworkRouter.swift */; };
 		CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */; };
 		CC0F4100262F53BE0099ABA4 /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */; };
+		CC0F4109262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4108262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		CC0F40E6262F497D0099ABA4 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
 		CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
+		CC0F4108262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTableViewCell.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +276,7 @@
 		CC0F40D4262F438E0099ABA4 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CC0F4107262F55AA0099ABA4 /* Cells */,
 				CC0F40D5262F43EF0099ABA4 /* ContentView.swift */,
 			);
 			path = Component;
@@ -310,6 +313,14 @@
 				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		CC0F4107262F55AA0099ABA4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F4108262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,6 +564,7 @@
 				CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4083262F1E050099ABA4 /* SearchMainView.swift in Sources */,
+				CC0F4109262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift in Sources */,
 				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,

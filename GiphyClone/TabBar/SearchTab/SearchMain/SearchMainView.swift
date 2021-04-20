@@ -14,7 +14,7 @@ class SearchMainView: UIViewController {
     let searchButton = UIButton()
     let segControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let trendingSearchesLabel = SubHeadingLabel()
-    let tredingSearchesTableView = UITableView()
+    let autoCompleteTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +34,7 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func didReceiveAutoCompletes() {
-        print("자동완성 도착~")
+        autoCompleteTableView.reloadData()
     }
     
     func showLoading() {
@@ -90,7 +90,15 @@ extension SearchMainView {
         trendingSearchesLabel.do {
             $0.text = "Trending Searches"
         }
-        tredingSearchesTableView.do {$0.backgroundColor = .cyan
+        autoCompleteTableView.do {
+            $0.isScrollEnabled = false
+            $0.delegate = self
+            $0.dataSource = self
+            $0.backgroundColor = .black
+            $0.estimatedRowHeight = 15
+            $0.rowHeight = UITableView.automaticDimension
+            $0.register(AutoCompleteTableViewCell.self,
+                        forCellReuseIdentifier: AutoCompleteTableViewCell.id)
         }
     }
     
@@ -99,7 +107,7 @@ extension SearchMainView {
          searchButton,
          segControl,
          trendingSearchesLabel,
-         tredingSearchesTableView].forEach {
+         autoCompleteTableView].forEach {
             view.addSubview($0)
             autoResizingOff($0)
          }
@@ -137,13 +145,13 @@ extension SearchMainView {
                                             constant: 10),
             ])
         }
-        tredingSearchesTableView.do {
+        autoCompleteTableView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: trendingSearchesLabel.bottomAnchor,
                                         constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                $0.heightAnchor.constraint(equalToConstant: 200)
+                $0.heightAnchor.constraint(equalToConstant: 230)
             ])
         }
     }
@@ -153,8 +161,20 @@ extension SearchMainView {
     }
 }
 
-extension SearchMainView: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
+extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.numberOfAutoComplete() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let presenter = presenter else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(withIdentifier: AutoCompleteTableViewCell.id, for: indexPath)
+        guard let castedCell = cell as? AutoCompleteTableViewCell else { return UITableViewCell() }
+        castedCell.setData(keyword: presenter.itemOfAutoComplete(indexPath))
+        return castedCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectAutoComplete(indexPath)
     }
 }

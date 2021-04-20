@@ -24,15 +24,16 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
                 case .success(let data):
                     do {
                         let result = try JSONDecoder().decode(AutoComplete.self, from: data)
-                        print(result)
+                        self.interactor?.callAutoCompleteResult(result.data)
                     } catch {
-                        print("실패")
+                        self.interactor?.errorFromRemote()
                     }
-                case .failure(let err): break
+                case .failure:
+                    self.interactor?.errorFromRemote()
                 }
             }
-//        interactor?.callAutoCompleteResult([])
-//        interactor?.errorFromRemote()
+        
+        interactor?.errorFromRemote()
     }
     
 }

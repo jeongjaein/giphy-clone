@@ -9,13 +9,13 @@ import Foundation
 
 // MARK: - Welcome
 struct AutoComplete: Codable {
-    let data: [Datum]
+    let data: [Keyword]
     let pagination: Pagination
     let meta: Meta
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct Keyword: Codable {
     let name, analyticsResponsePayload: String
 
     enum CodingKeys: String, CodingKey {

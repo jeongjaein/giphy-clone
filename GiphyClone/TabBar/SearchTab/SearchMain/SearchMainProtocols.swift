@@ -25,7 +25,7 @@ protocol SearchMainPresenterProtocol: class {
     var wireFrame:  SearchMainWireFrameProtocol? { get set }
     var recentSearhes: [String] { get set }
     var trendingGif: [String] { get set }
-    var autoCompletes: [String] { get set }
+    var autoCompletes: [Keyword] { get set }
     
     func viewDidLoad()
     func searchTextFieldChanged(_ keyword: String)
@@ -69,7 +69,7 @@ protocol SearchMainInteractorOutputProtocol: class {
     func retrievedRecentSearches()
     
     /// AutoComplete
-    func retrievedAutoComplete(_ autoCompletes: [String])
+    func retrievedAutoComplete(_ autoCompletes: [Keyword])
     
     func onError()
 }
@@ -89,7 +89,7 @@ protocol SearchMainRemoteDataManagerOutputProtocol: class {
     func callTrendingGifResult()
     
     /// AutoComplete
-    func callAutoCompleteResult(_ autoCompletes: [String])
+    func callAutoCompleteResult(_ autoCompletes: [Keyword])
     
     func errorFromRemote()
 }

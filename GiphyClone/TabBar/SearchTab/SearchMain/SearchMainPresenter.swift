@@ -15,7 +15,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     
     var recentSearhes: [String] = []
     var trendingGif: [String] = []
-    var autoCompletes: [String] = []
+    var autoCompletes: [Keyword] = []
     
     func viewDidLoad() {
         view?.showLoading()
@@ -69,7 +69,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     }
     
     func itemOfAutoComplete(_ indexPath: IndexPath) -> String {
-        return autoCompletes[indexPath.row]
+        return autoCompletes[indexPath.row].name
     }
     
     // MARK: 검색 버튼 탭
@@ -90,7 +90,8 @@ extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
         view?.didReceiveRecentSearches()
     }
     
-    func retrievedAutoComplete(_ autoCompletes: [String]) {
+    func retrievedAutoComplete(_ autoCompletes: [Keyword]) {
+        self.autoCompletes = autoCompletes
         view?.didReceiveAutoCompletes()
     }
     
