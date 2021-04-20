@@ -12,7 +12,6 @@ class SearchMainLocalDataManager: SearchMainLocalDataManagerInputProtocol {
     weak var interactor: SearchMainLocalDataManagerOutputProtocol?
     
     func fetchRecentSearches() {
-        //
         interactor?.retrievedRecentSearches()
         interactor?.errorFromLocal()
     }

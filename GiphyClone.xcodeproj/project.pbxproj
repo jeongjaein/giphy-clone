@@ -27,6 +27,8 @@
 		CC0F409C262F1E3C0099ABA4 /* SearchMainWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F409B262F1E3C0099ABA4 /* SearchMainWireFrame.swift */; };
 		CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */; };
 		CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */; };
+		CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */; };
+		CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		CC0F409B262F1E3C0099ABA4 /* SearchMainWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainWireFrame.swift; sourceTree = "<group>"; };
 		CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultProtocols.swift; sourceTree = "<group>"; };
 		CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Do.swift"; sourceTree = "<group>"; };
+		CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,6 +243,8 @@
 			isa = PBXGroup;
 			children = (
 				CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */,
+				CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */,
+				CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -484,9 +490,11 @@
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4083262F1E050099ABA4 /* SearchMainView.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
+				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
+				CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,
 				CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */,
 				CC0F4088262F1E0F0099ABA4 /* SearchMainPresenter.swift in Sources */,

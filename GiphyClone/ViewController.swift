@@ -22,8 +22,7 @@ class ViewController: UITabBarController {
         .Search: UITabBarItem(
             title: "",
             image: UIImage(systemName: "magnifyingglass"),
-            selectedImage: UIImage(systemName: "magnifyingglass")?
-                .withConfiguration(UIImage.SymbolConfiguration(weight: .bold))
+            selectedImage: UIImage().setSFSymbols(systemName: "magnifyingglass", weight: .bold)
         ),
         .Mypage: UITabBarItem(
             title: "",
@@ -61,20 +60,18 @@ extension ViewController {
         
         let studyNVC = UINavigationController(rootViewController: self.tempVC1)
         studyNVC.navigationBar.tintColor = .white
-        studyNVC.navigationBar.prefersLargeTitles = true
         
         let myStudyNVC = UINavigationController(rootViewController: self.searchMain)
         myStudyNVC.navigationBar.tintColor = .white
-        myStudyNVC.navigationBar.prefersLargeTitles = true
         
         let setNVC = UINavigationController(rootViewController: self.tempVC2)
         setNVC.navigationBar.tintColor = .white
-        setNVC.navigationBar.prefersLargeTitles = true
         
         self.viewControllers = [
             studyNVC,
             myStudyNVC,
             setNVC
         ]
+        selectedIndex = 1
     }
 }
