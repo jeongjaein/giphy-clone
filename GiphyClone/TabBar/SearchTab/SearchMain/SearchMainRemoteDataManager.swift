@@ -9,7 +9,7 @@ import Foundation
 
 class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     
-    var interactor: SearchMainRemoteDataManagerOutputProtocol?
+    weak var interactor: SearchMainRemoteDataManagerOutputProtocol?
     
     func callTrendingGifAPI() {
         interactor?.callTrendingGifResult()
@@ -21,7 +21,4 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
         interactor?.errorFromRemote()
     }
     
-    func callSearchKeywordAPI(_ keyword: String) {
-        <#code#>
-    }
 }

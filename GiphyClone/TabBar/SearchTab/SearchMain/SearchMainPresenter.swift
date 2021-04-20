@@ -8,9 +8,11 @@
 import Foundation
 
 class SearchMainPresenter: SearchMainPresenterProtocol {
-    var view: SearchMainViewProtocol?
+    
+    weak var view: SearchMainViewProtocol?
     var interactor: SearchMainInteractorInputProtocol?
     var wireFrame: SearchMainWireFrameProtocol?
+    
     var recentSearhes: [String] = []
     var trendingGif: [String] = []
     var autoCompletes: [String] = []
@@ -24,22 +26,23 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         interactor?.fetchAutoComplete(keyword)
     }
     
-    // MARK: RecentSearches func
+    
+    // MARK: 최근 검색어 관련
     
     func numberOfRecentSearches() -> Int {
         return recentSearhes.count
     }
     
     func didSelectRecentSearches(_ indexPath: IndexPath) {
-//        검색
-//        recentSearhes[indexPath.row]
+        wireFrame?.presentSearchResult()
     }
     
     func itemOfRecentSearches(_ indexPath: IndexPath) -> String {
         return recentSearhes[indexPath.row]
     }
     
-    // MARK: TrendingGif func
+    
+    // MARK: 트렌디 gif 관련
     
     func numberOfTrendingGif() -> Int {
         return trendingGif.count
@@ -54,23 +57,26 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         return trendingGif[indexPath.row]
     }
     
-    // MARK: AutoComplete func
+    
+    // MARK: 자동완성 관련
     
     func numberOfAutoComplete() -> Int {
         return autoCompletes.count
     }
     
     func didSelectAutoComplete(_ indexPath: IndexPath) {
-//        검색
-//        autoCompletes[indexPath.row]
+        wireFrame?.presentSearchResult()
     }
     
     func itemOfAutoComplete(_ indexPath: IndexPath) -> String {
         return autoCompletes[indexPath.row]
     }
     
+    // MARK: 검색 버튼 탭
+    
     func searchKeyword(_ keyword: String) {
         view?.showLoading()
+        wireFrame?.presentSearchResult()
     }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {

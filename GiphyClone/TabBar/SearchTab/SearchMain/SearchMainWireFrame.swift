@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchMainWireFrame: SearchMainWireFrameProtocol {
+    
     static func createSearchMainModule() -> UIViewController {
         let view = SearchMainView()
         let presenter = SearchMainPresenter()
@@ -27,6 +28,10 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
         localDataManager.interactor = interactor
         
         return view
+    }
+    
+    func presentSearchResult() {
+        //검색 결과로 갑시다
     }
     
     func presentContentDetail() {

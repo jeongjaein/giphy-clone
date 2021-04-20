@@ -18,15 +18,15 @@ class SearchMainView: UIViewController {
 
 extension SearchMainView: SearchMainViewProtocol {
     func didReceiveTrendingGif() {
-        <#code#>
+        print("최신gif 도착~")
     }
     
     func didReceiveRecentSearches() {
-        <#code#>
+        print("검색기록 도착~")
     }
     
     func didReceiveAutoCompletes() {
-        <#code#>
+        print("자동완성 도착~")
     }
     
     func showLoading() {

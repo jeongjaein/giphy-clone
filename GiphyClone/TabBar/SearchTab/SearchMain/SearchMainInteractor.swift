@@ -9,7 +9,7 @@ import Foundation
 
 class SearchMainInteractor: SearchMainInteractorInputProtocol {
    
-    var presenter: SearchMainInteractorOutputProtocol?
+    weak var presenter: SearchMainInteractorOutputProtocol?
     var remoteDataManager: SearchMainRemoteDataManagerInputProtocol?
     var localDataManager: SearchMainLocalDataManagerInputProtocol?
     
@@ -22,10 +22,6 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
         //시간체크 해서 중간에 다시 들어오면 취소
         remoteDataManager?.callAutoCompleteAPI(keyword)
     }
-    
-    func fetchSearchGif(_ keyword: String) {
-        <#code#>
-    }
 }
 
 extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
@@ -35,10 +31,6 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
     
     func callAutoCompleteResult(_ autoCompletes: [String]) {
         presenter?.retrievedAutoComplete(autoCompletes)
-    }
-    
-    func callSearchKeywordResult() {
-        <#code#>
     }
     
     func errorFromRemote() {

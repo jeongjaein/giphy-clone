@@ -8,7 +8,8 @@
 import Foundation
 
 class SearchMainLocalDataManager: SearchMainLocalDataManagerInputProtocol {
-    var interactor: SearchMainLocalDataManagerOutputProtocol?
+    
+    weak var interactor: SearchMainLocalDataManagerOutputProtocol?
     
     func fetchRecentSearches() {
         //

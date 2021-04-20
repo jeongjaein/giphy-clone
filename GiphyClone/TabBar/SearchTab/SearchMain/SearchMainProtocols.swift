@@ -59,9 +59,6 @@ protocol SearchMainInteractorInputProtocol: class {
     
     /// AutoComplete
     func fetchAutoComplete(_ keyword: String)
-    
-    /// SearchKeyword
-    func fetchSearchGif(_ keyword: String)
 }
 
 protocol SearchMainInteractorOutputProtocol: class {
@@ -85,9 +82,6 @@ protocol SearchMainRemoteDataManagerInputProtocol: class {
     
     /// AutoComplete
     func callAutoCompleteAPI(_ keyword: String)
-    
-    /// SearchKeyword
-    func callSearchKeywordAPI(_ keyword: String)
 }
 
 protocol SearchMainRemoteDataManagerOutputProtocol: class {
@@ -96,9 +90,6 @@ protocol SearchMainRemoteDataManagerOutputProtocol: class {
     
     /// AutoComplete
     func callAutoCompleteResult(_ autoCompletes: [String])
-    
-    /// SearchKeyword
-    func callSearchKeywordResult()
     
     func errorFromRemote()
 }
@@ -111,6 +102,7 @@ protocol SearchMainLocalDataManagerInputProtocol: class {
 }
 
 protocol SearchMainLocalDataManagerOutputProtocol: class {
+    
     /// RecentSearches
     func retrievedRecentSearches()
     
@@ -121,4 +113,5 @@ protocol SearchMainWireFrameProtocol: class {
     static func createSearchMainModule() -> UIViewController
     
     func presentContentDetail()
+    func presentSearchResult()
 }
