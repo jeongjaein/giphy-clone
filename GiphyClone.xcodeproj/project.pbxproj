@@ -29,6 +29,11 @@
 		CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */; };
 		CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */; };
 		CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */; };
+		CC0F40CD262F42AB0099ABA4 /* SubHeadingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40CC262F42AB0099ABA4 /* SubHeadingLabel.swift */; };
+		CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40D5262F43EF0099ABA4 /* ContentView.swift */; };
+		CC0F40E7262F497D0099ABA4 /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40E6262F497D0099ABA4 /* NetworkRouter.swift */; };
+		CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */; };
+		CC0F4100262F53BE0099ABA4 /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +85,11 @@
 		CC0F40AE262F3A330099ABA4 /* NSObject+Do.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Do.swift"; sourceTree = "<group>"; };
 		CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		CC0F40CC262F42AB0099ABA4 /* SubHeadingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubHeadingLabel.swift; sourceTree = "<group>"; };
+		CC0F40D5262F43EF0099ABA4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CC0F40E6262F497D0099ABA4 /* NetworkRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +221,7 @@
 				CC0F4096262F1E310099ABA4 /* SearchMainLocalDataManager.swift */,
 				CC0F409B262F1E3C0099ABA4 /* SearchMainWireFrame.swift */,
 				CC0F407A262F0EA10099ABA4 /* SearchMainProtocols.swift */,
+				CC0F40D4262F438E0099ABA4 /* Component */,
 			);
 			path = SearchMain;
 			sourceTree = "<group>";
@@ -233,7 +244,10 @@
 		CC0F40AC262F2C280099ABA4 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				CC0F40FE262F53A50099ABA4 /* Entity */,
 				CC0F40AD262F3A1F0099ABA4 /* Extensions */,
+				CC0F40E4262F49580099ABA4 /* Common */,
+				CC0F40CB262F42910099ABA4 /* ViewComponent */,
 				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
 			);
 			path = TabBar;
@@ -247,6 +261,55 @@
 				CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CC0F40CB262F42910099ABA4 /* ViewComponent */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40CC262F42AB0099ABA4 /* SubHeadingLabel.swift */,
+			);
+			path = ViewComponent;
+			sourceTree = "<group>";
+		};
+		CC0F40D4262F438E0099ABA4 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40D5262F43EF0099ABA4 /* ContentView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		CC0F40E4262F49580099ABA4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40EE262F49B10099ABA4 /* App */,
+				CC0F40E5262F496B0099ABA4 /* Network */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		CC0F40E5262F496B0099ABA4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40E6262F497D0099ABA4 /* NetworkRouter.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CC0F40EE262F49B10099ABA4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		CC0F40FE262F53A50099ABA4 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,18 +550,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4083262F1E050099ABA4 /* SearchMainView.swift in Sources */,
+				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
+				CC0F4100262F53BE0099ABA4 /* AutoComplete.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
 				CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,
 				CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */,
+				CC0F40CD262F42AB0099ABA4 /* SubHeadingLabel.swift in Sources */,
 				CC0F4088262F1E0F0099ABA4 /* SearchMainPresenter.swift in Sources */,
 				CC0F408D262F1E190099ABA4 /* SearchMainInteractor.swift in Sources */,
+				CC0F40E7262F497D0099ABA4 /* NetworkRouter.swift in Sources */,
 				CC0F4097262F1E310099ABA4 /* SearchMainLocalDataManager.swift in Sources */,
 				CC0F409C262F1E3C0099ABA4 /* SearchMainWireFrame.swift in Sources */,
 			);

@@ -12,7 +12,7 @@ class ContentView: UIView {
     let subHeadingLabel = SubHeadingLabel()
     var contentView = UIView()
     
-    init(frame: CGRect = .zero, content: UIView) {
+    init(frame: CGRect = .zero, content: UIView = UIView()) {
         super.init(frame: frame)
         self.contentView = content
         layout()

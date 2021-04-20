@@ -22,7 +22,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         interactor?.fetchInitialElements()
     }
     
-    func searchBigin(_ keyword: String) {
+    func searchTextFieldChanged(_ keyword: String) {
         interactor?.fetchAutoComplete(keyword)
     }
     

@@ -28,7 +28,7 @@ protocol SearchMainPresenterProtocol: class {
     var autoCompletes: [String] { get set }
     
     func viewDidLoad()
-    func searchBigin(_ keyword: String)
+    func searchTextFieldChanged(_ keyword: String)
     
     /// RecentSearches
     func numberOfRecentSearches() -> Int

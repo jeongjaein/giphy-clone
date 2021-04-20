@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     
@@ -17,8 +18,21 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     }
     
     func callAutoCompleteAPI(_ keyword: String) {
-        interactor?.callAutoCompleteResult([])
-        interactor?.errorFromRemote()
+        AF.request(NetworkRouter.autoComplete(keyword: keyword))
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder().decode(AutoComplete.self, from: data)
+                        print(result)
+                    } catch {
+                        print("실패")
+                    }
+                case .failure(let err): break
+                }
+            }
+//        interactor?.callAutoCompleteResult([])
+//        interactor?.errorFromRemote()
     }
     
 }

@@ -9,8 +9,12 @@ import UIKit
 
 class SearchMainView: UIViewController {
     var presenter: SearchMainPresenterProtocol?
+    
     let searchTextField = UITextField()
     let searchButton = UIButton()
+    let segControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+    let trendingSearchesLabel = SubHeadingLabel()
+    let tredingSearchesTableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +48,13 @@ extension SearchMainView: SearchMainViewProtocol {
     func showError() {
         //alert pop 구현합시다
     }
+    
+    //MARK: @objc
+    
+    @objc func textFieldDidChanged(_ textField: UITextField) {
+        guard let keyword = textField.text else { return }
+        presenter?.searchTextFieldChanged(keyword)
+    }
 }
 
 // MARK: attribute & layout
@@ -57,6 +68,7 @@ extension SearchMainView {
             $0.titleView = title
         }
         searchTextField.do {
+            $0.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
             $0.backgroundColor = .white
             $0.textColor = .black
             $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
@@ -72,13 +84,25 @@ extension SearchMainView {
             $0.tintColor = .white
             $0.backgroundColor = .purple
         }
+        segControl.do {
+            $0.backgroundColor = .orange
+        }
+        trendingSearchesLabel.do {
+            $0.text = "Trending Searches"
+        }
+        tredingSearchesTableView.do {$0.backgroundColor = .cyan
+        }
     }
     
     func layout() {
-        [searchTextField, searchButton].forEach {
+        [searchTextField,
+         searchButton,
+         segControl,
+         trendingSearchesLabel,
+         tredingSearchesTableView].forEach {
             view.addSubview($0)
             autoResizingOff($0)
-        }
+         }
         
         searchTextField.do {
             NSLayoutConstraint.activate([
@@ -96,9 +120,41 @@ extension SearchMainView {
                 $0.widthAnchor.constraint(equalTo: searchTextField.heightAnchor)
             ])
         }
+        segControl.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: searchTextField.bottomAnchor,
+                                        constant: 3),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                $0.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
+        trendingSearchesLabel.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: segControl.bottomAnchor,
+                                        constant: 10),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                            constant: 10),
+            ])
+        }
+        tredingSearchesTableView.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: trendingSearchesLabel.bottomAnchor,
+                                        constant: 3),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                $0.heightAnchor.constraint(equalToConstant: 200)
+            ])
+        }
     }
     
     func autoResizingOff(_ view: UIView) {
         view.translatesAutoresizingMaskIntoConstraints = false
+    }
+}
+
+extension SearchMainView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
     }
 }
