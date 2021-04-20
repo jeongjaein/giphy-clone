@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchMainWireFrame: SearchMainWireFrameProtocol {
+    let nav: UINavigationController? = nil
     
     static func createSearchMainModule() -> UIViewController {
         let view = SearchMainView()
@@ -30,8 +31,10 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
         return view
     }
     
-    func presentSearchResult(_ keyword: String) {
-        //검색 결과로 갑시다
+    func presentSearchResult(from view: SearchMainViewProtocol,  _ keyword: String) {
+        let searchResultView = SearchResultWireFrame.createSearchResultModule()
+        guard let nav = (view as? UIViewController)?.navigationController else { return }
+        nav.pushViewController(searchResultView, animated: true)
     }
     
     func presentContentDetail() {

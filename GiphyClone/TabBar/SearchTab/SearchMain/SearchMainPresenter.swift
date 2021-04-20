@@ -34,7 +34,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     }
     
     func didSelectRecentSearches(_ indexPath: IndexPath) {
-        wireFrame?.presentSearchResult(recentSearhes[indexPath.row])
+        wireFrame?.presentSearchResult(from: view!, recentSearhes[indexPath.row])
     }
     
     func itemOfRecentSearches(_ indexPath: IndexPath) -> String {
@@ -65,7 +65,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     }
     
     func didSelectAutoComplete(_ indexPath: IndexPath) {
-        wireFrame?.presentSearchResult(autoCompletes[indexPath.row].name)
+        wireFrame?.presentSearchResult(from: view!, autoCompletes[indexPath.row].name)
     }
     
     func itemOfAutoComplete(_ indexPath: IndexPath) -> String {
@@ -76,7 +76,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     
     func searchKeyword(_ keyword: String) {
         view?.showLoading()
-        wireFrame?.presentSearchResult(keyword)
+        wireFrame?.presentSearchResult(from: view!, keyword)
     }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
