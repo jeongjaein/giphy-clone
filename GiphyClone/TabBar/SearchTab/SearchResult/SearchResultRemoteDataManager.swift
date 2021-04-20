@@ -17,8 +17,7 @@ class SearchResultRemoteDataManager: SearchResultRemoteDataManagerInputProtocol 
                 switch response.result {
                 case .success(let data):
                     do {
-                        let result = try JSONDecoder().decode(BaseResponse<SearchGif>.self, from: data)
-                        print(result)
+                        let result = try JSONDecoder().decode(BaseResponse<[SearchGif]>.self, from: data)
                         self.interactor?.callSearchKeywordResult(result.data)
                     } catch {
                         self.interactor?.onError()

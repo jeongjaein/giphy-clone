@@ -45,6 +45,8 @@
 		CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4136262F63AE0099ABA4 /* Meta.swift */; };
 		CC0F413C262F63C00099ABA4 /* Pagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F413B262F63C00099ABA4 /* Pagination.swift */; };
 		CC0F4141262F66C50099ABA4 /* BaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4140262F66C50099ABA4 /* BaseResponse.swift */; };
+		CC0F4148262F6FEF0099ABA4 /* GifCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4147262F6FEF0099ABA4 /* GifCollectionViewLayout.swift */; };
+		CC0F4150262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F414F262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		CC0F4136262F63AE0099ABA4 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		CC0F413B262F63C00099ABA4 /* Pagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pagination.swift; sourceTree = "<group>"; };
 		CC0F4140262F66C50099ABA4 /* BaseResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseResponse.swift; sourceTree = "<group>"; };
+		CC0F4147262F6FEF0099ABA4 /* GifCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCollectionViewLayout.swift; sourceTree = "<group>"; };
+		CC0F414F262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGifCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +269,7 @@
 				CC0F4124262F60760099ABA4 /* SearchResultLocalDataManager.swift */,
 				CC0F4129262F60840099ABA4 /* SearchResultWireFrame.swift */,
 				CC0F40A4262F27720099ABA4 /* SearchResultProtocols.swift */,
+				CC0F4145262F6FC70099ABA4 /* Component */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -349,6 +354,23 @@
 			isa = PBXGroup;
 			children = (
 				CC0F4108262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CC0F4145262F6FC70099ABA4 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F4146262F6FD80099ABA4 /* Cells */,
+				CC0F4147262F6FEF0099ABA4 /* GifCollectionViewLayout.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		CC0F4146262F6FD80099ABA4 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F414F262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -602,7 +624,9 @@
 				CC0F4125262F60760099ABA4 /* SearchResultLocalDataManager.swift in Sources */,
 				CC0F411B262F605E0099ABA4 /* SearchResultInteractor.swift in Sources */,
 				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
+				CC0F4148262F6FEF0099ABA4 /* GifCollectionViewLayout.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
+				CC0F4150262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
 				CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,

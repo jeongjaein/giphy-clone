@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchResultWireFrame: SearchResultWireFrameProtocol {
-    static func createSearchResultModule() -> UIViewController {
+    static func createSearchResultModule(_ keyword: String) -> UIViewController {
         let view = SearchResultView()
         let presenter = SearchResultPresenter()
         let interactor = SearchResultInteractor()
@@ -20,6 +20,7 @@ class SearchResultWireFrame: SearchResultWireFrameProtocol {
         presenter.view = view
         presenter.interactor = interactor
         presenter.wireFrame = wireFrame
+        presenter.keyword = keyword
         interactor.presenter = presenter
         interactor.remoteDataManager = remoteDataManager
         interactor.localDataManager = localDataManager

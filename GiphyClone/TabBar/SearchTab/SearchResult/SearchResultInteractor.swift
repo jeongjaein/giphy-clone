@@ -18,7 +18,7 @@ class SearchResultInteractor: SearchResultInteractorInputProtocol {
 }
 
 extension SearchResultInteractor: SearchResultRemoteDataManageroutputProtocol {
-    func callSearchKeywordResult(_ searchGif: SearchGif) {
+    func callSearchKeywordResult(_ searchGif: [SearchGif]) {
         presenter?.retrievedSearchKeyword(searchGif)
     }
     

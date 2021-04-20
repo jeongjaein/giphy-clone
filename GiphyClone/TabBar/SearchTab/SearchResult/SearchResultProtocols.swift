@@ -22,8 +22,14 @@ protocol SearchResultPresenterProtocol: class {
     var wireFrame:  SearchResultWireFrameProtocol? { get set }
     var keyword: String { get set }
     
+    /// SearchGif
+    func numberOfSearchGif() -> Int
+    func didSelectSearchGif(_ indexPath: IndexPath)
+    func itemOfSearchGif(_ indexPath: IndexPath) -> Data
+    
     func viewDidLoad()
     func searchButtonDidTap(_ keyword: String)
+    func getGifImage(_ indexPath: IndexPath) -> Data
 }
 
 protocol SearchResultInteractorInputProtocol: class {
@@ -38,7 +44,7 @@ protocol SearchResultInteractorInputProtocol: class {
 protocol SearchResultInteractorOutputProtocol: class {
     
     /// SearchKeyword
-    func retrievedSearchKeyword(_ searchGif: SearchGif)
+    func retrievedSearchKeyword(_ searchGif: [SearchGif])
     func onError()
 }
 
@@ -51,7 +57,7 @@ protocol SearchResultRemoteDataManagerInputProtocol: class {
 protocol SearchResultRemoteDataManageroutputProtocol: class {
     
     /// SearchKeyword
-    func callSearchKeywordResult(_ searchGif: SearchGif)
+    func callSearchKeywordResult(_ searchGif: [SearchGif])
     func onError()
 }
 
@@ -64,7 +70,7 @@ protocol SearchResultLocalDataManagerOutputProtocol: class {
 }
 
 protocol SearchResultWireFrameProtocol: class {
-    static func createSearchResultModule() -> UIViewController
+    static func createSearchResultModule(_ keyword: String) -> UIViewController
 }
 
 

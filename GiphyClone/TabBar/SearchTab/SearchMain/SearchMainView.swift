@@ -22,6 +22,13 @@ class SearchMainView: UIViewController {
         attribute()
         layout()
     }
+    
+    //MARK: @objc
+    
+    @objc func textFieldDidChanged(_ textField: UITextField) {
+        guard let keyword = textField.text else { return }
+        presenter?.searchTextFieldChanged(keyword)
+    }
 }
 
 extension SearchMainView: SearchMainViewProtocol {
@@ -47,13 +54,6 @@ extension SearchMainView: SearchMainViewProtocol {
     
     func showError() {
         //alert pop 구현합시다
-    }
-    
-    //MARK: @objc
-    
-    @objc func textFieldDidChanged(_ textField: UITextField) {
-        guard let keyword = textField.text else { return }
-        presenter?.searchTextFieldChanged(keyword)
     }
 }
 
@@ -111,7 +111,7 @@ extension SearchMainView {
          trendingSearchesLabel,
          autoCompleteTableView].forEach {
             view.addSubview($0)
-            autoResizingOff($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
          }
         
         searchTextField.do {
@@ -156,10 +156,6 @@ extension SearchMainView {
                 $0.heightAnchor.constraint(equalToConstant: 230)
             ])
         }
-    }
-    
-    func autoResizingOff(_ view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
