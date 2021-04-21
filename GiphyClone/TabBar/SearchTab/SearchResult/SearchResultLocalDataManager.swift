@@ -8,6 +8,5 @@
 import Foundation
 
 class SearchResultLocalDataManager: SearchResultLocalDataManagerInputProtocol {
-    var interactor: SearchResultLocalDataManagerOutputProtocol?
-    
+    weak var interactor: SearchResultLocalDataManagerOutputProtocol?
 }

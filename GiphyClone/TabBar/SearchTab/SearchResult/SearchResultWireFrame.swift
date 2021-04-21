@@ -29,4 +29,10 @@ class SearchResultWireFrame: SearchResultWireFrameProtocol {
         
         return view
     }
+    
+    func presentGifDetail(from view: SearchResultViewProtocol, gif: SearchGif) {
+        let searchResultView = GifDetailWireFrame.createGifDetailModule(gif)
+        guard let nav = (view as? UIViewController)?.navigationController else { return }
+        nav.pushViewController(searchResultView, animated: true)
+    }
 }

@@ -29,6 +29,11 @@ class SearchMainView: UIViewController {
         guard let keyword = textField.text else { return }
         presenter?.searchTextFieldChanged(keyword)
     }
+    
+    @objc func searchButtonDidTap() {
+        guard let keyword = searchTextField.text else { return }
+        presenter?.searchKeyword(keyword)
+    }
 }
 
 extension SearchMainView: SearchMainViewProtocol {
@@ -45,11 +50,11 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func showLoading() {
-//
+        //
     }
     
     func hideLoading() {
-//
+        //
     }
     
     func showError() {
@@ -69,7 +74,8 @@ extension SearchMainView {
         }
         searchTextField.do {
             $0.delegate = self
-            $0.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
+            $0.addTarget(self, action: #selector(textFieldDidChanged),
+                         for: .editingChanged)
             $0.backgroundColor = .white
             $0.textColor = .black
             $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
@@ -80,10 +86,12 @@ extension SearchMainView {
                                                     : UIColor.systemGray4])
         }
         searchButton.do {
-            $0.setImage(UIImage().setSFSymbols(systemName: "magnifyingglass",
-                                               weight: .bold), for: .normal)
+            $0.setImage(
+                UIImage().setSFSymbols(systemName: "magnifyingglass",
+                                       weight: .bold), for: .normal)
             $0.tintColor = .white
             $0.backgroundColor = .purple
+            $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
         segControl.do {
             $0.backgroundColor = .orange
@@ -132,8 +140,8 @@ extension SearchMainView {
         }
         segControl.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: searchTextField.bottomAnchor,
-                                        constant: 3),
+                $0.topAnchor.constraint(
+                    equalTo: searchTextField.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 50)
@@ -141,16 +149,16 @@ extension SearchMainView {
         }
         trendingSearchesLabel.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: segControl.bottomAnchor,
-                                        constant: 10),
-                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                            constant: 10),
+                $0.topAnchor.constraint(
+                    equalTo: segControl.bottomAnchor, constant: 10),
+                $0.leadingAnchor.constraint(
+                    equalTo: view.leadingAnchor, constant: 10),
             ])
         }
         autoCompleteTableView.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: trendingSearchesLabel.bottomAnchor,
-                                        constant: 3),
+                $0.topAnchor.constraint(
+                    equalTo: trendingSearchesLabel.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 230)

@@ -8,7 +8,7 @@
 import Foundation
 
 class SearchResultInteractor: SearchResultInteractorInputProtocol {
-    var presenter: SearchResultInteractorOutputProtocol?
+    weak var presenter: SearchResultInteractorOutputProtocol?
     var remoteDataManager: SearchResultRemoteDataManagerInputProtocol?
     var localDataManager: SearchResultLocalDataManagerInputProtocol?
     

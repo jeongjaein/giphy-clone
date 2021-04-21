@@ -53,16 +53,16 @@ extension AutoCompleteTableViewCell {
         iconImageView.do {
             NSLayoutConstraint.activate([
                 $0.centerYAnchor.constraint(equalTo: centerYAnchor),
-                $0.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                            constant: 10),
+                $0.leadingAnchor.constraint(
+                    equalTo: leadingAnchor, constant: 10),
                 $0.widthAnchor.constraint(equalToConstant: 15)
             ])
         }
         keywordLabel.do {
             NSLayoutConstraint.activate([
                 $0.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
-                $0.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor,
-                                            constant: 10)
+                $0.leadingAnchor.constraint(
+                    equalTo: iconImageView.trailingAnchor, constant: 10)
             ])
         }
     }

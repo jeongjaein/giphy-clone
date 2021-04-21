@@ -29,7 +29,7 @@ protocol SearchResultPresenterProtocol: class {
     
     func viewDidLoad()
     func searchButtonDidTap(_ keyword: String)
-    func getGifImage(_ indexPath: IndexPath) -> Data
+    func getGifImage(_ indexPath: IndexPath) -> String
 }
 
 protocol SearchResultInteractorInputProtocol: class {
@@ -71,6 +71,7 @@ protocol SearchResultLocalDataManagerOutputProtocol: class {
 
 protocol SearchResultWireFrameProtocol: class {
     static func createSearchResultModule(_ keyword: String) -> UIViewController
+    func presentGifDetail(from view: SearchResultViewProtocol, gif: SearchGif)
 }
 
 

@@ -8,9 +8,7 @@
 import Foundation
 
 class SearchResultPresenter: SearchResultPresenterProtocol {
-    
-    
-    var view: SearchResultViewProtocol?
+    weak var view: SearchResultViewProtocol?
     var interactor: SearchResultInteractorInputProtocol?
     var wireFrame: SearchResultWireFrameProtocol?
     
@@ -33,20 +31,16 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     
     func didSelectSearchGif(_ indexPath: IndexPath) {
         let selectedGif = searchGif[indexPath.row]
+        wireFrame?.presentGifDetail(from: view!, gif: selectedGif)
+    }
+    
+    func getGifImage(_ indexPath: IndexPath) -> String {
+        let gif = searchGif[indexPath.row]
+        guard let url = gif.images?.originalStill?.url else { return "" }
+        return url
     }
     
     func itemOfSearchGif(_ indexPath: IndexPath) -> Data {
-        let gif = searchGif[indexPath.row]
-        guard let url = URL(string: gif.images!.originalStill!.url!)
-        else { return Data() }
-        do {
-            let data = try Data(contentsOf: url)
-            return data
-        } catch { }
-        return Data()
-    }
-    
-    func getGifImage(_ indexPath: IndexPath) -> Data {
         let gif = searchGif[indexPath.row]
         guard let url = URL(string: gif.images!.originalStill!.url!)
         else { return Data() }

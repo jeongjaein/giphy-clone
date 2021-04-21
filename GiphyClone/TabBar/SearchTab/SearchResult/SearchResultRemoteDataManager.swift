@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class SearchResultRemoteDataManager: SearchResultRemoteDataManagerInputProtocol {
-    var interactor: SearchResultRemoteDataManageroutputProtocol?
+    weak var interactor: SearchResultRemoteDataManageroutputProtocol?
     
     func callSearchKeywordAPI(_ keyword: String) {
         AF.request(NetworkRouter.searchGif(keyword: keyword))

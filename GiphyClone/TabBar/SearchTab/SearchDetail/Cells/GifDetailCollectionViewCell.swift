@@ -1,5 +1,5 @@
 //
-//  SearchGifCollectionViewCell.swift
+//  GifDetailCollectionViewcell.swift
 //  GiphyClone
 //
 //  Created by 정재인 on 2021/04/21.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SearchGifCollectionViewCell: UICollectionViewCell {
-    static let id = "SearchGifCollectionViewCell"
+class GifDetailCollectionViewcell: UICollectionViewCell {
+    static let id = "GifDetailCollectionViewcell"
     
-    let imageView = UIImageView()
+    let mainImageView = UIImageView()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -27,34 +27,36 @@ class SearchGifCollectionViewCell: UICollectionViewCell {
     }
     
     func setData(_ data: String) {
-        imageView.setImageUrl(data)
+//        imageView.setImageUrl(data)
     }
 }
 
 // MARK: attribute & layout
 
-extension SearchGifCollectionViewCell {
+extension GifDetailCollectionViewcell {
     func attribute() {
-        imageView.do {
-            $0.layer.cornerRadius = 2
+        mainImageView.do {
+            $0.layer.cornerRadius = 3
             $0.layer.masksToBounds = true
-            $0.contentMode = .scaleAspectFill
-            imageView.image = UIImage().setSFSymbols(systemName: "line.diagonal.arrow", weight: .bold)
+            $0.contentMode = .scaleAspectFit
+            $0.clipsToBounds = true
         }
     }
     
     func layout() {
-        [imageView].forEach {
+        [mainImageView].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        imageView.do {
+        mainImageView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor),
-                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
-                $0.trailingAnchor.constraint(equalTo: trailingAnchor),
-                $0.bottomAnchor.constraint(equalTo: bottomAnchor)
+                $0.leadingAnchor.constraint(
+                    equalTo: leadingAnchor, constant: 5),
+                $0.trailingAnchor.constraint(
+                    equalTo: trailingAnchor, constant: -5),
+                $0.heightAnchor.constraint(equalToConstant: 250)
             ])
         }
     }

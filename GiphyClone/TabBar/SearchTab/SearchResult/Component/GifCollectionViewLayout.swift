@@ -18,9 +18,7 @@ class GifCollectionViewLayout: UICollectionViewLayout {
     
     private let numberOfColumns = 2
     private let cellPadding: CGFloat = 6
-    
     private var cache: [UICollectionViewLayoutAttributes] = []
-    
     private var contentHeight: CGFloat = 0.0
     private var contentWidth: CGFloat {
         guard let collectionView = collectionView else { return 0 }
@@ -34,7 +32,6 @@ class GifCollectionViewLayout: UICollectionViewLayout {
     
     override func prepare() {
         guard cache.isEmpty, let collectionView = collectionView else { return }
-        
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset: [CGFloat] = []
         
@@ -47,7 +44,6 @@ class GifCollectionViewLayout: UICollectionViewLayout {
         
         for item in 0..<collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
-            
             let photoHeight = delegate?.collectionView(
                 collectionView,
                 heightForPhotoAtIndexPath: indexPath) ?? 180

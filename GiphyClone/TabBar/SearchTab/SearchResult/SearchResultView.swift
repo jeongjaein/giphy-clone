@@ -93,7 +93,7 @@ extension SearchResultView {
          segControl,
          searchGifCollectionView].forEach {
             view.addSubview($0)
-            autoResizingOff($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
          }
         
         searchTextField.do {
@@ -114,8 +114,8 @@ extension SearchResultView {
         }
         segControl.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: searchTextField.bottomAnchor,
-                                        constant: 3),
+                $0.topAnchor.constraint(
+                    equalTo: searchTextField.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 50)
@@ -123,17 +123,13 @@ extension SearchResultView {
         }
         searchGifCollectionView.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: segControl.bottomAnchor,
-                                        constant: 3),
+                $0.topAnchor.constraint(
+                    equalTo: segControl.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         }
-    }
-    
-    func autoResizingOff(_ view: UIView) {
-        view.translatesAutoresizingMaskIntoConstraints = false
     }
 }
 
@@ -148,15 +144,18 @@ extension SearchResultView: UICollectionViewDelegate, UICollectionViewDataSource
                                                         SearchGifCollectionViewCell.id,
                                                       for: indexPath)
         guard let castedCell = cell as? SearchGifCollectionViewCell else { return UICollectionViewCell() }
-        castedCell.setData(presenter.itemOfSearchGif(indexPath))
+        castedCell.setData(presenter.getGifImage(indexPath))
         return castedCell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.didSelectSearchGif(indexPath)
     }
 }
 
 extension SearchResultView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard textField.text != nil else { return false }
-        //        presenter?.searchKeyword(keyword)
+        guard let keyword = textField.text else { return false }
+        presenter?.searchButtonDidTap(keyword)
         return true
     }
 }
@@ -165,7 +164,7 @@ extension SearchResultView: GifCollectionViewDelegate {
     func collectionView(
         _ collectionView: UICollectionView,
         heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        guard let image = presenter?.getGifImage(indexPath) else { return 0 }
+        guard let image = presenter?.itemOfSearchGif(indexPath) else { return 0 }
         return UIImage(data: image)?.size.height ?? 0
     }
 }

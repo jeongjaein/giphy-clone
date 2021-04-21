@@ -31,8 +31,8 @@ class ContentView: UIView {
         contentView.do {
             $0.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: subHeadingLabel.bottomAnchor,
-                                        constant: 5),
+                $0.topAnchor.constraint(
+                    equalTo: subHeadingLabel.bottomAnchor, constant: 5),
                 $0.leadingAnchor.constraint(equalTo: leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: bottomAnchor)

@@ -168,12 +168,18 @@ struct User: Codable {
     let profileURL: String?
     let userName: String?
     let displayName: String?
+    let description: String?
+    let instagramURL: String?
+    let isVerified: Bool?
 
     enum CodingKeys: String, CodingKey {
         case avatarURL = "avatar_url"
         case bannerURL = "banner_url"
         case profileURL = "profile_url"
         case displayName = "display_name"
-        case userName
+        case instagramURL = "instagram_url"
+        case isVerified = "is_verified"
+        case userName, description
+        
     }
 }
