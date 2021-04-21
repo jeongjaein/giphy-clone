@@ -1,5 +1,5 @@
 //
-//  GifDetailCollectionViewcell.swift
+//  GifDetailTableViewCell.swift
 //  GiphyClone
 //
 //  Created by 정재인 on 2021/04/21.
@@ -7,17 +7,13 @@
 
 import UIKit
 
-class GifDetailCollectionViewcell: UICollectionViewCell {
-    static let id = "GifDetailCollectionViewcell"
+class GifDetailTableViewCell: UITableViewCell {
+    static let id = "GifDetailTableViewCell"
     
     let mainImageView = UIImageView()
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    override init(frame: CGRect = .zero) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         attribute()
         layout()
     }
@@ -27,18 +23,21 @@ class GifDetailCollectionViewcell: UICollectionViewCell {
     }
     
     func setData(_ data: String) {
-//        imageView.setImageUrl(data)
+        mainImageView.setImageUrl(data)
     }
 }
 
 // MARK: attribute & layout
 
-extension GifDetailCollectionViewcell {
+extension GifDetailTableViewCell {
     func attribute() {
+        self.do {
+            $0.selectionStyle = .none
+        }
         mainImageView.do {
-            $0.layer.cornerRadius = 3
+            $0.layer.cornerRadius = 10
             $0.layer.masksToBounds = true
-            $0.contentMode = .scaleAspectFit
+            $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true
         }
     }
@@ -53,10 +52,10 @@ extension GifDetailCollectionViewcell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor),
                 $0.leadingAnchor.constraint(
-                    equalTo: leadingAnchor, constant: 5),
+                    equalTo: leadingAnchor, constant: 20),
                 $0.trailingAnchor.constraint(
-                    equalTo: trailingAnchor, constant: -5),
-                $0.heightAnchor.constraint(equalToConstant: 250)
+                    equalTo: trailingAnchor, constant: -20),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
         }
     }

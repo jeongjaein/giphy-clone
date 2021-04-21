@@ -179,7 +179,8 @@ struct User: Codable {
         case displayName = "display_name"
         case instagramURL = "instagram_url"
         case isVerified = "is_verified"
-        case userName, description
+        case userName = "username"
+        case description
         
     }
 }

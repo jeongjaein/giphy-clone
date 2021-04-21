@@ -28,6 +28,16 @@ class SearchGifCollectionViewCell: UICollectionViewCell {
     
     func setData(_ data: String) {
         imageView.setImageUrl(data)
+        imageView.sizeToFit()
+        let ratio = imageView.image!.size.width / imageView.image!.size.height
+        if imageView.frame.width > imageView.frame.height {
+            let newHeight = imageView.frame.width / ratio
+            imageView.frame.size = CGSize(width: imageView.frame.width, height: newHeight)
+        }
+        else{
+            let newWidth = imageView.frame.height * ratio
+            imageView.frame.size = CGSize(width: newWidth, height: imageView.frame.height)
+        }
     }
 }
 

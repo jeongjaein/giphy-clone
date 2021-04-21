@@ -34,30 +34,12 @@ extension GifDetailPresenter: GifDetailInteractorOutputProtocol {
 
 extension GifDetailPresenter {
     func convertToDetail(_ gif: SearchGif) -> GifDetail {
-        var mURL        = ""
-        var pURL        = ""
-        var dName       = ""
-        var uName       = ""
-        var iVerified   = false
-        
-        if let mainImageURL = gif.images?.originalStill?.url,
-           let profileURL   = gif.user?.profileURL,
-           let displayName  = gif.user?.displayName,
-           let userName     = gif.user?.userName,
-           let isVerified   = gif.user?.isVerified {
-            mURL        = mainImageURL
-            pURL        = profileURL
-            dName       = displayName
-            uName       = userName
-            iVerified   = isVerified
-        }
-        
         let detail = GifDetail(
-            mainImage: mURL,
-            profileImage: pURL,
-            displayName: dName,
-            username: uName,
-            isVerified: iVerified)
+            mainImage: gif.images?.originalStill?.url ?? "",
+            profileImage: gif.user?.profileURL ?? "",
+            displayName: gif.user?.displayName ?? "",
+            username: gif.user?.userName ?? "",
+            isVerified: gif.user?.isVerified ?? false)
         
         return detail
     }

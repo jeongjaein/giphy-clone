@@ -16,10 +16,12 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     var searchGif: [SearchGif] = []
     
     func viewDidLoad() {
+        view?.showLoading()
         interactor?.fetchSearchGif(keyword)
     }
     
     func searchButtonDidTap(_ keyword: String) {
+        view?.showLoading()
         interactor?.fetchSearchGif(keyword)
     }
     

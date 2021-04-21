@@ -57,6 +57,7 @@ extension SearchResultView {
             $0.titleView = title
         }
         searchTextField.do {
+            $0.text = presenter?.keyword
             $0.delegate = self
             $0.addTarget(self, action: #selector(textFieldDidChanged), for: .editingChanged)
             $0.backgroundColor = .white
@@ -78,11 +79,11 @@ extension SearchResultView {
             $0.backgroundColor = .orange
         }
         searchGifCollectionView.do {
-            $0.backgroundColor = .cyan
             $0.register(SearchGifCollectionViewCell.self,
                         forCellWithReuseIdentifier: SearchGifCollectionViewCell.id)
             $0.delegate = self
             $0.dataSource = self
+            $0.keyboardDismissMode  = .interactive
             ($0.collectionViewLayout as? GifCollectionViewLayout)?.delegate = self
         }
     }
@@ -140,9 +141,10 @@ extension SearchResultView: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                                                        SearchGifCollectionViewCell.id,
-                                                      for: indexPath)
+        let cell = collectionView
+            .dequeueReusableCell(
+                withReuseIdentifier:SearchGifCollectionViewCell.id,for: indexPath)
+        
         guard let castedCell = cell as? SearchGifCollectionViewCell else { return UICollectionViewCell() }
         castedCell.setData(presenter.getGifImage(indexPath))
         return castedCell
