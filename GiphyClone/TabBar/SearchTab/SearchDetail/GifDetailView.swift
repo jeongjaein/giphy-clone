@@ -59,7 +59,9 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: GifDetailTableViewCell.id, for: indexPath)
             guard let castedCell = cell as? GifDetailTableViewCell else { return UITableViewCell() }
-            castedCell.setData(presenter.getGifInfo().mainImage)
+            castedCell.imageCollectionView.delegate = self
+            castedCell.imageCollectionView.dataSource = self
+//            castedCell.setData(presenter.getGifInfo().mainImage)
             return castedCell
         }
         if indexPath.section == 1
@@ -71,6 +73,16 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
             return castedCell
         }
         return UITableViewCell()
+    }
+}
+
+extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        <#code#>
     }
 }
 

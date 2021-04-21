@@ -1,17 +1,15 @@
 //
-//  SearchGifCollectionViewCell.swift
+//  GifCardCollectionViewCell.swift
 //  GiphyClone
 //
-//  Created by 정재인 on 2021/04/21.
+//  Created by 정재인 on 2021/04/22.
 //
 
 import UIKit
 
-class SearchGifCollectionViewCell: UICollectionViewCell {
-    static let id = "SearchGifCollectionViewCell"
-    
-    let imageView = UIImageView()
-    
+class GifCardCollectionViewCell: UICollectionViewCell {
+    static let id = "GifCardCollectionViewCell"
+    let mainImageView = UIImageView()
     override func layoutSubviews() {
         super.layoutSubviews()
     }
@@ -25,30 +23,27 @@ class SearchGifCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setData(_ data: String) {
-        imageView.setImageUrl(data)
-    }
 }
 
 // MARK: attribute & layout
 
-extension SearchGifCollectionViewCell {
+extension GifCardCollectionViewCell {
     func attribute() {
-        imageView.do {
-            $0.layer.cornerRadius = 2
+        mainImageView.do {
+            $0.layer.cornerRadius = 10
             $0.layer.masksToBounds = true
             $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds = true
         }
     }
     
     func layout() {
-        [imageView].forEach {
+        [mainImageView].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        imageView.do {
+        mainImageView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor),
                 $0.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -58,3 +53,4 @@ extension SearchGifCollectionViewCell {
         }
     }
 }
+

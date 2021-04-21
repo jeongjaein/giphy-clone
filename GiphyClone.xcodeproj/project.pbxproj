@@ -60,6 +60,8 @@
 		CC339F4D26302C63006CC6A8 /* GifDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F4C26302C63006CC6A8 /* GifDetailTableViewCell.swift */; };
 		CC339F5626302C95006CC6A8 /* RelatedGifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */; };
 		CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */; };
+		CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */; };
+		CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,8 @@
 		CC339F4C26302C63006CC6A8 /* GifDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailTableViewCell.swift; sourceTree = "<group>"; };
 		CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedGifTableViewCell.swift; sourceTree = "<group>"; };
 		CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Ext.swift"; sourceTree = "<group>"; };
+		CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -327,6 +331,7 @@
 				CC0F40C1262F3D790099ABA4 /* UIImage+Ext.swift */,
 				CC0F40C6262F3F960099ABA4 /* UITextField+Ext.swift */,
 				CC0F4161262F97A50099ABA4 /* UIImageView+Ext.swift */,
+				CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				CC339F4C26302C63006CC6A8 /* GifDetailTableViewCell.swift */,
 				CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */,
 				CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */,
+				CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -668,6 +674,7 @@
 				CC0F4132262F63840099ABA4 /* SearchGif.swift in Sources */,
 				CC0F4167262F98090099ABA4 /* ImageCacheManager.swift in Sources */,
 				CC339F5626302C95006CC6A8 /* RelatedGifTableViewCell.swift in Sources */,
+				CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */,
 				CC0F4111262F60420099ABA4 /* SearchResultView.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4116262F604E0099ABA4 /* SearchResultPresenter.swift in Sources */,
@@ -678,6 +685,7 @@
 				CC0F411B262F605E0099ABA4 /* SearchResultInteractor.swift in Sources */,
 				CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */,
 				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
+				CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */,
 				CC0F4148262F6FEF0099ABA4 /* GifCollectionViewLayout.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC0F4150262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift in Sources */,

@@ -8,7 +8,7 @@
 import UIKit
 
 class GifDetailWireFrame: GifDetailWireFrameProtocol {
-    static func createGifDetailModule(_ gif: SearchGif) -> UIViewController {
+    static func createGifDetailModule(_ gif: [SearchGif], index: Int) -> UIViewController {
         let view = GifDetailView()
         let presenter = GifDetailPresenter()
         let interactor = GifDetailInteractor()

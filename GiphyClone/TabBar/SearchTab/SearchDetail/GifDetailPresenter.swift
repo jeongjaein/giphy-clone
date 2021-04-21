@@ -11,7 +11,8 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     weak var view: GifDetailViewProtocol?
     var interactor: GifDetailInteractorInputProtocol?
     var wireFrame: GifDetailWireFrameProtocol?
-    var gif: SearchGif?
+    var gif: [SearchGif]?
+    var index: Int?
     
     func viewDidLoad() {
         interactor?.getLikeState()

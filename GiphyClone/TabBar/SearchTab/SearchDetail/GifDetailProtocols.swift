@@ -57,5 +57,5 @@ protocol GifDetailLocalDataManagerOutputProtocol: class {
 }
 
 protocol GifDetailWireFrameProtocol: class {
-    static func createGifDetailModule(_ gif: SearchGif) -> UIViewController
+    static func createGifDetailModule(_ gif: [SearchGif], index: Int) -> UIViewController
 }

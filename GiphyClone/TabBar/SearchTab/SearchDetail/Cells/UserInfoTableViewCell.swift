@@ -38,6 +38,7 @@ class UserInfoTableViewCell: UITableViewCell {
         if !data.username.isEmpty {
             nameLabel.text = "@" + data.username
         }
+        verifiedImageView.isHidden = !data.isVerified
         verifiedImageView.tintColor = data.isVerified ? .cyan : .gray
     }
 }
@@ -54,7 +55,7 @@ extension UserInfoTableViewCell {
             $0.clipsToBounds = true
             $0.tintColor = .systemGray3
             $0.image = UIImage().setSFSymbols(
-                systemName: "square.dashed", weight: .bold)
+                systemName: "square.dashed", weight: .regular)
         }
         displayNameLabel.do {
             $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 16)
@@ -69,6 +70,7 @@ extension UserInfoTableViewCell {
             $0.tintColor = .cyan
             $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
+            $0.isHidden = true
         }
         likeButton.do {
             $0.setImage(

@@ -9,8 +9,9 @@ import UIKit
 
 class GifDetailTableViewCell: UITableViewCell {
     static let id = "GifDetailTableViewCell"
-    
-    let mainImageView = UIImageView()
+
+    let imageCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -23,7 +24,7 @@ class GifDetailTableViewCell: UITableViewCell {
     }
     
     func setData(_ data: String) {
-        mainImageView.setImageUrl(data)
+//        mainImageView.setImageUrl(data)
     }
 }
 
@@ -34,27 +35,24 @@ extension GifDetailTableViewCell {
         self.do {
             $0.selectionStyle = .none
         }
-        mainImageView.do {
-            $0.layer.cornerRadius = 10
-            $0.layer.masksToBounds = true
-            $0.contentMode = .scaleAspectFill
-            $0.clipsToBounds = true
+        imageCollectionView.do {
+            $0.register(
+                GifCardCollectionViewCell.self,
+                forCellWithReuseIdentifier: GifCardCollectionViewCell.id)
         }
     }
     
     func layout() {
-        [mainImageView].forEach {
+        [
+         imageCollectionView].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        mainImageView.do {
+        imageCollectionView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor),
-                $0.leadingAnchor.constraint(
-                    equalTo: leadingAnchor, constant: 20),
-                $0.trailingAnchor.constraint(
-                    equalTo: trailingAnchor, constant: -20),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
         }

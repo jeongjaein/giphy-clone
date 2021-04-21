@@ -12,9 +12,11 @@ class SearchMainView: UIViewController {
     
     let searchTextField = UITextField()
     let searchButton = UIButton()
-    let segControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+    let segueControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let trendingSearchesLabel = SubHeadingLabel()
     let autoCompleteTableView = UITableView()
+    let segFloatingView = UIView()
+    let preSelectedSegIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,10 @@ class SearchMainView: UIViewController {
     @objc func searchButtonDidTap() {
         guard let keyword = searchTextField.text else { return }
         presenter?.searchKeyword(keyword)
+    }
+    
+    @objc func segueDidTap(seg: UISegmentedControl) {
+        
     }
 }
 
@@ -93,8 +99,18 @@ extension SearchMainView {
             $0.backgroundColor = .purple
             $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
-        segControl.do {
-            $0.backgroundColor = .orange
+        segueControl.do {
+            $0.selectedSegmentIndex = 0
+            $0.addTarget(self, action: #selector(segueDidTap), for: .valueChanged)
+            $0.setTitleTextAttributes(
+                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+                 .foregroundColor: UIColor.lightGray], for: .normal)
+            $0.setTitleTextAttributes(
+                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+                 .foregroundColor: UIColor.white], for: .selected)
+            $0.backgroundColor = .clear
+            $0.clearBG()
+            $0.selectedSegmentTintColor = .clear
         }
         trendingSearchesLabel.do {
             $0.text = "Trending Searches"
@@ -110,12 +126,20 @@ extension SearchMainView {
             $0.register(AutoCompleteTableViewCell.self,
                         forCellReuseIdentifier: AutoCompleteTableViewCell.id)
         }
+//        segFloatingView.do {
+//            $0.alpha = 0.5
+//            $0.backgroundColor = .purple
+//            $0.layer.cornerRadius = 10
+//            $0.layer.masksToBounds = true
+//            $0.frame = segueControl.frame
+////            $0.transform = CGAffineTransform(translationX: 0, y: 150)
+//        }
     }
     
     func layout() {
         [searchTextField,
          searchButton,
-         segControl,
+         segueControl,
          trendingSearchesLabel,
          autoCompleteTableView].forEach {
             view.addSubview($0)
@@ -138,7 +162,7 @@ extension SearchMainView {
                 $0.widthAnchor.constraint(equalTo: searchTextField.heightAnchor)
             ])
         }
-        segControl.do {
+        segueControl.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: searchTextField.bottomAnchor, constant: 3),
@@ -147,10 +171,21 @@ extension SearchMainView {
                 $0.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
+//        segFloatingView.do {
+//            NSLayoutConstraint.activate([
+//                $0.topAnchor.constraint(
+//                    equalTo: segueControl.topAnchor, constant: 10),
+//                $0.leadingAnchor.constraint(
+//                    equalTo: view.leadingAnchor, constant: 10),
+//                $0.widthAnchor.constraint(equalToConstant: (segueControl.frame.width * 0.66) - 10),
+//                $0.bottomAnchor.constraint(
+//                    equalTo: segueControl.bottomAnchor, constant: -10)
+//            ])
+//        }
         trendingSearchesLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
-                    equalTo: segControl.bottomAnchor, constant: 10),
+                    equalTo: segueControl.bottomAnchor, constant: 10),
                 $0.leadingAnchor.constraint(
                     equalTo: view.leadingAnchor, constant: 10),
             ])

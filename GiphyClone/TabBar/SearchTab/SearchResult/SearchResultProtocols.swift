@@ -71,7 +71,7 @@ protocol SearchResultLocalDataManagerOutputProtocol: class {
 
 protocol SearchResultWireFrameProtocol: class {
     static func createSearchResultModule(_ keyword: String) -> UIViewController
-    func presentGifDetail(from view: SearchResultViewProtocol, gif: SearchGif)
+    func presentGifDetail(from view: SearchResultViewProtocol, gif: [SearchGif], index: Int)
 }
 
 
