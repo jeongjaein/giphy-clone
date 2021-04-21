@@ -11,8 +11,12 @@ class GifDetailView: UIViewController {
     var presenter: GifDetailPresenterProtocol?
     
     let gifDetailTableView = UITableView()
-    let imageCollectionView = UICollectionView(
-        frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    var collectionViewLayout = UICollectionViewFlowLayout()
+    var imageCollectionView
+        = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    
+    var likeButton = UIButton()
     
     override func viewDidLoad() {
         presenter?.viewDidLoad()
@@ -20,12 +24,17 @@ class GifDetailView: UIViewController {
         layout()
         setView()
     }
+    
+    // MARK:  @objc
+    @objc func likeButtonDidTap() {
+        //        presenter?.likeButtonDidTap(<#T##index: IndexPath##IndexPath#>)
+        //        imageCollectionView.indexPath(for: imageCollectionView.visibleCells.last!)?.row
+    }
 }
 
 extension GifDetailView: GifDetailViewProtocol {
     func setView() {
         gifDetailTableView.reloadData()
-        
     }
     func setLikeButton(_ state: Bool) {
         guard let info = gifDetailTableView.cellForRow(at: [0,0])
@@ -68,6 +77,8 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: UserInfoTableViewCell.id, for: indexPath)
             guard let castedCell = cell as? UserInfoTableViewCell else { return UITableViewCell() }
+            likeButton = castedCell.likeButton
+            likeButton.addTarget(self, action: #selector(likeButtonDidTap), for: .touchUpInside)
             castedCell.setData(presenter.getGifInfo())
             return castedCell
         }
@@ -87,7 +98,7 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
-        
+        print(indexPath)
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: GifCardCollectionViewCell.id, for: indexPath)
         guard let castedCell = cell as? GifCardCollectionViewCell else { return UICollectionViewCell() }
@@ -98,6 +109,10 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("지금ㅇ 이거에요",indexPath)
+    }
 }
 
 // MARK: attribute & layout
@@ -105,7 +120,6 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension GifDetailView {
     func attribute() {
         gifDetailTableView.do {
-            $0.backgroundColor = .red
             $0.delegate = self
             $0.dataSource = self
             $0.estimatedRowHeight = 400
@@ -115,7 +129,13 @@ extension GifDetailView {
                 UserInfoTableViewCell.self,
                 forCellReuseIdentifier: UserInfoTableViewCell.id)
         }
+        collectionViewLayout.do {
+            $0.minimumLineSpacing = 0
+//            $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            $0.scrollDirection = .horizontal
+        }
         imageCollectionView.do {
+            $0.collectionViewLayout = collectionViewLayout
             $0.register(
                 GifCardCollectionViewCell.self,
                 forCellWithReuseIdentifier: GifCardCollectionViewCell.id)
@@ -137,7 +157,7 @@ extension GifDetailView {
          imageCollectionView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
-        }
+         }
         
         gifDetailTableView.do {
             NSLayoutConstraint.activate([
