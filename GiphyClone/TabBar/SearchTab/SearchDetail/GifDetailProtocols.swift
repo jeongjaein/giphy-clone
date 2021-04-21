@@ -37,7 +37,7 @@ protocol GifDetailInteractorInputProtocol: class {
     var remoteDataManager: GifDetailRemoteDataManagerInputProtocol? { get set }
     
     func toggleLikeButton(_ gifID: String)
-    func getLikeState()
+    func getLikeState(_ gifID: String )
 }
 
 protocol GifDetailInteractorOutputProtocol: class {

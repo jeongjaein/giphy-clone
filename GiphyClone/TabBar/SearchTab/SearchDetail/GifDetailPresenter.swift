@@ -18,7 +18,9 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     var index: Int?
     
     func viewDidLoad() {
-        interactor?.getLikeState()
+        guard let index = index,
+              let gifID = gifs[index].id else { return }
+        interactor?.getLikeState(gifID)
     }
     
     func numberOfGifs() -> Int {

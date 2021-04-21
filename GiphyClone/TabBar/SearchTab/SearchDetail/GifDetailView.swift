@@ -38,7 +38,7 @@ extension GifDetailView: GifDetailViewProtocol {
     func setLikeButton(_ state: Bool) {
         guard let info = gifDetailTableView.cellForRow(at: [0,0])
                 as? UserInfoTableViewCell else { return }
-        info.likeButton.tintColor = state ? .systemPink : .systemGray3
+        info.likeButton.tintColor = state ? .systemPink : .white
     }
 }
 
