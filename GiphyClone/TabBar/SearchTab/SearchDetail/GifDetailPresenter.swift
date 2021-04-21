@@ -8,18 +8,35 @@
 import Foundation
 
 class GifDetailPresenter: GifDetailPresenterProtocol {
+    
     weak var view: GifDetailViewProtocol?
     var interactor: GifDetailInteractorInputProtocol?
     var wireFrame: GifDetailWireFrameProtocol?
-    var gif: [SearchGif]?
+    var gifs: [SearchGif] = []
     var index: Int?
     
     func viewDidLoad() {
         interactor?.getLikeState()
     }
     
+    func numberOfGifs() -> Int {
+        return gifs.count
+    }
+    
+    func didSelectGif(_ indexPath: IndexPath) {
+//        추후에 진행
+    }
+    
+    func itemOfGifs(_ indexPath: IndexPath) -> GifDetail {
+        return convertToDetail(gifs[indexPath.row])
+    }
+    
+    func likeButtonDidTap(_ index: IndexPath) {
+        print( gifs[index.row].id)
+    }
+    
     func getGifInfo() -> GifDetail {
-        return convertToDetail(gif!)
+        return convertToDetail(gifs[index!])
     }
     
     func likeButtonDidTap() {

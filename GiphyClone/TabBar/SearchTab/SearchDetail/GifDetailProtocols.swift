@@ -20,8 +20,13 @@ protocol GifDetailPresenterProtocol: class {
     var wireFrame: GifDetailWireFrameProtocol? { get set }
     
     func viewDidLoad()
+    
+    func numberOfGifs() -> Int
+    func didSelectGif(_ indexPath: IndexPath)
+    func itemOfGifs(_ indexPath: IndexPath) -> GifDetail
+    
     func getGifInfo() -> GifDetail
-    func likeButtonDidTap()
+    func likeButtonDidTap(_ index: IndexPath)
 }
 
 protocol GifDetailInteractorInputProtocol: class {

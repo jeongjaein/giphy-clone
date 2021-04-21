@@ -39,7 +39,7 @@ extension GifCardCollectionViewCell {
     
     func layout() {
         [mainImageView].forEach {
-            addSubview($0)
+            contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         

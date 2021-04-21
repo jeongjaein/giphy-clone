@@ -35,7 +35,7 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     
     func didSelectSearchGif(_ indexPath: IndexPath) {
 //        let selectedGif = searchGif[indexPath.row]
-        wireFrame?.presentGifDetail(from: view!, gif: searchGif, index: Int)
+        wireFrame?.presentGifDetail(from: view!, gif: searchGif, index: indexPath.row)
     }
     
     func getGifImage(_ indexPath: IndexPath) -> String {

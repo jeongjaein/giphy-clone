@@ -20,7 +20,8 @@ class GifDetailWireFrame: GifDetailWireFrameProtocol {
         presenter.view = view
         presenter.interactor = interactor
         presenter.wireFrame = wireFrame
-        presenter.gif = gif
+        presenter.gifs = gif
+        presenter.index = index
         interactor.presenter = presenter
         interactor.remoteDataManager = remoteDataManager
         interactor.localDataManager = localDataManager
