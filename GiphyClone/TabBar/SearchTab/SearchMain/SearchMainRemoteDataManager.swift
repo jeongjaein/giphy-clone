@@ -37,4 +37,21 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
         interactor?.errorFromRemote()
     }
     
+    func callRandomIdAPI() {
+        AF.request(NetworkRouter.createRandomID)
+            .responseData{ response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder()
+                            .decode(BaseResponse<RandomID>.self, from: data)
+                        self.interactor?.callRandomIdAPIResult(result.data)
+                    } catch {
+                        self.interactor?.errorFromRemote()
+                    }
+                case .failure:
+                    self.interactor?.errorFromRemote()
+                }
+            }
+    }
 }

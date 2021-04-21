@@ -61,6 +61,7 @@
 		CC33A0292630BCE6006CC6A8 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0272630BCE6006CC6A8 /* CoreData.xcdatamodeld */; };
 		CC33A0332630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0312630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift */; };
 		CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */; };
+		CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0412630CBB0006CC6A8 /* RandomID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +145,7 @@
 		CC33A0282630BCE6006CC6A8 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		CC33A0312630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikeGif+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikeGif+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CC33A0412630CBB0006CC6A8 /* RandomID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomID.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,13 +381,14 @@
 		CC0F40FE262F53A50099ABA4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CC33A0302630BDE8006CC6A8 /* CoreDataEntity */,
 				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
 				CC0F4131262F63840099ABA4 /* SearchGif.swift */,
 				CC0F4136262F63AE0099ABA4 /* Meta.swift */,
 				CC0F413B262F63C00099ABA4 /* Pagination.swift */,
 				CC0F4140262F66C50099ABA4 /* BaseResponse.swift */,
 				CC339F4026301D22006CC6A8 /* File.swift */,
+				CC33A0302630BDE8006CC6A8 /* CoreDataEntity */,
+				CC33A0412630CBB0006CC6A8 /* RandomID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
 				CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */,
+				CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,
 				CC0F40A5262F27720099ABA4 /* SearchResultProtocols.swift in Sources */,
 				CC0F412A262F60840099ABA4 /* SearchResultWireFrame.swift in Sources */,

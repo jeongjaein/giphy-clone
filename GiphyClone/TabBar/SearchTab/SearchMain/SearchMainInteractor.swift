@@ -14,6 +14,9 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
     
     func fetchInitialElements() {
         remoteDataManager?.callTrendingGifAPI()
+        if UserDefaults.standard.object(forKey: "id") == nil {
+            remoteDataManager?.callRandomIdAPI()
+        }
     }
     
     func fetchAutoComplete(_ keyword: String) {
@@ -22,6 +25,7 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
 }
 
 extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
+    
     func callTrendingGifResult() {
         presenter?.retrievedTrendingGif()
     }
@@ -32,5 +36,9 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
     
     func errorFromRemote() {
         presenter?.onError()
+    }
+    
+    func callRandomIdAPIResult(_ id: RandomID) {
+        UserDefaults.standard.set(id.id, forKey: "id")
     }
 }

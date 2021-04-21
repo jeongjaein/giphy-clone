@@ -52,7 +52,7 @@ enum NetworkRouter: URLRequestConvertible {
         case let .searchGif(keyword):
             return ["q": keyword]
         case .createRandomID:
-            return nil
+            return [: ]
         }
     }
     

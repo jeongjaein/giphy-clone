@@ -81,6 +81,9 @@ protocol SearchMainRemoteDataManagerInputProtocol: class {
     
     /// AutoComplete
     func callAutoCompleteAPI(_ keyword: String)
+    
+    /// RandomID
+    func callRandomIdAPI()
 }
 
 protocol SearchMainRemoteDataManagerOutputProtocol: class {
@@ -89,6 +92,9 @@ protocol SearchMainRemoteDataManagerOutputProtocol: class {
     
     /// AutoComplete
     func callAutoCompleteResult(_ autoCompletes: [AutoComplete])
+    
+    /// RandomID
+    func callRandomIdAPIResult(_ id: RandomID)
     
     func errorFromRemote()
 }

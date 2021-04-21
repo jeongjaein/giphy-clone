@@ -9,6 +9,6 @@ import Foundation
 
 struct BaseResponse<T: Codable>: Codable {
     let data: T
-    let pagination: Pagination
+    let pagination: Pagination?
     let meta: Meta
 }
