@@ -29,11 +29,16 @@ class UserInfoTableViewCell: UITableViewCell {
     }
     
     func setData(_ data: GifDetail) {
-        userProfileImageView.setImageUrl(data.profileImage)
-        displayNameLabel.text = data.displayName
-        nameLabel.text = data.username
-        verifiedImageView.tintColor = data.isVerified ? .cyan : .systemGray3
-        likeButton.tintColor = .systemPink
+        if !data.profileImage.isEmpty {
+            userProfileImageView.setImageUrl(data.profileImage)
+        }
+        if !data.displayName.isEmpty {
+            displayNameLabel.text = data.displayName
+        }
+        if !data.username.isEmpty {
+            nameLabel.text = "@" + data.username
+        }
+        verifiedImageView.tintColor = data.isVerified ? .cyan : .gray
     }
 }
 
@@ -47,12 +52,15 @@ extension UserInfoTableViewCell {
         userProfileImageView.do {
             $0.contentMode = .scaleAspectFill
             $0.clipsToBounds = true
+            $0.tintColor = .systemGray3
+            $0.image = UIImage().setSFSymbols(
+                systemName: "square.dashed", weight: .bold)
         }
         displayNameLabel.do {
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 15)
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 16)
         }
         nameLabel.do {
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 13)
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 15)
         }
         verifiedImageView.do {
             $0.image = UIImage()
@@ -67,7 +75,7 @@ extension UserInfoTableViewCell {
                 UIImage().setSFSymbols(
                     systemName: "heart.fill", weight: .bold),
                 for: .normal)
-            $0.tintColor = .systemGray3
+            $0.tintColor = .white
         }
         sendButton.do {
             $0.setImage(
@@ -103,16 +111,19 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: topAnchor, constant: 10),
-                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+                $0.leadingAnchor.constraint(
+                    equalTo: leadingAnchor, constant: 10),
                 $0.widthAnchor.constraint(equalToConstant: 40),
-                $0.bottomAnchor.constraint(equalTo: bottomAnchor)
+                $0.heightAnchor.constraint(equalToConstant: 40),
+                $0.bottomAnchor.constraint(
+                    equalTo: bottomAnchor, constant: -10)
             ])
         }
         displayNameLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.leadingAnchor.constraint(
-                    equalTo: userProfileImageView.trailingAnchor, constant: 5),
+                    equalTo: userProfileImageView.trailingAnchor, constant: 15),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.centerYAnchor)
             ])
         }
@@ -126,16 +137,16 @@ extension UserInfoTableViewCell {
         verifiedImageView.do {
             NSLayoutConstraint.activate([
                 $0.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
-                $0.widthAnchor.constraint(equalToConstant: 14),
+                $0.widthAnchor.constraint(equalToConstant: 20),
                 $0.leadingAnchor.constraint(
-                    equalTo: nameLabel.trailingAnchor, constant: 3),
+                    equalTo: nameLabel.trailingAnchor, constant: 10),
             ])
         }
         moreButton.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: trailingAnchor, constant: -10),
+                    equalTo: trailingAnchor, constant: -20),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }
@@ -143,7 +154,7 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: moreButton.leadingAnchor, constant: -10),
+                    equalTo: moreButton.leadingAnchor, constant: -20),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }
@@ -151,7 +162,7 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: sendButton.leadingAnchor, constant: -10),
+                    equalTo: sendButton.leadingAnchor, constant: -20),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }

@@ -30,9 +30,9 @@ class ViewController: UITabBarController {
             selectedImage: UIImage()
         )
     ]
-    let tempVC1 = SearchMainWireFrame.createSearchMainModule()
+    let tempVC1 = UIViewController()
     let searchMain = SearchMainWireFrame.createSearchMainModule()
-    let tempVC2 = SearchMainWireFrame.createSearchMainModule()
+    let tempVC2 = UIViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
         attribute()

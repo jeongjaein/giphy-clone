@@ -8,7 +8,7 @@
 import Foundation
 
 class GifDetailInteractor: GifDetailInteractorInputProtocol {
-    var presenter: GifDetailInteractorOutputProtocol?
+    weak var presenter: GifDetailInteractorOutputProtocol?
     var remoteDataManager: GifDetailRemoteDataManagerInputProtocol?
     var localDataManager: GifDetailLocalDataManagerInputProtocol?
     

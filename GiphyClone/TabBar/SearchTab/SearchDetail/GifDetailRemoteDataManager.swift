@@ -8,5 +8,5 @@
 import Foundation
 
 class GifDetailRemoteDataManager: GifDetailRemoteDataManagerInputProtocol {
-    var interactor: GifDetailRetmoeDataManagerOutputProtocol?
+    weak var interactor: GifDetailRetmoeDataManagerOutputProtocol?
 }

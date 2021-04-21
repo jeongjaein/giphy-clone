@@ -8,7 +8,7 @@
 import Foundation
 
 class GifDetailLocalDataManager: GifDetailLocalDataManagerInputProtocol {
-    var interactor: GifDetailLocalDataManagerOutputProtocol?
+    weak var interactor: GifDetailLocalDataManagerOutputProtocol?
     
     func togglelikeButton() {
 //        core data completion에 fetch 담자

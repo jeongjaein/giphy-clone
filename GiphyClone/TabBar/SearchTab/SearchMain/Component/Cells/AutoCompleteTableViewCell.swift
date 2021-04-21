@@ -32,6 +32,9 @@ class AutoCompleteTableViewCell: UITableViewCell {
 
 extension AutoCompleteTableViewCell {
     func attribute() {
+        self.do {
+            $0.selectionStyle = .none
+        }
         keywordLabel.do {
             $0.font.withSize(18)
         }

@@ -36,11 +36,10 @@ extension GifDetailPresenter {
     func convertToDetail(_ gif: SearchGif) -> GifDetail {
         let detail = GifDetail(
             mainImage: gif.images?.originalStill?.url ?? "",
-            profileImage: gif.user?.profileURL ?? "",
+            profileImage: gif.user?.avatarURL ?? "",
             displayName: gif.user?.displayName ?? "",
             username: gif.user?.userName ?? "",
             isVerified: gif.user?.isVerified ?? false)
-        
         return detail
     }
 }

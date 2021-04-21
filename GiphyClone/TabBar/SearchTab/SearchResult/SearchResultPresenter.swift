@@ -17,7 +17,9 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     
     func viewDidLoad() {
         view?.showLoading()
-        interactor?.fetchSearchGif(keyword)
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            self?.interactor?.fetchSearchGif(self!.keyword)
+        }
     }
     
     func searchButtonDidTap(_ keyword: String) {

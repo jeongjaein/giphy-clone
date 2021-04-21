@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIImage {
+    // MARK: SfSymbols -> UIImage
     func setSFSymbols(systemName: String, weight: SymbolWeight) -> UIImage {
         if let symbolImage = UIImage(systemName: systemName)?
             .withConfiguration(UIImage.SymbolConfiguration(weight: weight)) {
