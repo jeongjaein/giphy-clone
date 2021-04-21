@@ -25,8 +25,7 @@ class GifDetailView: UIViewController {
     
     // MARK:  @objc
     @objc func likeButtonDidTap() {
-        //        presenter?.likeButtonDidTap(<#T##index: IndexPath##IndexPath#>)
-        //        imageCollectionView.indexPath(for: imageCollectionView.visibleCells.last!)?.row
+        presenter?.likeButtonDidTap()
     }
 }
 
@@ -108,14 +107,25 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
         print(indexPath)
     }
     
-      internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let onlyOne = presenter?.getOnlyOne() else { return }
         if !onlyOne.0 {
             let indexToScrollTo = IndexPath(item: onlyOne.1, section: 0)
             self.imageCollectionView.scrollToItem(at: indexToScrollTo, at: .left, animated: false)
         }
         presenter?.toggleOnlyOne()
-      }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [weak self] in
+            let center = CGPoint(x: scrollView.contentOffset.x
+                                    + (scrollView.frame.width / 2),
+                                 y: (scrollView.frame.height / 2))
+            if let indexPath = self?.imageCollectionView.indexPathForItem(at: center) {
+                self?.presenter?.setCurrentIndex(indexPath)
+            }
+        }
+    }
 }
 
 // MARK: attribute & layout

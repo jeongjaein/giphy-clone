@@ -32,16 +32,14 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
         return convertToDetail(gifs[indexPath.row])
     }
     
-    func likeButtonDidTap(_ index: IndexPath) {
-        print( gifs[index.row].id)
-    }
-    
     func getGifInfo() -> GifDetail {
         return convertToDetail(gifs[index!])
     }
     
     func likeButtonDidTap() {
-        interactor?.toggleLikeButton()
+        guard let id = index,
+              let gifID = gifs[id].id else { return }
+        interactor?.toggleLikeButton(gifID)
     }
     
     func getOnlyOne() -> (Bool,Int) {
@@ -51,6 +49,10 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     
     func toggleOnlyOne() {
         onceOnly = true
+    }
+    
+    func setCurrentIndex(_ index: IndexPath) {
+        self.index = index.row
     }
 }
 

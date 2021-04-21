@@ -16,8 +16,8 @@ class GifDetailInteractor: GifDetailInteractorInputProtocol {
         localDataManager?.fetchLikeState()
     }
     
-    func toggleLikeButton() {
-        localDataManager?.togglelikeButton()
+    func toggleLikeButton(_ gifID: String) {
+        localDataManager?.togglelikeButton(gifID)
     }
 }
 
