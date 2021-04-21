@@ -31,12 +31,18 @@ class UserInfoTableViewCell: UITableViewCell {
     func setData(_ data: GifDetail) {
         if !data.profileImage.isEmpty {
             userProfileImageView.setImageUrl(data.profileImage)
+        } else {
+            userProfileImageView.image = nil
         }
         if !data.displayName.isEmpty {
             displayNameLabel.text = data.displayName
+        } else {
+            displayNameLabel.text = ""
         }
         if !data.username.isEmpty {
-            nameLabel.text = "@" + data.username
+            nameLabel.text = "@ " + data.username
+        } else {
+            nameLabel.text = ""
         }
         verifiedImageView.isHidden = !data.isVerified
         verifiedImageView.tintColor = data.isVerified ? .cyan : .gray
@@ -58,10 +64,10 @@ extension UserInfoTableViewCell {
                 systemName: "square.dashed", weight: .regular)
         }
         displayNameLabel.do {
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 16)
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 14)
         }
         nameLabel.do {
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 15)
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 13)
         }
         verifiedImageView.do {
             $0.image = UIImage()
@@ -137,7 +143,7 @@ extension UserInfoTableViewCell {
         verifiedImageView.do {
             NSLayoutConstraint.activate([
                 $0.centerYAnchor.constraint(equalTo: nameLabel.centerYAnchor),
-                $0.widthAnchor.constraint(equalToConstant: 20),
+                $0.widthAnchor.constraint(equalToConstant: 17),
                 $0.leadingAnchor.constraint(
                     equalTo: nameLabel.trailingAnchor, constant: 10),
             ])

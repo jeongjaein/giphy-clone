@@ -53,6 +53,7 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     
     func setCurrentIndex(_ index: IndexPath) {
         self.index = index.row
+        view?.setView()
     }
 }
 

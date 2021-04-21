@@ -32,7 +32,6 @@ class GifDetailView: UIViewController {
 extension GifDetailView: GifDetailViewProtocol {
     func setView() {
         gifDetailTableView.reloadData()
-        imageCollectionView.scrollToItem(at: [0,10], at: .right, animated: false)
     }
     func setLikeButton(_ state: Bool) {
         guard let info = gifDetailTableView.cellForRow(at: [0,0])

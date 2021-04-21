@@ -60,6 +60,7 @@
 		CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */; };
 		CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */; };
 		CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */; };
+		CC339FBC2630B969006CC6A8 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC339FBA2630B969006CC6A8 /* CoreData.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Ext.swift"; sourceTree = "<group>"; };
 		CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC339FBB2630B969006CC6A8 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,13 +226,11 @@
 			isa = PBXGroup;
 			children = (
 				CC0F40AC262F2C280099ABA4 /* TabBar */,
-				CC0F4033262EC5430099ABA4 /* AppDelegate.swift */,
-				CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */,
-				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
 				CC0F4039262EC5430099ABA4 /* Main.storyboard */,
 				CC0F403C262EC5450099ABA4 /* Assets.xcassets */,
 				CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */,
 				CC0F4041262EC5450099ABA4 /* Info.plist */,
+				CC339FBA2630B969006CC6A8 /* CoreData.xcdatamodeld */,
 			);
 			path = GiphyClone;
 			sourceTree = "<group>";
@@ -311,7 +311,8 @@
 		CC0F40AC262F2C280099ABA4 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				CC0F40FE262F53A50099ABA4 /* Entity */,
+				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
+				CC0F40FE262F53A50099ABA4 /* Model */,
 				CC0F40AD262F3A1F0099ABA4 /* Extensions */,
 				CC0F40E4262F49580099ABA4 /* Common */,
 				CC0F40CB262F42910099ABA4 /* ViewComponent */,
@@ -369,13 +370,15 @@
 		CC0F40EE262F49B10099ABA4 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				CC0F4033262EC5430099ABA4 /* AppDelegate.swift */,
+				CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */,
 				CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */,
 				CC0F4166262F98090099ABA4 /* ImageCacheManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
-		CC0F40FE262F53A50099ABA4 /* Entity */ = {
+		CC0F40FE262F53A50099ABA4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
@@ -385,7 +388,7 @@
 				CC0F4140262F66C50099ABA4 /* BaseResponse.swift */,
 				CC339F4026301D22006CC6A8 /* File.swift */,
 			);
-			path = Entity;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CC0F4107262F55AA0099ABA4 /* Cells */ = {
@@ -698,6 +701,7 @@
 				CC0F412A262F60840099ABA4 /* SearchResultWireFrame.swift in Sources */,
 				CC339F2926300F70006CC6A8 /* GifDetailRemoteDataManager.swift in Sources */,
 				CC0F40CD262F42AB0099ABA4 /* SubHeadingLabel.swift in Sources */,
+				CC339FBC2630B969006CC6A8 /* CoreData.xcdatamodeld in Sources */,
 				CC0F4088262F1E0F0099ABA4 /* SearchMainPresenter.swift in Sources */,
 				CC0F408D262F1E190099ABA4 /* SearchMainInteractor.swift in Sources */,
 				CC339F4126301D22006CC6A8 /* File.swift in Sources */,
@@ -1043,6 +1047,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC339FBA2630B969006CC6A8 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC339FBB2630B969006CC6A8 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = CC339FBB2630B969006CC6A8 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CC0F4028262EC5420099ABA4 /* Project object */;
 }
