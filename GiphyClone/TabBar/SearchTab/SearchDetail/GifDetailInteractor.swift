@@ -8,13 +8,16 @@
 import Foundation
 
 class GifDetailInteractor: GifDetailInteractorInputProtocol {
+    
     weak var presenter: GifDetailInteractorOutputProtocol?
     var remoteDataManager: GifDetailRemoteDataManagerInputProtocol?
     
     func getLikeState() {
+        
     }
     
     func toggleLikeButton(_ gifID: String) {
+        
     }
 }
 

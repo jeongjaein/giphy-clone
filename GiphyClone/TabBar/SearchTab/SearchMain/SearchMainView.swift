@@ -10,13 +10,13 @@ import UIKit
 class SearchMainView: UIViewController {
     var presenter: SearchMainPresenterProtocol?
     
-    let searchTextField = UITextField()
-    let searchButton = UIButton()
-    let segueControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+    let searchTextField       = UITextField()
+    let searchButton          = UIButton()
+    let segueControl          = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let trendingSearchesLabel = SubHeadingLabel()
     let autoCompleteTableView = UITableView()
-    let segFloatingView = UIView()
-    let preSelectedSegIndex = 0
+    let segFloatingView       = UIView()
+    let preSelectedSegIndex   = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,24 +80,25 @@ extension SearchMainView {
         }
         searchTextField.do {
             $0.delegate = self
-            $0.addTarget(self, action: #selector(textFieldDidChanged),
-                         for: .editingChanged)
+            $0.addTarget(
+                self, action: #selector(textFieldDidChanged), for: .editingChanged)
             $0.backgroundColor = .white
             $0.textColor = .black
             $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
             $0.addLeftPadding()
             $0.attributedPlaceholder
-                = NSAttributedString(string: "Search GIPHY",
-                                     attributes: [NSAttributedString.Key.foregroundColor
-                                                    : UIColor.systemGray4])
+                = NSAttributedString(
+                    string: "Search GIPHY",
+                    attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray4])
         }
         searchButton.do {
             $0.setImage(
-                UIImage().setSFSymbols(systemName: "magnifyingglass",
-                                       weight: .bold), for: .normal)
+                UIImage().setSFSymbols(
+                    systemName: "magnifyingglass", weight: .bold), for: .normal)
             $0.tintColor = .white
             $0.backgroundColor = .purple
-            $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
+            $0.addTarget(
+                self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
         segueControl.do {
             $0.selectedSegmentIndex = 0
@@ -209,9 +210,15 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
-        let cell = tableView.dequeueReusableCell(withIdentifier: AutoCompleteTableViewCell.id, for: indexPath)
+        
+        let cell = tableView
+            .dequeueReusableCell(
+                withIdentifier: AutoCompleteTableViewCell.id, for: indexPath)
+        
         guard let castedCell = cell as? AutoCompleteTableViewCell else { return UITableViewCell() }
+        
         castedCell.setData(keyword: presenter.itemOfAutoComplete(indexPath))
+        
         return castedCell
     }
     

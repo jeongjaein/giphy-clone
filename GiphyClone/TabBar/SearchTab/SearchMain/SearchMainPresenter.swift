@@ -13,9 +13,9 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     var interactor: SearchMainInteractorInputProtocol?
     var wireFrame: SearchMainWireFrameProtocol?
     
-    var recentSearhes: [String] = []
-    var trendingGif: [String] = []
-    var autoCompletes: [AutoComplete] = []
+    var recentSearhes: [String]         = []
+    var trendingGif: [String]           = []
+    var autoCompletes: [AutoComplete]   = []
     
     func viewDidLoad() {
         view?.showLoading()
@@ -25,7 +25,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     func searchTextFieldChanged(_ keyword: String) {
         interactor?.fetchAutoComplete(keyword)
     }
-    
     
     // MARK: 최근 검색어 관련
     
@@ -41,7 +40,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         return recentSearhes[indexPath.row]
     }
     
-    
     // MARK: 트렌디 gif 관련
     
     func numberOfTrendingGif() -> Int {
@@ -50,13 +48,11 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     
     func didSelectTrendingGif(_ indexPath: IndexPath) {
         wireFrame?.presentContentDetail()
-//        trendingGif[indexPath.row]
     }
     
     func itemOfTrendingGif(_ indexPath: IndexPath) -> String {
         return trendingGif[indexPath.row]
     }
-    
     
     // MARK: 자동완성 관련
     

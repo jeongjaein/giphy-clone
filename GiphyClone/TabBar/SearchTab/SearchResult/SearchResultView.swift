@@ -11,12 +11,12 @@ class SearchResultView: UIViewController {
     var presenter: SearchResultPresenterProtocol?
     
     let searchTextField = UITextField()
-    let searchButton = UIButton()
-    let segControl = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
-    
+    let searchButton    = UIButton()
+    let segControl      = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let searchGifLayout = GifCollectionViewLayout()
-    lazy var searchGifCollectionView = UICollectionView(frame: .zero,
-                                                        collectionViewLayout: searchGifLayout)
+    lazy var searchGifCollectionView
+        = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
@@ -45,7 +45,7 @@ extension SearchResultView: SearchResultViewProtocol {
     }
     
     func showError() {
-        print("에러에요")
+        print("에러")
     }
 }
 

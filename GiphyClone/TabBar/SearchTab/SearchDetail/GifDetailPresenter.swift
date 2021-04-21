@@ -12,9 +12,10 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     weak var view: GifDetailViewProtocol?
     var interactor: GifDetailInteractorInputProtocol?
     var wireFrame: GifDetailWireFrameProtocol?
-    var gifs: [SearchGif] = []
+    
+    var gifs: [SearchGif]   = []
+    var onceOnly            = false
     var index: Int?
-    var onceOnly = false
     
     func viewDidLoad() {
         interactor?.getLikeState()
@@ -66,11 +67,11 @@ extension GifDetailPresenter: GifDetailInteractorOutputProtocol {
 extension GifDetailPresenter {
     func convertToDetail(_ gif: SearchGif) -> GifDetail {
         let detail = GifDetail(
-            mainImage: gif.images?.originalStill?.url ?? "",
-            profileImage: gif.user?.avatarURL ?? "",
-            displayName: gif.user?.displayName ?? "",
-            username: gif.user?.userName ?? "",
-            isVerified: gif.user?.isVerified ?? false)
+            mainImage: gif.images?.originalStill?.url   ?? "",
+            profileImage: gif.user?.avatarURL           ?? "",
+            displayName: gif.user?.displayName          ?? "",
+            username: gif.user?.userName                ?? "",
+            isVerified: gif.user?.isVerified            ?? false)
         return detail
     }
 }

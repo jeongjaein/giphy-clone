@@ -8,6 +8,7 @@
 import UIKit
 
 protocol SearchResultViewProtocol: class {
+    
     var presenter: SearchResultPresenterProtocol? { get set }
     
     func didReceiveSearchGif()
@@ -17,12 +18,12 @@ protocol SearchResultViewProtocol: class {
 }
 
 protocol SearchResultPresenterProtocol: class {
+    
     var view:       SearchResultViewProtocol? { get set }
     var interactor: SearchResultInteractorInputProtocol? { get set }
     var wireFrame:  SearchResultWireFrameProtocol? { get set }
     var keyword: String { get set }
     
-    /// SearchGif
     func numberOfSearchGif() -> Int
     func didSelectSearchGif(_ indexPath: IndexPath)
     func itemOfSearchGif(_ indexPath: IndexPath) -> Data
@@ -33,34 +34,33 @@ protocol SearchResultPresenterProtocol: class {
 }
 
 protocol SearchResultInteractorInputProtocol: class {
+    
     var presenter:          SearchResultInteractorOutputProtocol? { get set }
     var remoteDataManager:  SearchResultRemoteDataManagerInputProtocol? { get set }
     
-    /// SearchKeyword
     func fetchSearchGif(_ keyword: String)
 }
 
 protocol SearchResultInteractorOutputProtocol: class {
     
-    /// SearchKeyword
     func retrievedSearchKeyword(_ searchGif: [SearchGif])
     func onError()
 }
 
 protocol SearchResultRemoteDataManagerInputProtocol: class {
     var interactor: SearchResultRemoteDataManageroutputProtocol? { get set }
-    /// SearchKeyword
+
     func callSearchKeywordAPI(_ keyword: String)
 }
 
 protocol SearchResultRemoteDataManageroutputProtocol: class {
     
-    /// SearchKeyword
     func callSearchKeywordResult(_ searchGif: [SearchGif])
     func onError()
 }
 
 protocol SearchResultWireFrameProtocol: class {
+    
     static func createSearchResultModule(_ keyword: String) -> UIViewController
     func presentGifDetail(from view: SearchResultViewProtocol, gif: [SearchGif], index: Int)
 }

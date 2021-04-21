@@ -17,7 +17,6 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
     }
     
     func fetchAutoComplete(_ keyword: String) {
-        //시간체크 해서 중간에 다시 들어오면 취소
         remoteDataManager?.callAutoCompleteAPI(keyword)
     }
 }

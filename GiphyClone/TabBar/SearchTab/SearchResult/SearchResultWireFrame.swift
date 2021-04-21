@@ -9,20 +9,21 @@ import UIKit
 
 class SearchResultWireFrame: SearchResultWireFrameProtocol {
     static func createSearchResultModule(_ keyword: String) -> UIViewController {
-        let view = SearchResultView()
-        let presenter = SearchResultPresenter()
-        let interactor = SearchResultInteractor()
+        let view              = SearchResultView()
+        let presenter         = SearchResultPresenter()
+        let interactor        = SearchResultInteractor()
         let remoteDataManager = SearchResultRemoteDataManager()
-        let wireFrame = SearchResultWireFrame()
+        let wireFrame         = SearchResultWireFrame()
         
-        view.presenter = presenter
-        presenter.view = view
-        presenter.interactor = interactor
-        presenter.wireFrame = wireFrame
-        presenter.keyword = keyword
-        interactor.presenter = presenter
+        view.presenter               = presenter
+        presenter.view               = view
+        presenter.interactor         = interactor
+        presenter.wireFrame          = wireFrame
+        interactor.presenter         = presenter
         interactor.remoteDataManager = remoteDataManager
         remoteDataManager.interactor = interactor
+        
+        presenter.keyword            = keyword
         
         return view
     }

@@ -10,11 +10,12 @@ import UIKit
 class GifDetailView: UIViewController {
     var presenter: GifDetailPresenterProtocol?
     
-    let gifDetailTableView = UITableView()
+    let gifDetailTableView   = UITableView()
     var collectionViewLayout = UICollectionViewFlowLayout()
+    var likeButton           = UIButton()
     var imageCollectionView
-        = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    var likeButton = UIButton()
+        = UICollectionView(frame: .zero,
+                           collectionViewLayout: UICollectionViewFlowLayout())
     
     override func viewDidLoad() {
         presenter?.viewDidLoad()
@@ -24,6 +25,7 @@ class GifDetailView: UIViewController {
     }
     
     // MARK:  @objc
+    
     @objc func likeButtonDidTap() {
         presenter?.likeButtonDidTap()
     }
@@ -44,15 +46,19 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    
+    func tableView(_ tableView: UITableView,
+                   heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ?imageCollectionView.frame.height : 0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView,
+                   viewForHeaderInSection section: Int) -> UIView? {
         return section == 0 ? imageCollectionView : nil
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -64,59 +70,89 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView,
+                   estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
+        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: UserInfoTableViewCell.id, for: indexPath)
-            guard let castedCell = cell as? UserInfoTableViewCell else { return UITableViewCell() }
+            
+            guard let castedCell =
+                    cell as? UserInfoTableViewCell else { return UITableViewCell() }
+            
             likeButton = castedCell.likeButton
-            likeButton.addTarget(self, action: #selector(likeButtonDidTap), for: .touchUpInside)
+            likeButton.addTarget(
+                self, action: #selector(likeButtonDidTap), for: .touchUpInside)
             castedCell.setData(presenter.getGifInfo())
+            
             return castedCell
         }
         return UITableViewCell()
     }
 }
 
-extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+extension GifDetailView: UICollectionViewDelegate,
+                         UICollectionViewDataSource,
+                         UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: collectionView.frame.width,
                       height: collectionView.frame.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return presenter?.numberOfGifs() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
+        
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: GifCardCollectionViewCell.id, for: indexPath)
-        guard let castedCell = cell as? GifCardCollectionViewCell else { return UICollectionViewCell() }
+        
+        guard let castedCell =
+                cell as? GifCardCollectionViewCell else { return UICollectionViewCell() }
+        
         castedCell.mainImageView.setImageUrl(presenter.itemOfGifs(indexPath).mainImage)
+        
         return castedCell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath)
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
+        // 추후 가능 시나리오
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         guard let onlyOne = presenter?.getOnlyOne() else { return }
+        
         if !onlyOne.0 {
             let indexToScrollTo = IndexPath(item: onlyOne.1, section: 0)
-            self.imageCollectionView.scrollToItem(at: indexToScrollTo, at: .left, animated: false)
+            self.imageCollectionView.scrollToItem(
+                at: indexToScrollTo, at: .left, animated: false)
         }
+        
         presenter?.toggleOnlyOne()
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) { [weak self] in
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView,
+                                  willDecelerate decelerate: Bool) {
+        DispatchQueue.main.asyncAfter(
+            deadline: DispatchTime.now() + 0.2) { [weak self] in
+            
             let center = CGPoint(x: scrollView.contentOffset.x
                                     + (scrollView.frame.width / 2),
                                  y: (scrollView.frame.height / 2))
@@ -132,11 +168,11 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
 extension GifDetailView {
     func attribute() {
         gifDetailTableView.do {
+            $0.bounces = false
             $0.delegate = self
             $0.dataSource = self
             $0.estimatedRowHeight = 400
             $0.rowHeight = UITableView.automaticDimension
-            $0.bounces = false
             $0.register(
                 UserInfoTableViewCell.self,
                 forCellReuseIdentifier: UserInfoTableViewCell.id)
@@ -146,17 +182,17 @@ extension GifDetailView {
             $0.scrollDirection = .horizontal
         }
         imageCollectionView.do {
+            $0.delegate = self
+            $0.dataSource = self
+            $0.isPagingEnabled = true
+            $0.decelerationRate = .fast
+            $0.showsHorizontalScrollIndicator = false
             $0.collectionViewLayout = collectionViewLayout
+            ($0.collectionViewLayout as? UICollectionViewFlowLayout)?
+                .scrollDirection = .horizontal
             $0.register(
                 GifCardCollectionViewCell.self,
                 forCellWithReuseIdentifier: GifCardCollectionViewCell.id)
-            ($0.collectionViewLayout as? UICollectionViewFlowLayout)?
-                .scrollDirection = .horizontal
-            $0.delegate = self
-            $0.dataSource = self
-            $0.decelerationRate = .fast
-            $0.showsHorizontalScrollIndicator = false
-            $0.isPagingEnabled = true
             $0.frame = CGRect(x: 0,
                               y: 0,
                               width: gifDetailTableView.frame.width,
