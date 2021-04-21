@@ -14,6 +14,7 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     var wireFrame: GifDetailWireFrameProtocol?
     var gifs: [SearchGif] = []
     var index: Int?
+    var onceOnly = false
     
     func viewDidLoad() {
         interactor?.getLikeState()
@@ -41,6 +42,15 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     
     func likeButtonDidTap() {
         interactor?.toggleLikeButton()
+    }
+    
+    func getOnlyOne() -> (Bool,Int) {
+        guard let index = index else { return (true, 0) }
+        return (onceOnly, index)
+    }
+    
+    func toggleOnlyOne() {
+        onceOnly = true
     }
 }
 

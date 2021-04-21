@@ -27,6 +27,8 @@ protocol GifDetailPresenterProtocol: class {
     
     func getGifInfo() -> GifDetail
     func likeButtonDidTap(_ index: IndexPath)
+    func getOnlyOne() -> (Bool,Int)
+    func toggleOnlyOne()
 }
 
 protocol GifDetailInteractorInputProtocol: class {

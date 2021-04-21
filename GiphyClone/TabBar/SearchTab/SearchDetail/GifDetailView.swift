@@ -14,8 +14,6 @@ class GifDetailView: UIViewController {
     var collectionViewLayout = UICollectionViewFlowLayout()
     var imageCollectionView
         = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
-    
     var likeButton = UIButton()
     
     override func viewDidLoad() {
@@ -35,6 +33,7 @@ class GifDetailView: UIViewController {
 extension GifDetailView: GifDetailViewProtocol {
     func setView() {
         gifDetailTableView.reloadData()
+        imageCollectionView.scrollToItem(at: [0,10], at: .right, animated: false)
     }
     func setLikeButton(_ state: Bool) {
         guard let info = gifDetailTableView.cellForRow(at: [0,0])
@@ -98,7 +97,6 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
-        print(indexPath)
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: GifCardCollectionViewCell.id, for: indexPath)
         guard let castedCell = cell as? GifCardCollectionViewCell else { return UICollectionViewCell() }
@@ -110,9 +108,14 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
         print(indexPath)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("지금ㅇ 이거에요",indexPath)
-    }
+      internal func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let onlyOne = presenter?.getOnlyOne() else { return }
+        if !onlyOne.0 {
+            let indexToScrollTo = IndexPath(item: onlyOne.1, section: 0)
+            self.imageCollectionView.scrollToItem(at: indexToScrollTo, at: .left, animated: false)
+        }
+        presenter?.toggleOnlyOne()
+      }
 }
 
 // MARK: attribute & layout
@@ -131,7 +134,6 @@ extension GifDetailView {
         }
         collectionViewLayout.do {
             $0.minimumLineSpacing = 0
-//            $0.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             $0.scrollDirection = .horizontal
         }
         imageCollectionView.do {
@@ -144,6 +146,7 @@ extension GifDetailView {
             $0.delegate = self
             $0.dataSource = self
             $0.decelerationRate = .fast
+            $0.showsHorizontalScrollIndicator = false
             $0.isPagingEnabled = true
             $0.frame = CGRect(x: 0,
                               y: 0,
