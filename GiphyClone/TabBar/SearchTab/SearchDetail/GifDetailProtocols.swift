@@ -35,7 +35,6 @@ protocol GifDetailPresenterProtocol: class {
 protocol GifDetailInteractorInputProtocol: class {
     var presenter: GifDetailInteractorOutputProtocol? { get set }
     var remoteDataManager: GifDetailRemoteDataManagerInputProtocol? { get set }
-    var localDataManager: GifDetailLocalDataManagerInputProtocol? { get set }
     
     func toggleLikeButton(_ gifID: String)
     func getLikeState()
@@ -51,17 +50,6 @@ protocol GifDetailRemoteDataManagerInputProtocol: class {
 
 protocol GifDetailRetmoeDataManagerOutputProtocol: class {
     
-}
-
-protocol GifDetailLocalDataManagerInputProtocol: class {
-    var interactor: GifDetailLocalDataManagerOutputProtocol? { get set }
-    
-    func fetchLikeState()
-    func togglelikeButton(_ gifID: String)
-}
-
-protocol GifDetailLocalDataManagerOutputProtocol: class {
-    func currentLikeButtonState(_ state: Bool)
 }
 
 protocol GifDetailWireFrameProtocol: class {

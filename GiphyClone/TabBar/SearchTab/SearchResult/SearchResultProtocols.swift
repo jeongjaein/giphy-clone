@@ -35,7 +35,6 @@ protocol SearchResultPresenterProtocol: class {
 protocol SearchResultInteractorInputProtocol: class {
     var presenter:          SearchResultInteractorOutputProtocol? { get set }
     var remoteDataManager:  SearchResultRemoteDataManagerInputProtocol? { get set }
-    var localDataManager:   SearchResultLocalDataManagerInputProtocol? { get set }
     
     /// SearchKeyword
     func fetchSearchGif(_ keyword: String)
@@ -59,14 +58,6 @@ protocol SearchResultRemoteDataManageroutputProtocol: class {
     /// SearchKeyword
     func callSearchKeywordResult(_ searchGif: [SearchGif])
     func onError()
-}
-
-protocol SearchResultLocalDataManagerInputProtocol: class {
-    var interactor: SearchResultLocalDataManagerOutputProtocol? { get set }
-}
-
-protocol SearchResultLocalDataManagerOutputProtocol: class {
-    
 }
 
 protocol SearchResultWireFrameProtocol: class {

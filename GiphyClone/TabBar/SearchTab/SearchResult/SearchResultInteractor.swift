@@ -10,7 +10,6 @@ import Foundation
 class SearchResultInteractor: SearchResultInteractorInputProtocol {
     weak var presenter: SearchResultInteractorOutputProtocol?
     var remoteDataManager: SearchResultRemoteDataManagerInputProtocol?
-    var localDataManager: SearchResultLocalDataManagerInputProtocol?
     
     func fetchSearchGif(_ keyword: String) {
         remoteDataManager?.callSearchKeywordAPI(keyword)
@@ -25,8 +24,4 @@ extension SearchResultInteractor: SearchResultRemoteDataManageroutputProtocol {
     func onError() {
         presenter?.onError()
     }
-}
-
-extension SearchResultInteractor: SearchResultLocalDataManagerOutputProtocol {
-    
 }

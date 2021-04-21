@@ -11,11 +11,9 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
    
     weak var presenter: SearchMainInteractorOutputProtocol?
     var remoteDataManager: SearchMainRemoteDataManagerInputProtocol?
-    var localDataManager: SearchMainLocalDataManagerInputProtocol?
     
     func fetchInitialElements() {
         remoteDataManager?.callTrendingGifAPI()
-        localDataManager?.fetchRecentSearches()
     }
     
     func fetchAutoComplete(_ keyword: String) {
@@ -37,14 +35,3 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
         presenter?.onError()
     }
 }
-
-extension SearchMainInteractor: SearchMainLocalDataManagerOutputProtocol {
-    func retrievedRecentSearches() {
-        presenter?.retrievedRecentSearches()
-    }
-    
-    func errorFromLocal() {
-        presenter?.onError()
-    }
-}
-

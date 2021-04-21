@@ -15,7 +15,6 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
         let presenter = SearchMainPresenter()
         let interactor = SearchMainInteractor()
         let remoteDataManager = SearchMainRemoteDataManager()
-        let localDataManager = SearchMainLocalDataManager()
         let wireFrame = SearchMainWireFrame()
         
         view.presenter = presenter
@@ -24,9 +23,7 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
         presenter.wireFrame = wireFrame
         interactor.presenter = presenter
         interactor.remoteDataManager = remoteDataManager
-        interactor.localDataManager = localDataManager
         remoteDataManager.interactor = interactor
-        localDataManager.interactor = interactor
         
         return view
     }

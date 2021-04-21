@@ -13,7 +13,6 @@ class GifDetailWireFrame: GifDetailWireFrameProtocol {
         let presenter = GifDetailPresenter()
         let interactor = GifDetailInteractor()
         let remoteDataManager = GifDetailRemoteDataManager()
-        let localDataManager = GifDetailLocalDataManager()
         let wireFrame = GifDetailWireFrame()
         
         view.presenter = presenter
@@ -24,9 +23,7 @@ class GifDetailWireFrame: GifDetailWireFrameProtocol {
         presenter.index = index
         interactor.presenter = presenter
         interactor.remoteDataManager = remoteDataManager
-        interactor.localDataManager = localDataManager
         remoteDataManager.interactor = interactor
-        localDataManager.interactor = interactor
         
         return view
     }

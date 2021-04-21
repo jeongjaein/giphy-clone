@@ -13,7 +13,6 @@ class SearchResultWireFrame: SearchResultWireFrameProtocol {
         let presenter = SearchResultPresenter()
         let interactor = SearchResultInteractor()
         let remoteDataManager = SearchResultRemoteDataManager()
-        let localDataManager = SearchResultLocalDataManager()
         let wireFrame = SearchResultWireFrame()
         
         view.presenter = presenter
@@ -23,9 +22,7 @@ class SearchResultWireFrame: SearchResultWireFrameProtocol {
         presenter.keyword = keyword
         interactor.presenter = presenter
         interactor.remoteDataManager = remoteDataManager
-        interactor.localDataManager = localDataManager
         remoteDataManager.interactor = interactor
-        localDataManager.interactor = interactor
         
         return view
     }

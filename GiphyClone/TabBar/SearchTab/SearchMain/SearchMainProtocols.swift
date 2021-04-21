@@ -52,7 +52,6 @@ protocol SearchMainPresenterProtocol: class {
 protocol SearchMainInteractorInputProtocol: class {
     var presenter:          SearchMainInteractorOutputProtocol? { get set }
     var remoteDataManager:  SearchMainRemoteDataManagerInputProtocol? { get set }
-    var localDataManager:   SearchMainLocalDataManagerInputProtocol? { get set }
     
     /// RecentSearches & TrendingGif
     func fetchInitialElements()
@@ -92,21 +91,6 @@ protocol SearchMainRemoteDataManagerOutputProtocol: class {
     func callAutoCompleteResult(_ autoCompletes: [AutoComplete])
     
     func errorFromRemote()
-}
-
-protocol SearchMainLocalDataManagerInputProtocol: class {
-    var interactor: SearchMainLocalDataManagerOutputProtocol? { get set }
-    
-    /// RecentSearches
-    func fetchRecentSearches()
-}
-
-protocol SearchMainLocalDataManagerOutputProtocol: class {
-    
-    /// RecentSearches
-    func retrievedRecentSearches()
-    
-    func errorFromLocal()
 }
 
 protocol SearchMainWireFrameProtocol: class {
