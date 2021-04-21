@@ -9,6 +9,7 @@ import UIKit
 
 class GifCardCollectionViewCell: UICollectionViewCell {
     static let id = "GifCardCollectionViewCell"
+    
     let mainImageView = UIImageView()
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -30,9 +31,9 @@ class GifCardCollectionViewCell: UICollectionViewCell {
 extension GifCardCollectionViewCell {
     func attribute() {
         mainImageView.do {
-            $0.layer.cornerRadius = 10
+            $0.layer.cornerRadius = 20
             $0.layer.masksToBounds = true
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
         }
     }

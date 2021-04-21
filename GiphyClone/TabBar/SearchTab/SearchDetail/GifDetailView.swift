@@ -14,11 +14,6 @@ class GifDetailView: UIViewController {
     let imageCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
-    let testview: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
-    }()
     override func viewDidLoad() {
         presenter?.viewDidLoad()
         attribute()
@@ -33,7 +28,9 @@ extension GifDetailView: GifDetailViewProtocol {
         
     }
     func setLikeButton(_ state: Bool) {
-        //        likeButton.tintColor = state ? .systemPink : .systemGray3
+        guard let info = gifDetailTableView.cellForRow(at: [0,0])
+                as? UserInfoTableViewCell else { return }
+        info.likeButton.tintColor = state ? .systemPink : .systemGray3
     }
 }
 
@@ -42,19 +39,13 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
         return 2
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 100
-        } else {
-            return 0
-        }
+        return section == 0 ?imageCollectionView.frame.height : 0
     }
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return imageCollectionView
-        } else {
-            return nil
-        }
+        return section == 0 ? imageCollectionView : nil
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -73,8 +64,7 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
-        if indexPath.section == 0
-        {
+        if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: UserInfoTableViewCell.id, for: indexPath)
             guard let castedCell = cell as? UserInfoTableViewCell else { return UITableViewCell() }
@@ -87,7 +77,8 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
 
 extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width,
+                      height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -103,6 +94,7 @@ extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, U
         castedCell.mainImageView.setImageUrl(presenter.itemOfGifs(indexPath).mainImage)
         return castedCell
     }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath)
     }
@@ -118,9 +110,7 @@ extension GifDetailView {
             $0.dataSource = self
             $0.estimatedRowHeight = 400
             $0.rowHeight = UITableView.automaticDimension
-            $0.register(
-                GifDetailTableViewCell.self,
-                forCellReuseIdentifier: GifDetailTableViewCell.id)
+            $0.bounces = false
             $0.register(
                 UserInfoTableViewCell.self,
                 forCellReuseIdentifier: UserInfoTableViewCell.id)
@@ -133,6 +123,12 @@ extension GifDetailView {
                 .scrollDirection = .horizontal
             $0.delegate = self
             $0.dataSource = self
+            $0.decelerationRate = .fast
+            $0.isPagingEnabled = true
+            $0.frame = CGRect(x: 0,
+                              y: 0,
+                              width: gifDetailTableView.frame.width,
+                              height: 400)
         }
     }
     
@@ -151,13 +147,5 @@ extension GifDetailView {
                 $0.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         }
-//        imageCollectionView.do {
-//            NSLayoutConstraint.activate([
-//                $0.topAnchor.constraint(equalTo: topAnchor),
-//                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
-//                $0.trailingAnchor.constraint(equalTo: trailingAnchor),
-//                $0.heightAnchor.constraint(equalTo: $0.heightAnchor, multiplier: 0.5)
-//            ])
-//        }
     }
 }

@@ -57,7 +57,6 @@
 		CC339F2E26300F79006CC6A8 /* GifDetailLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F2D26300F79006CC6A8 /* GifDetailLocalDataManager.swift */; };
 		CC339F3326300F80006CC6A8 /* GifDetailWireFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F3226300F80006CC6A8 /* GifDetailWireFrame.swift */; };
 		CC339F4126301D22006CC6A8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F4026301D22006CC6A8 /* File.swift */; };
-		CC339F5626302C95006CC6A8 /* RelatedGifTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */; };
 		CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */; };
 		CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */; };
 		CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */; };
@@ -140,7 +139,6 @@
 		CC339F2D26300F79006CC6A8 /* GifDetailLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailLocalDataManager.swift; sourceTree = "<group>"; };
 		CC339F3226300F80006CC6A8 /* GifDetailWireFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailWireFrame.swift; sourceTree = "<group>"; };
 		CC339F4026301D22006CC6A8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedGifTableViewCell.swift; sourceTree = "<group>"; };
 		CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoTableViewCell.swift; sourceTree = "<group>"; };
 		CC339F8126307645006CC6A8 /* UISegmentedControl+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Ext.swift"; sourceTree = "<group>"; };
 		CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCardCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -419,7 +417,6 @@
 			isa = PBXGroup;
 			children = (
 				CC339F5A26302E17006CC6A8 /* UserInfoTableViewCell.swift */,
-				CC339F5526302C95006CC6A8 /* RelatedGifTableViewCell.swift */,
 				CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -669,7 +666,6 @@
 				CC0F413C262F63C00099ABA4 /* Pagination.swift in Sources */,
 				CC0F4132262F63840099ABA4 /* SearchGif.swift in Sources */,
 				CC0F4167262F98090099ABA4 /* ImageCacheManager.swift in Sources */,
-				CC339F5626302C95006CC6A8 /* RelatedGifTableViewCell.swift in Sources */,
 				CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */,
 				CC0F4111262F60420099ABA4 /* SearchResultView.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
