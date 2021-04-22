@@ -273,7 +273,7 @@ extension SearchMainView {
                     equalTo: searchTextField.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                $0.heightAnchor.constraint(equalToConstant: 50)
+                $0.heightAnchor.constraint(equalToConstant: 35)
             ])
         }
         trendingSearchesLabel.do {

@@ -33,6 +33,7 @@ extension SearchMainCustomTab {
             $0.backgroundColor = .black
         }
         leftButton.do {
+            $0.tag = 1
             $0.backgroundColor = .clear
             $0.setTitle("GIFs", for: .normal)
             $0.titleLabel?.textColor = .lightGray
@@ -41,6 +42,7 @@ extension SearchMainCustomTab {
                 self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         centerButton.do {
+            $0.tag = 2
             $0.backgroundColor = .clear
             $0.setTitle("Stickers", for: .normal)
             $0.titleLabel?.textColor = .lightGray
@@ -49,6 +51,7 @@ extension SearchMainCustomTab {
                 self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         rightButton.do {
+            $0.tag = 3
             $0.backgroundColor = .clear
             $0.setTitle("Text", for: .normal)
             $0.titleLabel?.textColor = .lightGray
@@ -58,14 +61,17 @@ extension SearchMainCustomTab {
         }
         moveMentView.do {
             $0.backgroundColor = .cyan
+            $0.layer.cornerRadius = 17
+            $0.clipsToBounds = true
+            $0.alpha = 0.5
         }
     }
     
     func layout() {
-        [leftButton,
+        [moveMentView,
+         leftButton,
          centerButton,
-         rightButton,
-         moveMentView].forEach {
+         rightButton].forEach {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
          }
@@ -77,14 +83,6 @@ extension SearchMainCustomTab {
                 $0.trailingAnchor.constraint(equalTo: centerButton.leadingAnchor)
             ])
         }
-//        moveMentView.do {
-//            NSLayoutConstraint.activate([
-//                $0.topAnchor.constraint(equalTo: topAnchor),
-//                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
-//                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
-//                $0.widthAnchor.constraint(equalToConstant: 100)
-//            ])
-//        }
         centerButton.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: topAnchor),
@@ -106,17 +104,52 @@ extension SearchMainCustomTab {
 
 extension SearchMainCustomTab {
     func move(_ old: UIButton, _ new: UIButton) {
-        let newSize = mutate(old, new)
         let xDiff = old.center.x - new.center.x
-        let yDiff = old.center.y - new.center.y
-        
-        UIView.animate(withDuration: 0.3) { [weak self] in
+        guard var labelSize = new.titleLabel?.frame.size.width else { return }
+        labelSize += 60
+        let cellSizing = (old.frame.width - labelSize) / 2
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            let firstCorrection = abs(old.center.x - new.center.x) / 4.5
             self?.moveMentView.frame = CGRect(
-                x: old.frame.minX + xDiff,
-                y: old.frame.minY + yDiff,
-                width: newSize.width,
-                height: newSize.height)
+                x: new.frame.minX
+                    + cellSizing
+                    + (xDiff < 0 ? +firstCorrection : -firstCorrection),
+                y: new.frame.minY,
+                width: labelSize,
+                height: new.frame.height)
+            
+            if new.tag == 1 {
+                self?.moveMentView.backgroundColor = .purple
+            } else if new.tag == 2 {
+                self?.moveMentView.backgroundColor = .green
+            } else {
+                self?.moveMentView.backgroundColor = .systemPink
+            }
+        } completion: { [weak self] _ in
+            UIView.animate(withDuration: 0.15) {
+                let secondCorrection = abs(old.center.x - new.center.x) / 10
+                self?.moveMentView.frame = CGRect(
+                    x: new.frame.minX
+                        + cellSizing
+                        + (xDiff < 0 ? -secondCorrection : +secondCorrection),
+                    y: new.frame.minY,
+                    width: labelSize,
+                    height: new.frame.height
+                )
+            } completion: { [weak self] _ in
+                UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut]) {
+                    self?.moveMentView.frame =
+                        CGRect(x: new.frame.minX + cellSizing,
+                               y: new.frame.minY,
+                               width: labelSize,
+                               height: new.frame.height)
+                }
+            }
         }
+    }
+    
+    func animate(_ rect: CGRect) -> CGRect {
+        
     }
     
     func mutate(_ old: UIButton, _ new: UIButton) -> CGSize {
