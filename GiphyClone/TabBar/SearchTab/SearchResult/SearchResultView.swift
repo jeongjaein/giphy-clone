@@ -26,6 +26,11 @@ class SearchResultView: UIViewController {
     @objc func textFieldDidChanged(_ textField: UITextField) {
         guard textField.text != nil else { return }
     }
+    
+    @objc func searchButtonDidTap() {
+        guard let keyword = searchTextField.text else { return }
+        presenter?.searchButtonDidTap(keyword)
+    }
 }
 
 extension SearchResultView: SearchResultViewProtocol {
@@ -77,10 +82,11 @@ extension SearchResultView {
                                                     : UIColor.systemGray4])
         }
         searchButton.do {
-            $0.setImage(UIImage().setSFSymbols(systemName: "magnifyingglass",
-                                               weight: .bold), for: .normal)
             $0.tintColor = .white
             $0.backgroundColor = .purple
+            $0.setImage(UIImage().setSFSymbols(systemName: "magnifyingglass",
+                                               weight: .bold), for: .normal)
+            $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
         segControl.do {
             $0.backgroundColor = .orange
@@ -190,7 +196,5 @@ extension SearchResultView: GifCollectionViewDelegate {
         _ collectionView: UICollectionView) -> [CGFloat] {
         guard let heightList = presenter?.getImageHeightList() else { return [0] }
         return heightList
-//        guard let image = presenter?.itemOfSearchGif(indexPath) else { return 0 }
-//        return UIImage(data: image)?.size.height ?? 0
     }
 }

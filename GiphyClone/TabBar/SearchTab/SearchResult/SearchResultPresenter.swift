@@ -87,15 +87,7 @@ extension SearchResultPresenter: SearchResultInteractorOutputProtocol {
         //        totalGifs = searchGif
         //        visibleGifs = Array(searchGif[0..<min(searchGif.count, 10)])
         visibleGifs = searchGif
-        self.visibleGifs.forEach {
-            guard let url = URL(string: $0.mainImage) else { return }
-            do {
-                let data = try Data(contentsOf: url)
-                self.imageHeightList.append(UIImage(data: data)?.size.height ?? 0)
-            } catch {
-                
-            }
-        }
+        imageHeightList = visibleGifs.map { CGFloat($0.height) }
         pagingIndex = visibleGifs.count
         view?.hideLoading()
         view?.didReceiveSearchGif()
