@@ -235,6 +235,7 @@
 		CC0F4032262EC5430099ABA4 /* GiphyClone */ = {
 			isa = PBXGroup;
 			children = (
+				CC0F4041262EC5450099ABA4 /* Info.plist */,
 				CC0F40AC262F2C280099ABA4 /* Tabbar */,
 			);
 			path = GiphyClone;
@@ -459,7 +460,6 @@
 				CC0F4039262EC5430099ABA4 /* Main.storyboard */,
 				CC0F403C262EC5450099ABA4 /* Assets.xcassets */,
 				CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */,
-				CC0F4041262EC5450099ABA4 /* Info.plist */,
 				CC33A0272630BCE6006CC6A8 /* CoreData.xcdatamodeld */,
 			);
 			path = Resource;
