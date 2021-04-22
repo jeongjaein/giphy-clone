@@ -50,13 +50,16 @@ extension ViewController {
         }
 
         self.tempVC1.tabBarItem = tabBarItems[.Home]
+        self.tempVC1.tabBarItem.isEnabled = false
         self.tempVC1.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         
         self.searchMain.tabBarItem = tabBarItems[.Search]
         self.searchMain.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
         
         self.tempVC2.tabBarItem = tabBarItems[.Mypage]
+        self.tempVC2.tabBarItem.isEnabled = false
         self.tempVC2.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+        
         
         let studyNVC = UINavigationController(rootViewController: self.tempVC1)
         studyNVC.navigationBar.tintColor = .white

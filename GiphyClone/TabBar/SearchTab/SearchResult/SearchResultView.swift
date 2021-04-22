@@ -50,7 +50,7 @@ extension SearchResultView: SearchResultViewProtocol {
     }
     
     func showError() {
-        print("에러")
+//        
     }
 }
 

@@ -120,8 +120,6 @@ extension UserInfoTableViewCell {
                     equalTo: contentView.topAnchor, constant: 10),
                 $0.leadingAnchor.constraint(
                     equalTo: contentView.leadingAnchor, constant: 10),
-                $0.widthAnchor.constraint(equalToConstant: 35),
-                $0.heightAnchor.constraint(equalToConstant: 35),
                 $0.bottomAnchor.constraint(
                     equalTo: contentView.bottomAnchor, constant: -10)
             ])

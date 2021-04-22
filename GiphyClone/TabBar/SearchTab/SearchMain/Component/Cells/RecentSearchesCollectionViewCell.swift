@@ -45,7 +45,7 @@ extension RecentSearchesCollectionViewCell {
         }
         keywordLabel.do {
             $0.text = "tst"
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 18)
             $0.textColor = .white
         }
     }
@@ -57,17 +57,16 @@ extension RecentSearchesCollectionViewCell {
         }
         clockImageView.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: contentView.topAnchor),
+                $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                 $0.leadingAnchor.constraint(
                     equalTo: contentView.leadingAnchor, constant: 8),
                 $0.heightAnchor.constraint(equalToConstant: 15),
-                $0.bottomAnchor.constraint(
-                    equalTo: contentView.bottomAnchor)
+                $0.widthAnchor.constraint(equalToConstant: 15),
             ])
         }
         keywordLabel.do {
             NSLayoutConstraint.activate([
-                $0.centerYAnchor.constraint(equalTo: clockImageView.centerYAnchor),
+                $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                 $0.leadingAnchor.constraint(
                     equalTo: clockImageView.trailingAnchor, constant: 2),
                 $0.trailingAnchor.constraint(

@@ -51,7 +51,7 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func didReceiveTrendingGif() {
-        print("최신gif 도착~")
+        
     }
     
     func didReceiveRecentSearches() {
@@ -140,9 +140,12 @@ extension SearchMainView {
     
     static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
         
+//        let size = NSCollectionLayoutSize(
+//            widthDimension: .estimated(100),
+//            heightDimension: .estimated(50))
         let size = NSCollectionLayoutSize(
-            widthDimension: .estimated(100),
-            heightDimension: .estimated(50))
+            widthDimension: .estimated(40),
+            heightDimension: .estimated(40))
         
         let item = NSCollectionLayoutItem(layoutSize: size)
         
@@ -169,7 +172,7 @@ extension SearchMainView {
             title.text          = "Search"
             $0.titleView        = title
             $0.backButtonTitle  = ""
-            title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 17)
         }
         searchTextField.do {
             $0.addLeftPadding()
