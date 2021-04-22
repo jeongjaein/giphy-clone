@@ -16,7 +16,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     var recentSearhes: [String]         = []
     var trendingGif: [String]           = []
     var autoCompletes: [AutoComplete]   = []
-    
+
     func viewDidLoad() {
         view?.showLoading()
         interactor?.fetchInitialElements()
@@ -72,18 +72,31 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     
     func searchKeyword(_ keyword: String) {
         view?.showLoading()
-        wireFrame?.presentSearchResult(from: view!, keyword)
+        interactor?.checkKeyword(keyword)
     }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
+    
+    
     func retrievedTrendingGif() {
         view?.hideLoading()
         view?.didReceiveTrendingGif()
     }
     
-    func retrievedRecentSearches() {
+    func retrievedRecentSearches(_ searches: [String]) {
+        recentSearhes = searches
         view?.hideLoading()
         view?.didReceiveRecentSearches()
+    }
+    
+    func checkKeywordResult(_ result: Bool, _ keyword: String) {
+        if result {
+            recentSearhes.append(keyword)
+            view?.didReceiveRecentSearches()
+            wireFrame?.presentSearchResult(from: view!, keyword)
+        } else {
+            view?.showError()
+        }
     }
     
     func retrievedAutoComplete(_ autoCompletes: [AutoComplete]) {

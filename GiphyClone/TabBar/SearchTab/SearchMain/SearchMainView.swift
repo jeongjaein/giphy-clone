@@ -16,10 +16,8 @@ class SearchMainView: UIViewController {
     let trendingSearchesLabel = SubHeadingLabel()
     let autoCompleteTableView = UITableView()
     let preSelectedSegIndex   = 0
-    let recensSearchesCollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: SearchMainView.recentSearchesLayout()
-    )
+    let recentSearchesCollectionView = UICollectionView(
+        frame: .zero, collectionViewLayout: SearchMainView.recentSearchesLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +49,7 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func didReceiveRecentSearches() {
-        print("검색기록 도착~")
+        recentSearchesCollectionView.reloadData()
     }
     
     func didReceiveAutoCompletes() {
@@ -71,6 +69,82 @@ extension SearchMainView: SearchMainViewProtocol {
     }
 }
 
+// MARK: TableView
+
+extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter?.numberOfAutoComplete() ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let presenter = presenter else { return UITableViewCell() }
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: AutoCompleteTableViewCell.id, for: indexPath)
+        guard let castedCell = cell as? AutoCompleteTableViewCell else { return UITableViewCell() }
+        castedCell.setData(keyword: presenter.itemOfAutoComplete(indexPath))
+        return castedCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter?.didSelectAutoComplete(indexPath)
+    }
+}
+
+// MARK: CollectionView
+
+extension SearchMainView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter?.numberOfRecentSearches() ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let presenter = presenter else { return UICollectionViewCell() }
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: RecentSearchesCollectionViewCell.id, for: indexPath)
+        guard let castedCell = cell as? RecentSearchesCollectionViewCell else { return UICollectionViewCell() }
+        castedCell.setData(presenter.itemOfRecentSearches(indexPath))
+        return castedCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.didSelectRecentSearches(indexPath)
+    }
+}
+
+// MARK: TextField
+
+extension SearchMainView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let keyword = textField.text else { return false }
+        presenter?.searchKeyword(keyword)
+        return true
+    }
+}
+
+// MARK: Static Func
+
+extension SearchMainView {
+    static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
+        let size = NSCollectionLayoutSize(
+            widthDimension: .estimated(100),
+            heightDimension: .estimated(44))
+        
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: size, subitem: item, count: 1)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 10, leading: 10, bottom: 10, trailing: 10)
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        
+        return UICollectionViewCompositionalLayout(section: section)
+    }
+}
+
 // MARK: attribute & layout
 
 extension SearchMainView {
@@ -83,12 +157,14 @@ extension SearchMainView {
         }
         searchTextField.do {
             $0.delegate = self
+            $0.addLeftPadding()
+            $0.clearButtonMode = .whileEditing
+            $0.tintColor = .black
+            $0.textColor = .black
+            $0.backgroundColor = .white
+            $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
             $0.addTarget(
                 self, action: #selector(textFieldDidChanged), for: .editingChanged)
-            $0.backgroundColor = .white
-            $0.textColor = .black
-            $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
-            $0.addLeftPadding()
             $0.attributedPlaceholder
                 = NSAttributedString(
                     string: "Search GIPHY",
@@ -130,8 +206,10 @@ extension SearchMainView {
             $0.register(AutoCompleteTableViewCell.self,
                         forCellReuseIdentifier: AutoCompleteTableViewCell.id)
         }
-        recensSearchesCollectionView.do {
+        recentSearchesCollectionView.do {
             $0.alwaysBounceVertical = false
+            $0.isPagingEnabled = false
+            $0.alwaysBounceHorizontal = false
             $0.delegate = self
             $0.dataSource = self
             $0.register(RecentSearchesCollectionViewCell.self,
@@ -145,7 +223,7 @@ extension SearchMainView {
          segueControl,
          trendingSearchesLabel,
          autoCompleteTableView,
-         recensSearchesCollectionView].forEach {
+         recentSearchesCollectionView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
          }
@@ -192,7 +270,7 @@ extension SearchMainView {
                 $0.heightAnchor.constraint(equalToConstant: 230)
             ])
         }
-        recensSearchesCollectionView.do {
+        recentSearchesCollectionView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: autoCompleteTableView.bottomAnchor),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -200,68 +278,5 @@ extension SearchMainView {
                 $0.heightAnchor.constraint(equalToConstant: 100)
             ])
         }
-    }
-}
-
-extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter?.numberOfAutoComplete() ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let presenter = presenter else { return UITableViewCell() }
-        
-        let cell = tableView
-            .dequeueReusableCell(
-                withIdentifier: AutoCompleteTableViewCell.id, for: indexPath)
-        
-        guard let castedCell = cell as? AutoCompleteTableViewCell else { return UITableViewCell() }
-        
-        castedCell.setData(keyword: presenter.itemOfAutoComplete(indexPath))
-        
-        return castedCell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.didSelectAutoComplete(indexPath)
-    }
-}
-
-extension SearchMainView: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: RecentSearchesCollectionViewCell.id, for: indexPath)
-        guard let castedCell = cell as? RecentSearchesCollectionViewCell else { return UICollectionViewCell() }
-        return castedCell
-    }
-}
-
-extension SearchMainView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let keyword = textField.text else { return false }
-        presenter?.searchKeyword(keyword)
-        return true
-    }
-}
-
-extension SearchMainView {
-    static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
-        let size = NSCollectionLayoutSize(
-            widthDimension: .estimated(100),
-            heightDimension: .estimated(44)
-        )
-        let leftItem = NSCollectionLayoutItem(layoutSize: size)
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: size, subitem: leftItem, count: 1)
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-        section.interGroupSpacing = 10
-        section.orthogonalScrollingBehavior = .paging
-        
-        return UICollectionViewCompositionalLayout(section: section)
     }
 }

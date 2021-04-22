@@ -53,11 +53,14 @@ protocol SearchMainInteractorInputProtocol: class {
     var presenter:          SearchMainInteractorOutputProtocol? { get set }
     var remoteDataManager:  SearchMainRemoteDataManagerInputProtocol? { get set }
     
-    /// RecentSearches & TrendingGif
+    /// Init
     func fetchInitialElements()
     
     /// AutoComplete
     func fetchAutoComplete(_ keyword: String)
+    
+    /// RecentSearches
+    func checkKeyword(_ keyword: String)
 }
 
 protocol SearchMainInteractorOutputProtocol: class {
@@ -65,7 +68,8 @@ protocol SearchMainInteractorOutputProtocol: class {
     func retrievedTrendingGif()
     
     /// RecentSearches
-    func retrievedRecentSearches()
+    func retrievedRecentSearches(_ searches: [String])
+    func checkKeywordResult(_ result: Bool, _ searches: String)
     
     /// AutoComplete
     func retrievedAutoComplete(_ autoCompletes: [AutoComplete])

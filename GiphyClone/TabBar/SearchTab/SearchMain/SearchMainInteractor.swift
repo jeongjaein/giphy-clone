@@ -13,15 +13,32 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
     var remoteDataManager: SearchMainRemoteDataManagerInputProtocol?
     
     func fetchInitialElements() {
-        CoreDataManager.shared
         remoteDataManager?.callTrendingGifAPI()
         if UserDefaults.standard.object(forKey: "id") == nil {
             remoteDataManager?.callRandomIdAPI()
+        } else {
+            getRecentSearches()
         }
     }
     
     func fetchAutoComplete(_ keyword: String) {
         remoteDataManager?.callAutoCompleteAPI(keyword)
+    }
+    
+    func checkKeyword(_ keyword: String) {
+        guard let id = UserDefaults.standard.string(forKey: "id") else { return }
+        if keyword.isEmpty {
+            presenter?.checkKeywordResult(false,keyword)
+        } else {
+            let putKeyword =
+                CoreDataManager.shared.putRecentSearches(
+                    keyword: keyword, userID: id)
+            if !putKeyword.isEmpty {
+                presenter?.checkKeywordResult(true,keyword)
+            } else {
+                presenter?.checkKeywordResult(false, keyword)
+            }
+        }
     }
 }
 
@@ -41,5 +58,13 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
     
     func callRandomIdAPIResult(_ id: RandomID) {
         UserDefaults.standard.set(id.id, forKey: "id")
+    }
+}
+
+extension SearchMainInteractor {
+    func getRecentSearches() {
+        guard let userID = UserDefaults.standard.string(forKey: "id") else { return }
+        let recentSearches = CoreDataManager.shared.getRecentSearches(userID: userID)
+        presenter?.retrievedRecentSearches(recentSearches)
     }
 }

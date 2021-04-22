@@ -30,7 +30,7 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
     func presentSearchResult(from view: SearchMainViewProtocol,  _ keyword: String) {
         let searchResultView = SearchResultWireFrame.createSearchResultModule(keyword)
         guard let nav = (view as? UIViewController)?.navigationController else { return }
-        nav.pushViewController(searchResultView, animated: true)
+        nav.pushViewController(searchResultView, animated: false)
     }
     
     func presentContentDetail() {

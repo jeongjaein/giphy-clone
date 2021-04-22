@@ -22,6 +22,10 @@ class RecentSearchesCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func setData(_ keyword: String) {
+        keywordLabel.text = keyword
+    }
 }
 
 // MARK: attribute & layout

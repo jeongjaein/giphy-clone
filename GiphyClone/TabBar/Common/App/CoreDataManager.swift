@@ -49,11 +49,15 @@ class CoreDataManager {
                 initSearches.id = userID
                 initSearches.keyword = [keyword]
                 try context.save()
-                return []
+                return [keyword]
             } else {
-                guard var searchs = result[0].keyword else { return [] }
-                searchs.append(keyword)
+                result[0].keyword?.insert(keyword, at: 0)
+                if result[0].keyword?.count ?? 0 > 5 {
+                    result[0].keyword?.removeLast()
+                }
+                guard let searches = result[0].keyword else { return [] }
                 try context.save()
+                return searches
             }
         } catch { }
         return []
