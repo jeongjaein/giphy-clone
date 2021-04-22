@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GifDetailView: UIViewController {
+class GifDetailView: UIViewController, Alertable {
     var presenter: GifDetailPresenterProtocol?
     
     let gifDetailTableView   = UITableView()

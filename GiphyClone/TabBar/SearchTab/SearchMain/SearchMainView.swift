@@ -7,14 +7,14 @@
 
 import UIKit
 
-class SearchMainView: UIViewController {
+class SearchMainView: UIViewController, Alertable {
     var presenter: SearchMainPresenterProtocol?
     
     let searchTextField       = UITextField()
     let searchButton          = UIButton()
     let tabView               = SearchMainCustomTab()
     let trendingSearchesLabel = SubHeadingLabel()
-    let autoCompleteTableView = UITableView()
+    let topTableView          = UITableView()
     
     let recentSearchesCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: SearchMainView.recentSearchesLayout())
@@ -36,6 +36,7 @@ class SearchMainView: UIViewController {
     @objc func searchButtonDidTap() {
         guard let keyword = searchTextField.text else { return }
         presenter?.searchKeyword(keyword)
+        searchTextField.endEditing(true)
     }
     
     @objc func segueDidTap(seg: UISegmentedControl) {
@@ -45,7 +46,7 @@ class SearchMainView: UIViewController {
 
 extension SearchMainView: SearchMainViewProtocol {
     func topTableviewReload(_ subTitle: String? = nil) {
-        autoCompleteTableView.reloadData()
+        topTableView.reloadData()
         guard let title = subTitle else { return }
         trendingSearchesLabel.text = title
     }
@@ -67,7 +68,7 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func showError() {
-        //alert pop 구현합시다
+        showAlert(title: "Error", message: "에러가 발생했습니다.")
     }
 }
 
@@ -94,6 +95,7 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectOfList(indexPath)
+        searchTextField.endEditing(true)
     }
 }
 
@@ -120,6 +122,7 @@ extension SearchMainView: UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectRecentSearches(indexPath)
+        searchTextField.endEditing(true)
     }
 }
 
@@ -129,6 +132,7 @@ extension SearchMainView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text else { return false }
         presenter?.searchKeyword(keyword)
+        searchTextField.endEditing(true)
         return true
     }
     
@@ -139,10 +143,6 @@ extension SearchMainView: UITextFieldDelegate {
 extension SearchMainView {
     
     static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
-        
-//        let size = NSCollectionLayoutSize(
-//            widthDimension: .estimated(100),
-//            heightDimension: .estimated(50))
         let size = NSCollectionLayoutSize(
             widthDimension: .estimated(40),
             heightDimension: .estimated(40))
@@ -174,12 +174,16 @@ extension SearchMainView {
             $0.backButtonTitle  = ""
             title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 17)
         }
+        navigationController?.do {
+            $0.navigationBar.standardAppearance.backgroundColor = .black
+            $0.navigationBar.standardAppearance.configureWithTransparentBackground()
+        }
         searchTextField.do {
             $0.addLeftPadding()
             $0.delegate         = self
             $0.tintColor        = .black
             $0.textColor        = .black
-            $0.backgroundColor  = .white
+            $0.backgroundColor  = AppColor.searchTextField.value
             $0.clearButtonMode  = .whileEditing
             $0.font = UIFont(name: "Apple SD Gothic Neo Regular", size: 16)
             $0.addTarget(
@@ -191,20 +195,16 @@ extension SearchMainView {
         }
         searchButton.do {
             $0.tintColor        = .white
-            $0.backgroundColor  = .purple
-            $0.setImage(
-                UIImage().setSFSymbols(
-                    systemName: "magnifyingglass", weight: .bold), for: .normal)
+            $0.backgroundColor  = AppColor.searchButton.value
+            $0.setImage(UIImage().setSFSymbols(
+                            systemName: "magnifyingglass", weight: .bold), for: .normal)
             $0.addTarget(
                 self, action: #selector(searchButtonDidTap), for: .touchUpInside)
-        }
-        tabView.do { _ in
-            
         }
         trendingSearchesLabel.do {
             $0.text = "Trending Searches"
         }
-        autoCompleteTableView.do {
+        topTableView.do {
             $0.delegate             = self
             $0.dataSource           = self
             $0.separatorStyle       = .none
@@ -232,7 +232,7 @@ extension SearchMainView {
          searchButton,
          tabView,
          trendingSearchesLabel,
-         autoCompleteTableView,
+         topTableView,
          recentSearchesCollectionView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -271,7 +271,7 @@ extension SearchMainView {
                     equalTo: view.leadingAnchor, constant: 10),
             ])
         }
-        autoCompleteTableView.do {
+        topTableView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: trendingSearchesLabel.bottomAnchor, constant: 3),
@@ -282,7 +282,7 @@ extension SearchMainView {
         }
         recentSearchesCollectionView.do {
             NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: autoCompleteTableView.bottomAnchor),
+                $0.topAnchor.constraint(equalTo: topTableView.bottomAnchor),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 100)

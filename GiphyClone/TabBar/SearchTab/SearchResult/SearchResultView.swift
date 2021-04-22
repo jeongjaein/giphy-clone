@@ -7,16 +7,16 @@
 
 import UIKit
 
-class SearchResultView: UIViewController {
+class SearchResultView: UIViewController, Alertable {
     var presenter: SearchResultPresenterProtocol?
     
     let searchTextField = UITextField()
     let searchButton    = UIButton()
-//    let segControl      = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+    let titleView       = UILabel()
     let searchGifLayout = GifCollectionViewLayout()
     let tabView         = SearchMainCustomTab()
     lazy var searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
-    
+//    searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad()
@@ -31,6 +31,8 @@ class SearchResultView: UIViewController {
     @objc func searchButtonDidTap() {
         guard let keyword = searchTextField.text else { return }
         presenter?.searchButtonDidTap(keyword)
+        titleView.text = keyword
+        
     }
 }
 
@@ -50,25 +52,22 @@ extension SearchResultView: SearchResultViewProtocol {
     }
     
     func showError() {
-//        
+        showAlert(title: "Error", message: "에러가 발생했습니다.")
     }
 }
 
 
 extension SearchResultView {
     func attribute() {
-        searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
-        let fadeTextAnimation = CATransition()
-        fadeTextAnimation.duration = 0.5
-        fadeTextAnimation.startProgress = 1.0
-        fadeTextAnimation.endProgress = 2.0
-        fadeTextAnimation.type = .reveal
-        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
+        
+        titleView.do {
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            $0.text = presenter?.keyword
+            $0.textAlignment = .center
+        }
         navigationItem.do {
-            let title = UILabel()
-            title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            title.text = presenter?.keyword
-            $0.titleView = title
+            $0.titleView = titleView
+            $0.backButtonTitle  = ""
         }
         searchTextField.do {
             $0.text = presenter?.keyword
@@ -179,6 +178,7 @@ extension SearchResultView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text else { return false }
         presenter?.searchButtonDidTap(keyword)
+        titleView.text = keyword
         return true
     }
 }

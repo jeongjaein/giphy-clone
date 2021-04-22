@@ -114,16 +114,8 @@ extension UserInfoTableViewCell {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        userProfileImageView.do {
-            NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(
-                    equalTo: contentView.topAnchor, constant: 10),
-                $0.leadingAnchor.constraint(
-                    equalTo: contentView.leadingAnchor, constant: 10),
-                $0.bottomAnchor.constraint(
-                    equalTo: contentView.bottomAnchor, constant: -10)
-            ])
-        }
+//        userProfileImageView.do {
+//        }
         displayNameLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),

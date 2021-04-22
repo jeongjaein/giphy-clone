@@ -33,12 +33,12 @@ class RecentSearchesCollectionViewCell: UICollectionViewCell {
 extension RecentSearchesCollectionViewCell {
     func attribute() {
         contentView.do {
-            $0.backgroundColor = .systemGray4
+            $0.backgroundColor = AppColor.recentSearches.value
             $0.layer.cornerRadius = 20
             $0.clipsToBounds = true
         }
         clockImageView.do {
-            $0.tintColor = .yellow
+            $0.tintColor = AppColor.clock.value
             $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
             $0.setSFSymbols(systemName: "clock.arrow.circlepath", weight: .regular)

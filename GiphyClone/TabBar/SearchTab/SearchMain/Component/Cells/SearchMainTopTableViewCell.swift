@@ -24,7 +24,7 @@ class SearchMainTopTableViewCell: UITableViewCell {
                                     ? "magnifyingglass"
                                     : "line.diagonal.arrow",
                                    weight: .bold)
-        iconImageView.tintColor = state ? .gray : .cyan
+        iconImageView.tintColor = state ? .gray : AppColor.arrow.value
         keywordLabel.text = keyword
     }
     

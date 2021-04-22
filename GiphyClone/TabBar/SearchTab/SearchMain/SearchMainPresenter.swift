@@ -27,8 +27,8 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     func searchTextFieldChanged(_ keyword: String) {
         listSwitch = !keyword.isEmpty
         view?.topTableviewReload(listSwitch
-                                    ? "Trending Searches"
-                                    : "Search Sugession")
+                                    ? "Search Sugession"
+                                    : "Trending Searches")
         interactor?.fetchAutoComplete(keyword)
     }
     

@@ -64,6 +64,7 @@
 		CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */; };
 		CC51960F2631EDF000AA0536 /* SearchMainCustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */; };
 		CC51961E263222EB00AA0536 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51961D263222EB00AA0536 /* AppColor.swift */; };
+		CC51962426322B3300AA0536 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51962326322B3300AA0536 /* Alertable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,6 +153,7 @@
 		CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainCustomTab.swift; sourceTree = "<group>"; };
 		CC51961D263222EB00AA0536 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		CC51962326322B3300AA0536 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -317,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
+				CC51962226322B2000AA0536 /* Protocols */,
 				CC0F40FE262F53A50099ABA4 /* Model */,
 				CC0F40AD262F3A1F0099ABA4 /* Extensions */,
 				CC0F40E4262F49580099ABA4 /* Common */,
@@ -389,13 +392,13 @@
 			isa = PBXGroup;
 			children = (
 				CC0F40FF262F53BE0099ABA4 /* AutoComplete.swift */,
+				CC33A0412630CBB0006CC6A8 /* RandomID.swift */,
 				CC0F4131262F63840099ABA4 /* SearchGif.swift */,
 				CC0F4136262F63AE0099ABA4 /* Meta.swift */,
 				CC0F413B262F63C00099ABA4 /* Pagination.swift */,
 				CC0F4140262F66C50099ABA4 /* BaseResponse.swift */,
 				CC339F4026301D22006CC6A8 /* GifDetail.swift */,
 				CC33A0302630BDE8006CC6A8 /* CoreDataEntity */,
-				CC33A0412630CBB0006CC6A8 /* RandomID.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -444,6 +447,14 @@
 				CC5195C72631A00400AA0536 /* RecentSearches+CoreDataProperties.swift */,
 			);
 			path = CoreDataEntity;
+			sourceTree = "<group>";
+		};
+		CC51962226322B2000AA0536 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CC51962326322B3300AA0536 /* Alertable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -708,6 +719,7 @@
 				CC0F4150262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift in Sources */,
 				CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
+				CC51962426322B3300AA0536 /* Alertable.swift in Sources */,
 				CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */,
 				CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,

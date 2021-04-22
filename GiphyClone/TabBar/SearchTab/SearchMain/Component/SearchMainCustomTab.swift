@@ -60,15 +60,15 @@ extension SearchMainCustomTab {
                 self, action: #selector(buttonDidTap), for: .touchUpInside)
         }
         moveMentView.do {
-            $0.backgroundColor = .cyan
+            $0.backgroundColor = AppColor.leftButton.value
             $0.layer.cornerRadius = 20
             $0.clipsToBounds = true
             $0.alpha = 0.5
             $0.center.equalTo(leftButton.center)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.000001) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0001) { [weak self] in
                 guard let labelWidth = self?.leftButton.titleLabel?.frame.width,
                       let frameWidth = self?.leftButton.frame.width else { return }
-                let correction = labelWidth + 60
+                let correction = labelWidth + 40
                 self?.moveMentView.frame = CGRect(x: (frameWidth - correction) / 2,
                                             y: 0,
                                             width: correction,
@@ -121,7 +121,7 @@ extension SearchMainCustomTab {
         }
         let diff = old.center.x - new.center.x
         guard var labelWidth = new.titleLabel?.frame.size.width else { return }
-        labelWidth += 60
+        labelWidth += 40
         
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.changeColor(new)
@@ -188,11 +188,11 @@ extension SearchMainCustomTab {
     
     func changeColor(_ new: UIButton) {
         if new.tag == 1 {
-            moveMentView.backgroundColor = .purple
+            moveMentView.backgroundColor = AppColor.leftButton.value
         } else if new.tag == 2 {
-            moveMentView.backgroundColor = .green
+            moveMentView.backgroundColor = AppColor.centerButton.value
         } else {
-            moveMentView.backgroundColor = .systemPink
+            moveMentView.backgroundColor = AppColor.rightButton.value
         }
     }
     
