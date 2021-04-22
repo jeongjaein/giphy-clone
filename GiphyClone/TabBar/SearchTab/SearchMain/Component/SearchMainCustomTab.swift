@@ -61,10 +61,22 @@ extension SearchMainCustomTab {
         }
         moveMentView.do {
             $0.backgroundColor = .cyan
-            $0.layer.cornerRadius = 17
+            $0.layer.cornerRadius = 20
             $0.clipsToBounds = true
             $0.alpha = 0.5
+            $0.center.equalTo(leftButton.center)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.000001) { [weak self] in
+                guard let labelWidth = self?.leftButton.titleLabel?.frame.width,
+                      let frameWidth = self?.leftButton.frame.width else { return }
+                let correction = labelWidth + 60
+                self?.moveMentView.frame = CGRect(x: (frameWidth - correction) / 2,
+                                            y: 0,
+                                            width: correction,
+                                            height: (self?.frame.height)!)
+                self?.old = self!.leftButton
+            }
         }
+        
     }
     
     func layout() {
@@ -104,60 +116,84 @@ extension SearchMainCustomTab {
 
 extension SearchMainCustomTab {
     func move(_ old: UIButton, _ new: UIButton) {
-        let xDiff = old.center.x - new.center.x
-        guard var labelSize = new.titleLabel?.frame.size.width else { return }
-        labelSize += 60
-        let cellSizing = (old.frame.width - labelSize) / 2
+        [leftButton, centerButton, rightButton].forEach {
+            $0.isUserInteractionEnabled = false
+        }
+        let diff = old.center.x - new.center.x
+        guard var labelWidth = new.titleLabel?.frame.size.width else { return }
+        labelWidth += 60
+        
         UIView.animate(withDuration: 0.2) { [weak self] in
+            self?.changeColor(new)
             let firstCorrection = abs(old.center.x - new.center.x) / 4.5
-            self?.moveMentView.frame = CGRect(
-                x: new.frame.minX
-                    + cellSizing
-                    + (xDiff < 0 ? +firstCorrection : -firstCorrection),
-                y: new.frame.minY,
-                width: labelSize,
-                height: new.frame.height)
+            self?.moveMentView.frame =
+                (self?.caculateFirst(new.frame, diff, labelWidth, firstCorrection))!
             
-            if new.tag == 1 {
-                self?.moveMentView.backgroundColor = .purple
-            } else if new.tag == 2 {
-                self?.moveMentView.backgroundColor = .green
-            } else {
-                self?.moveMentView.backgroundColor = .systemPink
-            }
         } completion: { [weak self] _ in
             UIView.animate(withDuration: 0.15) {
                 let secondCorrection = abs(old.center.x - new.center.x) / 10
-                self?.moveMentView.frame = CGRect(
-                    x: new.frame.minX
-                        + cellSizing
-                        + (xDiff < 0 ? -secondCorrection : +secondCorrection),
-                    y: new.frame.minY,
-                    width: labelSize,
-                    height: new.frame.height
-                )
+                self?.moveMentView.frame =
+                    (self?.caculateSecond(new.frame, diff, labelWidth, secondCorrection))!
+                
             } completion: { [weak self] _ in
                 UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut]) {
                     self?.moveMentView.frame =
-                        CGRect(x: new.frame.minX + cellSizing,
+                        CGRect(x: new.frame.minX
+                                + (old.frame.width - labelWidth) / 2,
                                y: new.frame.minY,
-                               width: labelSize,
+                               width: labelWidth,
                                height: new.frame.height)
+                    [self?.leftButton, self?.centerButton, self?.rightButton].forEach {
+                        $0?.isUserInteractionEnabled = true
                 }
             }
         }
+        
+        }
     }
     
-    func animate(_ rect: CGRect) -> CGRect {
+    func caculateFirst(_ rect: CGRect,
+                  _ diff: CGFloat,
+                  _ labelWith: CGFloat,
+                  _ correction: CGFloat) -> CGRect {
         
+        let ratio = (old.frame.width - labelWith) / 2
+        
+        return CGRect(x: rect.minX
+                        + ratio
+                        + (diff < 0
+                            ? +correction
+                            : -correction),
+                      y: rect.minY,
+                      width: labelWith,
+                      height: rect.height)
     }
     
-    func mutate(_ old: UIButton, _ new: UIButton) -> CGSize {
-        guard let width = new.titleLabel?.frame.width,
-              let height = new.titleLabel?.frame.height
-        else { return CGSize.zero }
+    func caculateSecond(_ rect: CGRect,
+                  _ diff: CGFloat,
+                  _ labelWith: CGFloat,
+                  _ correction: CGFloat) -> CGRect {
         
-        return CGSize(width: width, height: height)
+        let ratio = (old.frame.width - labelWith) / 2
+        
+        return CGRect(x: rect.minX
+                        + ratio
+                        + (diff < 0
+                            ? -correction
+                            : +correction),
+                      y: rect.minY,
+                      width: labelWith,
+                      height: rect.height)
+    }
+    
+    func changeColor(_ new: UIButton) {
+        if new.tag == 1 {
+            moveMentView.backgroundColor = .purple
+        } else if new.tag == 2 {
+            moveMentView.backgroundColor = .green
+        } else {
+            moveMentView.backgroundColor = .systemPink
+        }
     }
     
     @objc func buttonDidTap(_ new: UIButton) {

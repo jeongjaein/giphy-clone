@@ -12,8 +12,9 @@ class SearchResultView: UIViewController {
     
     let searchTextField = UITextField()
     let searchButton    = UIButton()
-    let segControl      = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+//    let segControl      = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let searchGifLayout = GifCollectionViewLayout()
+    let tabView         = SearchMainCustomTab()
     lazy var searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
     
     override func viewDidLoad() {
@@ -89,18 +90,6 @@ extension SearchResultView {
                                                weight: .bold), for: .normal)
             $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
-        segControl.do {
-            $0.selectedSegmentIndex = 0
-            $0.setTitleTextAttributes(
-                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
-                 .foregroundColor: UIColor.lightGray], for: .normal)
-            $0.setTitleTextAttributes(
-                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
-                 .foregroundColor: UIColor.white], for: .selected)
-            $0.backgroundColor = .clear
-            $0.clearBG()
-            $0.selectedSegmentTintColor = .clear
-        }
         searchGifLayout.do {
             $0.delegate = self
         }
@@ -116,7 +105,7 @@ extension SearchResultView {
     func layout() {
         [searchTextField,
          searchButton,
-         segControl,
+         tabView,
          searchGifCollectionView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -138,19 +127,19 @@ extension SearchResultView {
                 $0.widthAnchor.constraint(equalTo: searchTextField.heightAnchor)
             ])
         }
-        segControl.do {
+        tabView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: searchTextField.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                $0.heightAnchor.constraint(equalToConstant: 50)
+                $0.heightAnchor.constraint(equalToConstant: 40)
             ])
         }
         searchGifCollectionView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
-                    equalTo: segControl.bottomAnchor, constant: 3),
+                    equalTo: tabView.bottomAnchor, constant: 3),
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.bottomAnchor.constraint(equalTo: view.bottomAnchor)
