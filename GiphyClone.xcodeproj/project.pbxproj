@@ -62,6 +62,8 @@
 		CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */; };
 		CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0412630CBB0006CC6A8 /* RandomID.swift */; };
 		CC519589263199BD00AA0536 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */; };
+		CC5195D82631A5E200AA0536 /* RecentSearchesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5195D72631A5E200AA0536 /* RecentSearchesLayout.swift */; };
+		CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,8 @@
 		CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LikeGif+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/LikeGif+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CC5195C62631A00400AA0536 /* RecentSearches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataClass.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CC5195C72631A00400AA0536 /* RecentSearches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		CC5195D72631A5E200AA0536 /* RecentSearchesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesLayout.swift; sourceTree = "<group>"; };
+		CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesCollectionViewCell.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,6 +351,7 @@
 			children = (
 				CC0F4107262F55AA0099ABA4 /* Cells */,
 				CC0F40D5262F43EF0099ABA4 /* ContentView.swift */,
+				CC5195D72631A5E200AA0536 /* RecentSearchesLayout.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 			isa = PBXGroup;
 			children = (
 				CC0F4108262F55BA0099ABA4 /* AutoCompleteTableViewCell.swift */,
+				CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC33A0292630BCE6006CC6A8 /* CoreData.xcdatamodeld in Sources */,
 				CC0F4150262F76CF0099ABA4 /* SearchGifCollectionViewCell.swift in Sources */,
+				CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */,
 				CC0F40C7262F3F960099ABA4 /* UITextField+Ext.swift in Sources */,
 				CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */,
 				CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */,
@@ -712,6 +719,7 @@
 				CC0F4120262F606A0099ABA4 /* SearchResultRemoteDataManager.swift in Sources */,
 				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
+				CC5195D82631A5E200AA0536 /* RecentSearchesLayout.swift in Sources */,
 				CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */,
 				CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */,
 				CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */,

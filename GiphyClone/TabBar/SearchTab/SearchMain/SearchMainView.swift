@@ -15,8 +15,11 @@ class SearchMainView: UIViewController {
     let segueControl          = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let trendingSearchesLabel = SubHeadingLabel()
     let autoCompleteTableView = UITableView()
-    let segFloatingView       = UIView()
     let preSelectedSegIndex   = 0
+    let recensSearchesCollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: SearchMainView.recentSearchesLayout()
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,6 +130,13 @@ extension SearchMainView {
             $0.register(AutoCompleteTableViewCell.self,
                         forCellReuseIdentifier: AutoCompleteTableViewCell.id)
         }
+        recensSearchesCollectionView.do {
+            $0.alwaysBounceVertical = false
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(RecentSearchesCollectionViewCell.self,
+                        forCellWithReuseIdentifier: RecentSearchesCollectionViewCell.id)
+        }
     }
     
     func layout() {
@@ -134,7 +144,8 @@ extension SearchMainView {
          searchButton,
          segueControl,
          trendingSearchesLabel,
-         autoCompleteTableView].forEach {
+         autoCompleteTableView,
+         recensSearchesCollectionView].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
          }
@@ -164,17 +175,6 @@ extension SearchMainView {
                 $0.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
-//        segFloatingView.do {
-//            NSLayoutConstraint.activate([
-//                $0.topAnchor.constraint(
-//                    equalTo: segueControl.topAnchor, constant: 10),
-//                $0.leadingAnchor.constraint(
-//                    equalTo: view.leadingAnchor, constant: 10),
-//                $0.widthAnchor.constraint(equalToConstant: (segueControl.frame.width * 0.66) - 10),
-//                $0.bottomAnchor.constraint(
-//                    equalTo: segueControl.bottomAnchor, constant: -10)
-//            ])
-//        }
         trendingSearchesLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
@@ -190,6 +190,14 @@ extension SearchMainView {
                 $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 $0.heightAnchor.constraint(equalToConstant: 230)
+            ])
+        }
+        recensSearchesCollectionView.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: autoCompleteTableView.bottomAnchor),
+                $0.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                $0.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                $0.heightAnchor.constraint(equalToConstant: 100)
             ])
         }
     }
@@ -219,10 +227,41 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension SearchMainView: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: RecentSearchesCollectionViewCell.id, for: indexPath)
+        guard let castedCell = cell as? RecentSearchesCollectionViewCell else { return UICollectionViewCell() }
+        return castedCell
+    }
+}
+
 extension SearchMainView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text else { return false }
         presenter?.searchKeyword(keyword)
         return true
+    }
+}
+
+extension SearchMainView {
+    static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
+        let size = NSCollectionLayoutSize(
+            widthDimension: .estimated(100),
+            heightDimension: .estimated(44)
+        )
+        let leftItem = NSCollectionLayoutItem(layoutSize: size)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: size, subitem: leftItem, count: 1)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .paging
+        
+        return UICollectionViewCompositionalLayout(section: section)
     }
 }
