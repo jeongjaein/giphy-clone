@@ -8,7 +8,7 @@
 import Foundation
 
 class GifDetailPresenter: GifDetailPresenterProtocol {
-    
+
     weak var view: GifDetailViewProtocol?
     var interactor: GifDetailInteractorInputProtocol?
     var wireFrame: GifDetailWireFrameProtocol?
@@ -18,8 +18,7 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     var index: Int?
     
     func viewDidLoad() {
-        guard let index = index else { return }
-        interactor?.getLikeState(gifs[index].id )
+        
     }
     
     func numberOfGifs() -> Int {
@@ -28,6 +27,11 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     
     func didSelectGif(_ indexPath: IndexPath) {
 //        추후에 진행
+    }
+    
+    func likeButtonDidSet() {
+        guard let index = index else { return }
+        interactor?.getLikeState(gifs[index].id )
     }
     
     func itemOfGifs(_ indexPath: IndexPath) -> GifDetail {

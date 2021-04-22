@@ -24,6 +24,7 @@ protocol GifDetailPresenterProtocol: class {
     func numberOfGifs() -> Int
     func didSelectGif(_ indexPath: IndexPath)
     func itemOfGifs(_ indexPath: IndexPath) -> GifDetail
+    func likeButtonDidSet()
     
     func getGifInfo() -> GifDetail
     func likeButtonDidTap()

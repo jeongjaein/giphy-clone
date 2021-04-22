@@ -33,7 +33,6 @@ class GifCollectionViewLayout: UICollectionViewLayout {
     override func prepare() {
         contentHeight = 0
         guard let collectionView = collectionView else { return }
-        
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset = [CGFloat]()
         for column in 0 ..< numberOfColumns {

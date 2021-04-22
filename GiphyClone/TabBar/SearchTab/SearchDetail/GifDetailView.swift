@@ -35,9 +35,12 @@ extension GifDetailView: GifDetailViewProtocol {
     func setView() {
         gifDetailTableView.reloadData()
     }
+    
     func setLikeButton(_ state: Bool) {
+        
         guard let info = gifDetailTableView.cellForRow(at: [0,0])
                 as? UserInfoTableViewCell else { return }
+        
         info.likeButton.tintColor = state ? .systemPink : .white
     }
 }
@@ -95,6 +98,14 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath == [0,0] {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.presenter?.likeButtonDidSet()
+            }
+        }
+    }
 }
 
 extension GifDetailView: UICollectionViewDelegate,
@@ -151,7 +162,7 @@ extension GifDetailView: UICollectionViewDelegate,
     func scrollViewDidEndDragging(_ scrollView: UIScrollView,
                                   willDecelerate decelerate: Bool) {
         DispatchQueue.main.asyncAfter(
-            deadline: DispatchTime.now() + 0.2) { [weak self] in
+            deadline: DispatchTime.now() + 0.1) { [weak self] in
             
             let center = CGPoint(x: scrollView.contentOffset.x
                                     + (scrollView.frame.width / 2),

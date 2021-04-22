@@ -50,6 +50,7 @@ class CoreDataManager {
             let result = try CoreDataManager.shared.context.fetch(fetchRequest)
             if !result.isEmpty && result[0].gif != nil {
                 result[0].gif?.append(gifID)
+                try context.save()
                 return true
             } else {
                 if result[0].gif == nil {

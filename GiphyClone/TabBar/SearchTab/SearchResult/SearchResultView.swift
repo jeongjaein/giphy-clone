@@ -35,6 +35,7 @@ class SearchResultView: UIViewController {
 
 extension SearchResultView: SearchResultViewProtocol {
     func didReceiveSearchGif() {
+        searchTextField.endEditing(true)
         searchGifCollectionView.scrollToItem(at: [0,0], at: .top, animated: false)
         searchGifCollectionView.reloadData()
     }
