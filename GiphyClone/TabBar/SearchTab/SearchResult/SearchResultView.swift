@@ -40,11 +40,6 @@ extension SearchResultView: SearchResultViewProtocol {
         }
     }
     
-//    func reloadItems(_ indexPath: [IndexPath]) {
-    func reloadItems() {
-        self.searchGifCollectionView.reloadData()
-    }
-    
     func showLoading() {
         //        <#code#>
     }
@@ -99,7 +94,6 @@ extension SearchResultView {
                         forCellWithReuseIdentifier: SearchGifCollectionViewCell.id)
             $0.delegate = self
             $0.dataSource = self
-//            $0.prefetchDataSource = self
             $0.keyboardDismissMode  = .interactive
         }
     }
@@ -153,7 +147,6 @@ extension SearchResultView {
 extension SearchResultView:
     UICollectionViewDelegate,
     UICollectionViewDataSource
-//    UICollectionViewDataSourcePrefetching
 {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
@@ -176,11 +169,6 @@ extension SearchResultView:
                         didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectSearchGif(indexPath)
     }
-    
-//    func collectionView(_ collectionView: UICollectionView,
-//                        prefetchItemsAt indexPaths: [IndexPath]) {
-//        presenter?.preFetching(indexPaths)
-//    }
 }
 
 extension SearchResultView: UITextFieldDelegate {
@@ -193,8 +181,8 @@ extension SearchResultView: UITextFieldDelegate {
 
 extension SearchResultView: GifCollectionViewDelegate {
     func collectionView(
-        _ collectionView: UICollectionView) -> [CGFloat] {
-        guard let heightList = presenter?.getImageHeightList() else { return [0] }
+        _ collectionView: UICollectionView) -> [CGSize] {
+        guard let heightList = presenter?.getImageHeightList() else { return [CGSize.zero] }
         return heightList
     }
 }

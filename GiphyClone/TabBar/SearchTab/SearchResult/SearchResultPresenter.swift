@@ -14,21 +14,15 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     var interactor: SearchResultInteractorInputProtocol?
     var wireFrame: SearchResultWireFrameProtocol?
     
-    var keyword: String = ""
-    var totalGifs: [GifDetail] = []
-    var visibleGifs: [GifDetail] = []
-    var pagingIndex = 0
-    var imageHeightList: [CGFloat] = [] {
-        didSet {
-            print("세팅됨\(imageHeightList)")
-        }
-    }
+    var pagingIndex                = 0
+    var keyword: String            = ""
+    var gifList: [GifDetail]       = []
+    var totalGifs: [GifDetail]     = []
+    var imageHeightList: [CGSize] = []
     
     func viewDidLoad() {
         view?.showLoading()
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            self?.interactor?.fetchSearchGif(self!.keyword)
-        }
+        interactor?.fetchSearchGif(self.keyword)
     }
     
     func searchButtonDidTap(_ keyword: String) {
@@ -39,56 +33,27 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     // MARK: SearchGif 관련
     
     func numberOfSearchGif() -> Int {
-        return visibleGifs.count
+        return gifList.count
     }
     
     func didSelectSearchGif(_ indexPath: IndexPath) {
-        //        wireFrame?.presentGifDetail(from: view!, gif: totalGifs, index: indexPath.row)
-        wireFrame?.presentGifDetail(from: view!, gif: visibleGifs, index: indexPath.row)
+        wireFrame?.presentGifDetail(from: view!, gif: gifList, index: indexPath.row)
     }
     
     func getGifImage(_ indexPath: IndexPath) -> String {
-        return visibleGifs[indexPath.row].mainImage
+        return gifList[indexPath.row].mainImage
     }
     
-    func itemOfSearchGif(_ indexPath: IndexPath) -> Data {
-        do {
-            guard let url = URL(string: visibleGifs[indexPath.row].mainImage) else { return Data()}
-            let data = try Data(contentsOf: url)
-            
-            return data
-        } catch {
-            
-        }
-        return Data()
-    }
-    
-    func preFetching(_ indexPaths: [IndexPath]) {
-        if pagingIndex != totalGifs.count - 1 {
-            indexPaths.forEach {
-                if $0.row == pagingIndex - 1 {
-                    let index = min(totalGifs.count, pagingIndex + 10)
-                    visibleGifs.append(contentsOf: Array(totalGifs[pagingIndex..<index]))
-                    pagingIndex = index
-                    view?.reloadItems()
-                }
-            }
-        }
-    }
-    
-    func getImageHeightList() -> [CGFloat] {
-        print("가져감")
+    func getImageHeightList() -> [CGSize] {
         return imageHeightList
     }
 }
 
 extension SearchResultPresenter: SearchResultInteractorOutputProtocol {
     func retrievedSearchKeyword(_ searchGif: [GifDetail]) {
-        //        totalGifs = searchGif
-        //        visibleGifs = Array(searchGif[0..<min(searchGif.count, 10)])
-        visibleGifs = searchGif
-        imageHeightList = visibleGifs.map { CGFloat($0.height) }
-        pagingIndex = visibleGifs.count
+        gifList = searchGif
+        imageHeightList = gifList.map { CGSize(width: $0.width, height: $0.height) }
+        pagingIndex = gifList.count
         view?.hideLoading()
         view?.didReceiveSearchGif()
     }

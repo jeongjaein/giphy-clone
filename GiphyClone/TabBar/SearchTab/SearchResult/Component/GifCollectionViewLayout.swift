@@ -8,14 +8,14 @@
 import UIKit
 
 protocol GifCollectionViewDelegate: class {
-    func collectionView(_ collectionView:UICollectionView) -> [CGFloat]
+    func collectionView(_ collectionView:UICollectionView) -> [CGSize]
 }
 
 class GifCollectionViewLayout: UICollectionViewLayout {
     weak var delegate: GifCollectionViewDelegate!
     
     fileprivate var numberOfColumns = 2
-    fileprivate var cellPadding: CGFloat = 6
+    fileprivate var cellPadding: CGFloat = 3
     fileprivate var cache = [UICollectionViewLayoutAttributes]()
     fileprivate var contentHeight: CGFloat = 0
     fileprivate var contentWidth: CGFloat {
@@ -40,19 +40,21 @@ class GifCollectionViewLayout: UICollectionViewLayout {
         }
         var column = 0
         var yOffset = [CGFloat](repeating: 0, count: numberOfColumns)
-        let photoHeight = self.delegate.collectionView(collectionView)
-        guard photoHeight.count != 0 else { return }
+        let sizeList = self.delegate.collectionView(collectionView)
+        
+        guard sizeList.count != 0 else { return }
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
-                
-                let height = self.cellPadding * 2 + photoHeight[item]
-                let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
+            let height = self.cellPadding * 2 + sizeList[item].height
+            let scaledHeight = (columnWidth / sizeList[item].width) * height
+            
+            let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: scaledHeight)
                 let insetFrame = frame.insetBy(dx: self.cellPadding, dy: self.cellPadding)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = insetFrame
                 self.cache.append(attributes)
                 self.contentHeight = max(self.contentHeight, frame.maxY)
-                yOffset[column] = yOffset[column] + height
+                yOffset[column] = yOffset[column] + scaledHeight
                 column = column < (self.numberOfColumns - 1) ? (column + 1) : 0
         }
     }
