@@ -84,7 +84,17 @@ extension SearchResultView {
             $0.addTarget(self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
         segControl.do {
-            $0.backgroundColor = .orange
+            $0.selectedSegmentIndex = 0
+//            $0.addTarget(self, action: #selector(segueDidTap), for: .valueChanged)
+            $0.setTitleTextAttributes(
+                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+                 .foregroundColor: UIColor.lightGray], for: .normal)
+            $0.setTitleTextAttributes(
+                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+                 .foregroundColor: UIColor.white], for: .selected)
+            $0.backgroundColor = .clear
+            $0.clearBG()
+            $0.selectedSegmentTintColor = .clear
         }
         searchGifLayout.do {
             $0.delegate = self

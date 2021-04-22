@@ -131,6 +131,8 @@ extension UserInfoTableViewCell {
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.leadingAnchor.constraint(
                     equalTo: userProfileImageView.trailingAnchor, constant: 15),
+                $0.trailingAnchor.constraint(
+                    equalTo: likeButton.leadingAnchor, constant: -15),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.centerYAnchor)
             ])
         }
@@ -152,7 +154,7 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: trailingAnchor, constant: -20),
+                    equalTo: trailingAnchor, constant: -15),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }
@@ -160,7 +162,7 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: moreButton.leadingAnchor, constant: -20),
+                    equalTo: moreButton.leadingAnchor, constant: -15),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }
@@ -168,7 +170,8 @@ extension UserInfoTableViewCell {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
                 $0.trailingAnchor.constraint(
-                    equalTo: sendButton.leadingAnchor, constant: -20),
+                    equalTo: sendButton.leadingAnchor, constant: -15),
+                $0.widthAnchor.constraint(equalTo: sendButton.heightAnchor),
                 $0.bottomAnchor.constraint(equalTo: userProfileImageView.bottomAnchor)
             ])
         }
