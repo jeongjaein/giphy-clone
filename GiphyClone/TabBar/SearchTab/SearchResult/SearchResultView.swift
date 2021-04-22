@@ -57,10 +57,16 @@ extension SearchResultView: SearchResultViewProtocol {
 extension SearchResultView {
     func attribute() {
         searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
+        let fadeTextAnimation = CATransition()
+        fadeTextAnimation.duration = 0.5
+        fadeTextAnimation.startProgress = 1.0
+        fadeTextAnimation.endProgress = 2.0
+        fadeTextAnimation.type = .reveal
+        navigationController?.navigationBar.layer.add(fadeTextAnimation, forKey: "fadeText")
         navigationItem.do {
             let title = UILabel()
             title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            title.text = "Search"
+            title.text = presenter?.keyword
             $0.titleView = title
         }
         searchTextField.do {
@@ -85,7 +91,6 @@ extension SearchResultView {
         }
         segControl.do {
             $0.selectedSegmentIndex = 0
-//            $0.addTarget(self, action: #selector(segueDidTap), for: .valueChanged)
             $0.setTitleTextAttributes(
                 [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
                  .foregroundColor: UIColor.lightGray], for: .normal)

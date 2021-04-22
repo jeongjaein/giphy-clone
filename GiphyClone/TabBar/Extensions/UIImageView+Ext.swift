@@ -29,13 +29,10 @@ extension UIImageView {
         }
     }
     
-    func setSFSymbols(systemName: String, weight: UIImage.SymbolWeight) -> UIImageView {
+    func setSFSymbols(systemName: String, weight: UIImage.SymbolWeight) {
         if let symbolImage = UIImage(systemName: systemName)?
             .withConfiguration(UIImage.SymbolConfiguration(weight: weight)) {
             self.image = symbolImage
-            return self
-        } else {
-            return self
         }
     }
 }

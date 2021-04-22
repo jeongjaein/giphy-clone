@@ -71,7 +71,7 @@ extension RecentSearchesCollectionViewCell {
                 $0.leadingAnchor.constraint(
                     equalTo: clockImageView.trailingAnchor, constant: 2),
                 $0.trailingAnchor.constraint(
-                    equalTo: contentView.trailingAnchor, constant: -8)
+                    equalTo: contentView.trailingAnchor, constant: -10)
             ])
         }
     }

@@ -16,6 +16,7 @@ enum NetworkRouter: URLRequestConvertible {
     case autoComplete       (keyword: String)
     case searchGif          (keyword: String)
     case createRandomID
+    case searchSuggesion
     
     // MARK: Method
     
@@ -26,6 +27,8 @@ enum NetworkRouter: URLRequestConvertible {
         case .searchGif:
             return .get
         case .createRandomID:
+            return .get
+        case .searchSuggesion:
             return .get
         }
     }
@@ -40,6 +43,8 @@ enum NetworkRouter: URLRequestConvertible {
             return "/gifs/search"
         case .createRandomID:
             return "/randomid"
+        case .searchSuggesion:
+            return "/trending/searches"
         }
     }
     
@@ -52,6 +57,8 @@ enum NetworkRouter: URLRequestConvertible {
         case let .searchGif(keyword):
             return ["q": keyword]
         case .createRandomID:
+            return [: ]
+        case .searchSuggesion:
             return [: ]
         }
     }

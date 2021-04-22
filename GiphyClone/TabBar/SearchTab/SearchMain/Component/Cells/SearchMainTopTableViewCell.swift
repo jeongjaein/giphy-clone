@@ -7,8 +7,8 @@
 
 import UIKit
 
-class AutoCompleteTableViewCell: UITableViewCell {
-    static let id = "AutoCompleteTableViewCell"
+class SearchMainTopTableViewCell: UITableViewCell {
+    static let id = "SearchMainTopTableViewCell"
     
     let keywordLabel = SubHeadingLabel()
     let iconImageView = UIImageView()
@@ -19,7 +19,12 @@ class AutoCompleteTableViewCell: UITableViewCell {
         layout()
     }
     
-    func setData(keyword: String) {
+    func setData(state: Bool, keyword: String) {
+        iconImageView.setSFSymbols(systemName: state
+                                    ? "magnifyingglass"
+                                    : "line.diagonal.arrow",
+                                   weight: .bold)
+        iconImageView.tintColor = state ? .gray : .cyan
         keywordLabel.text = keyword
     }
     
@@ -30,7 +35,7 @@ class AutoCompleteTableViewCell: UITableViewCell {
 
 // MARK: attribute & layout
 
-extension AutoCompleteTableViewCell {
+extension SearchMainTopTableViewCell {
     func attribute() {
         self.do {
             $0.selectionStyle = .none
@@ -42,7 +47,7 @@ extension AutoCompleteTableViewCell {
             $0.tintColor = .gray
             $0.image = UIImage().setSFSymbols(systemName: "magnifyingglass",
                                               weight: .bold)
-            $0.contentMode = .scaleAspectFill
+            $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
         }
     }
@@ -57,8 +62,8 @@ extension AutoCompleteTableViewCell {
             NSLayoutConstraint.activate([
                 $0.centerYAnchor.constraint(equalTo: centerYAnchor),
                 $0.leadingAnchor.constraint(
-                    equalTo: leadingAnchor, constant: 10),
-                $0.widthAnchor.constraint(equalToConstant: 15)
+                    equalTo: leadingAnchor, constant: 15),
+                $0.widthAnchor.constraint(equalToConstant: 20)
             ])
         }
         keywordLabel.do {

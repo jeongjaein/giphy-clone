@@ -14,6 +14,7 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
     
     func fetchInitialElements() {
         remoteDataManager?.callTrendingGifAPI()
+        remoteDataManager?.callSearchSuggesionAPI()
         if UserDefaults.standard.object(forKey: "id") == nil {
             remoteDataManager?.callRandomIdAPI()
         } else {
@@ -58,6 +59,10 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
     
     func callRandomIdAPIResult(_ id: RandomID) {
         UserDefaults.standard.set(id.id, forKey: "id")
+    }
+    
+    func callSearchSuggesionResult(_ searchSuggesionList: [String]) {
+        presenter?.retrivedSearchSugession(searchSuggesionList)
     }
 }
 

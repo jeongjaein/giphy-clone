@@ -10,9 +10,9 @@ import UIKit
 protocol SearchMainViewProtocol: class {
     var presenter: SearchMainPresenterProtocol? { get set }
     
+    func topTableviewReload(_ subTitle: String?)
     func didReceiveTrendingGif()
     func didReceiveRecentSearches()
-    func didReceiveAutoCompletes()
     
     func showLoading()
     func hideLoading()
@@ -30,6 +30,11 @@ protocol SearchMainPresenterProtocol: class {
     func viewDidLoad()
     func searchTextFieldChanged(_ keyword: String)
     
+    /// TableViewList
+    func numberOfList() -> Int
+    func didSelectOfList(_ indexPath: IndexPath)
+    func itemOfList(_ indexPath: IndexPath) -> (Bool, String)
+    
     /// RecentSearches
     func numberOfRecentSearches() -> Int
     func didSelectRecentSearches(_ indexPath: IndexPath)
@@ -40,10 +45,6 @@ protocol SearchMainPresenterProtocol: class {
     func didSelectTrendingGif(_ indexPath: IndexPath)
     func itemOfTrendingGif(_ indexPath: IndexPath) -> String
     
-    /// AutoComplete
-    func numberOfAutoComplete() -> Int
-    func didSelectAutoComplete(_ indexPath: IndexPath)
-    func itemOfAutoComplete(_ indexPath: IndexPath) -> String
     
     /// Search
     func searchKeyword(_ keyword: String)
@@ -74,6 +75,9 @@ protocol SearchMainInteractorOutputProtocol: class {
     /// AutoComplete
     func retrievedAutoComplete(_ autoCompletes: [AutoComplete])
     
+    /// SearchSuggesion
+    func retrivedSearchSugession(_ searchSuggesion: [String])
+    
     func onError()
 }
 
@@ -86,6 +90,9 @@ protocol SearchMainRemoteDataManagerInputProtocol: class {
     /// AutoComplete
     func callAutoCompleteAPI(_ keyword: String)
     
+    /// SearchSuggesion
+    func callSearchSuggesionAPI()
+    
     /// RandomID
     func callRandomIdAPI()
 }
@@ -96,6 +103,9 @@ protocol SearchMainRemoteDataManagerOutputProtocol: class {
     
     /// AutoComplete
     func callAutoCompleteResult(_ autoCompletes: [AutoComplete])
+    
+    /// SearchSuggesion
+    func callSearchSuggesionResult(_ searchSuggesionList: [String])
     
     /// RandomID
     func callRandomIdAPIResult(_ id: RandomID)

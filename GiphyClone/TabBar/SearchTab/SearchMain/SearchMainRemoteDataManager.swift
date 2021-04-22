@@ -17,6 +17,24 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
         interactor?.errorFromRemote()
     }
     
+    func callSearchSuggesionAPI() {
+        AF.request(NetworkRouter.searchSuggesion)
+            .responseData { response in
+                switch response.result {
+                case .success(let data):
+                    do {
+                        let result = try JSONDecoder().decode(BaseResponse<[String]>.self, from: data)
+                        self.interactor?.callSearchSuggesionResult(result.data)
+                    } catch {
+                        
+                    }
+                case .failure(let err):
+                    self.interactor?.errorFromRemote()
+                }
+            }
+    }
+    
+    
     func callAutoCompleteAPI(_ keyword: String) {
         AF.request(NetworkRouter.autoComplete(keyword: keyword))
             .responseData { response in

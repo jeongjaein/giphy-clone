@@ -13,17 +13,46 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     var interactor: SearchMainInteractorInputProtocol?
     var wireFrame: SearchMainWireFrameProtocol?
     
+    var listSwitch                      = false
+    var searchSugession: [String]       = []
     var recentSearhes: [String]         = []
     var trendingGif: [String]           = []
     var autoCompletes: [AutoComplete]   = []
-
+    
     func viewDidLoad() {
         view?.showLoading()
         interactor?.fetchInitialElements()
     }
     
     func searchTextFieldChanged(_ keyword: String) {
+        listSwitch = !keyword.isEmpty
+        view?.topTableviewReload(listSwitch
+                                    ? "Trending Searches"
+                                    : "Search Sugession")
         interactor?.fetchAutoComplete(keyword)
+    }
+    
+    
+    // MARK: 상위 테이블뷰 리스트
+    
+    func numberOfList() -> Int{
+        return listSwitch
+            ? autoCompletes.count
+            : searchSugession.count
+    }
+    
+    func didSelectOfList(_ indexPath: IndexPath) {
+        let keyword = listSwitch
+            ? autoCompletes[indexPath.row].name
+            : searchSugession[indexPath.row]
+        
+        wireFrame?.presentSearchResult(from: view!, keyword)
+    }
+    
+    func itemOfList(_ indexPath: IndexPath) -> (Bool, String) {
+        return (listSwitch, listSwitch
+                    ? autoCompletes[indexPath.row].name
+                    : searchSugession[indexPath.row])
     }
     
     // MARK: 최근 검색어 관련
@@ -54,20 +83,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         return trendingGif[indexPath.row]
     }
     
-    // MARK: 자동완성 관련
-    
-    func numberOfAutoComplete() -> Int {
-        return autoCompletes.count
-    }
-    
-    func didSelectAutoComplete(_ indexPath: IndexPath) {
-        wireFrame?.presentSearchResult(from: view!, autoCompletes[indexPath.row].name)
-    }
-    
-    func itemOfAutoComplete(_ indexPath: IndexPath) -> String {
-        return autoCompletes[indexPath.row].name
-    }
-    
     // MARK: 검색 버튼 탭
     
     func searchKeyword(_ keyword: String) {
@@ -76,7 +91,15 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
+    func retrivedSearchSugession(_ searchSuggesion: [String]) {
+        searchSugession = Array(searchSuggesion[0..<5])
+        view?.topTableviewReload(nil)
+    }
     
+    func retrievedAutoComplete(_ autoCompletes: [AutoComplete]) {
+        self.autoCompletes = autoCompletes
+        view?.topTableviewReload(nil)
+    }
     
     func retrievedTrendingGif() {
         view?.hideLoading()
@@ -91,17 +114,12 @@ extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
     
     func checkKeywordResult(_ result: Bool, _ keyword: String) {
         if result {
-            recentSearhes.append(keyword)
+            recentSearhes.insert(keyword, at: 0)
             view?.didReceiveRecentSearches()
             wireFrame?.presentSearchResult(from: view!, keyword)
         } else {
             view?.showError()
         }
-    }
-    
-    func retrievedAutoComplete(_ autoCompletes: [AutoComplete]) {
-        self.autoCompletes = autoCompletes
-        view?.didReceiveAutoCompletes()
     }
     
     func onError() {
