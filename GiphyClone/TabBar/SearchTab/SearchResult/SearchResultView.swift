@@ -14,8 +14,7 @@ class SearchResultView: UIViewController {
     let searchButton    = UIButton()
     let segControl      = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
     let searchGifLayout = GifCollectionViewLayout()
-    lazy var searchGifCollectionView
-        = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
+    lazy var searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +35,11 @@ extension SearchResultView: SearchResultViewProtocol {
         }
     }
     
+//    func reloadItems(_ indexPath: [IndexPath]) {
+    func reloadItems() {
+        self.searchGifCollectionView.reloadData()
+    }
+    
     func showLoading() {
         //        <#code#>
     }
@@ -52,6 +56,7 @@ extension SearchResultView: SearchResultViewProtocol {
 
 extension SearchResultView {
     func attribute() {
+        searchGifCollectionView = UICollectionView(frame: .zero, collectionViewLayout: searchGifLayout)
         navigationItem.do {
             let title = UILabel()
             title.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
@@ -80,13 +85,16 @@ extension SearchResultView {
         segControl.do {
             $0.backgroundColor = .orange
         }
+        searchGifLayout.do {
+            $0.delegate = self
+        }
         searchGifCollectionView.do {
             $0.register(SearchGifCollectionViewCell.self,
                         forCellWithReuseIdentifier: SearchGifCollectionViewCell.id)
             $0.delegate = self
             $0.dataSource = self
+//            $0.prefetchDataSource = self
             $0.keyboardDismissMode  = .interactive
-            ($0.collectionViewLayout as? GifCollectionViewLayout)?.delegate = self
         }
     }
     
@@ -136,24 +144,37 @@ extension SearchResultView {
     }
 }
 
-extension SearchResultView: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+extension SearchResultView:
+    UICollectionViewDelegate,
+    UICollectionViewDataSource
+//    UICollectionViewDataSourcePrefetching
+{
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        
         return presenter?.numberOfSearchGif() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
         let cell = collectionView
             .dequeueReusableCell(
                 withReuseIdentifier:SearchGifCollectionViewCell.id,for: indexPath)
-        
         guard let castedCell = cell as? SearchGifCollectionViewCell else { return UICollectionViewCell() }
         castedCell.setData(presenter.getGifImage(indexPath))
         return castedCell
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectSearchGif(indexPath)
     }
+    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        prefetchItemsAt indexPaths: [IndexPath]) {
+//        presenter?.preFetching(indexPaths)
+//    }
 }
 
 extension SearchResultView: UITextFieldDelegate {
@@ -166,9 +187,10 @@ extension SearchResultView: UITextFieldDelegate {
 
 extension SearchResultView: GifCollectionViewDelegate {
     func collectionView(
-        _ collectionView: UICollectionView,
-        heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        guard let image = presenter?.itemOfSearchGif(indexPath) else { return 0 }
-        return UIImage(data: image)?.size.height ?? 0
+        _ collectionView: UICollectionView) -> [CGFloat] {
+        guard let heightList = presenter?.getImageHeightList() else { return [0] }
+        return heightList
+//        guard let image = presenter?.itemOfSearchGif(indexPath) else { return 0 }
+//        return UIImage(data: image)?.size.height ?? 0
     }
 }

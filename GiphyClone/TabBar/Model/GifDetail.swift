@@ -13,4 +13,7 @@ struct GifDetail {
     let displayName: String
     let username: String
     let isVerified: Bool
+    let id: String
+    let width: Double
+    let height: Double
 }

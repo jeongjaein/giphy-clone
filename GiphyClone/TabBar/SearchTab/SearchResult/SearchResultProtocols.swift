@@ -12,6 +12,8 @@ protocol SearchResultViewProtocol: class {
     var presenter: SearchResultPresenterProtocol? { get set }
     
     func didReceiveSearchGif()
+//    func reloadItems(_ indexPath: [IndexPath])
+    func reloadItems()
     func showLoading()
     func hideLoading()
     func showError()
@@ -31,6 +33,8 @@ protocol SearchResultPresenterProtocol: class {
     func viewDidLoad()
     func searchButtonDidTap(_ keyword: String)
     func getGifImage(_ indexPath: IndexPath) -> String
+    func preFetching(_ indexPaths: [IndexPath])
+    func getImageHeightList() -> [CGFloat]
 }
 
 protocol SearchResultInteractorInputProtocol: class {
@@ -43,7 +47,7 @@ protocol SearchResultInteractorInputProtocol: class {
 
 protocol SearchResultInteractorOutputProtocol: class {
     
-    func retrievedSearchKeyword(_ searchGif: [SearchGif])
+    func retrievedSearchKeyword(_ searchGif: [GifDetail])
     func onError()
 }
 
@@ -62,7 +66,7 @@ protocol SearchResultRemoteDataManageroutputProtocol: class {
 protocol SearchResultWireFrameProtocol: class {
     
     static func createSearchResultModule(_ keyword: String) -> UIViewController
-    func presentGifDetail(from view: SearchResultViewProtocol, gif: [SearchGif], index: Int)
+    func presentGifDetail(from view: SearchResultViewProtocol, gif: [GifDetail], index: Int)
 }
 
 

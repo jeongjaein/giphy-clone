@@ -13,14 +13,13 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     var interactor: GifDetailInteractorInputProtocol?
     var wireFrame: GifDetailWireFrameProtocol?
     
-    var gifs: [SearchGif]   = []
+    var gifs: [GifDetail]   = []
     var onceOnly            = false
     var index: Int?
     
     func viewDidLoad() {
-        guard let index = index,
-              let gifID = gifs[index].id else { return }
-        interactor?.getLikeState(gifID)
+        guard let index = index else { return }
+        interactor?.getLikeState(gifs[index].id )
     }
     
     func numberOfGifs() -> Int {
@@ -32,17 +31,16 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     }
     
     func itemOfGifs(_ indexPath: IndexPath) -> GifDetail {
-        return convertToDetail(gifs[indexPath.row])
+        return gifs[indexPath.row]
     }
     
     func getGifInfo() -> GifDetail {
-        return convertToDetail(gifs[index!])
+        return gifs[index!]
     }
     
     func likeButtonDidTap() {
-        guard let id = index,
-              let gifID = gifs[id].id else { return }
-        interactor?.toggleLikeButton(gifID)
+        guard let id = index else { return }
+        interactor?.toggleLikeButton(gifs[id].id)
     }
     
     func getOnlyOne() -> (Bool,Int) {
@@ -63,17 +61,5 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
 extension GifDetailPresenter: GifDetailInteractorOutputProtocol {
     func receiveLikeButtonState(_ state: Bool) {
         view?.setLikeButton(state)
-    }
-}
-
-extension GifDetailPresenter {
-    func convertToDetail(_ gif: SearchGif) -> GifDetail {
-        let detail = GifDetail(
-            mainImage: gif.images?.originalStill?.url   ?? "",
-            profileImage: gif.user?.avatarURL           ?? "",
-            displayName: gif.user?.displayName          ?? "",
-            username: gif.user?.userName                ?? "",
-            isVerified: gif.user?.isVerified            ?? false)
-        return detail
     }
 }

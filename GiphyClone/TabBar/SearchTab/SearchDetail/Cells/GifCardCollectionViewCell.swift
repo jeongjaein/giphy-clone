@@ -31,8 +31,6 @@ class GifCardCollectionViewCell: UICollectionViewCell {
 extension GifCardCollectionViewCell {
     func attribute() {
         mainImageView.do {
-            $0.layer.cornerRadius = 20
-            $0.layer.masksToBounds = true
             $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
         }

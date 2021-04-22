@@ -53,5 +53,5 @@ protocol GifDetailRetmoeDataManagerOutputProtocol: class {
 }
 
 protocol GifDetailWireFrameProtocol: class {
-    static func createGifDetailModule(_ gif: [SearchGif], index: Int) -> UIViewController
+    static func createGifDetailModule(_ gif: [GifDetail], index: Int) -> UIViewController
 }
