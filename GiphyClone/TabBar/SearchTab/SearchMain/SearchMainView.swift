@@ -12,7 +12,8 @@ class SearchMainView: UIViewController {
     
     let searchTextField       = UITextField()
     let searchButton          = UIButton()
-    let segueControl          = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+//    let segueControl          = UISegmentedControl(items: ["GIFs", "Stickers", "Text"])
+    let tabView               = SearchMainCustomTab()
     let trendingSearchesLabel = SubHeadingLabel()
     let autoCompleteTableView = UITableView()
     
@@ -195,18 +196,21 @@ extension SearchMainView {
             $0.addTarget(
                 self, action: #selector(searchButtonDidTap), for: .touchUpInside)
         }
-        segueControl.do {
-            $0.clearBG()
-            $0.selectedSegmentIndex     = 0
-            $0.backgroundColor          = .clear
-            $0.selectedSegmentTintColor = .clear
-            $0.addTarget(self, action: #selector(segueDidTap), for: .valueChanged)
-            $0.setTitleTextAttributes(
-                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
-                 .foregroundColor: UIColor.lightGray], for: .normal)
-            $0.setTitleTextAttributes(
-                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
-                 .foregroundColor: UIColor.white], for: .selected)
+//        segueControl.do {
+//            $0.clearBG()
+//            $0.selectedSegmentIndex     = 0
+//            $0.backgroundColor          = .clear
+//            $0.selectedSegmentTintColor = .clear
+//            $0.addTarget(self, action: #selector(segueDidTap), for: .valueChanged)
+//            $0.setTitleTextAttributes(
+//                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+//                 .foregroundColor: UIColor.lightGray], for: .normal)
+//            $0.setTitleTextAttributes(
+//                [.font: UIFont(name: "Apple SD Gothic Neo Bold", size: 20) as Any,
+//                 .foregroundColor: UIColor.white], for: .selected)
+//
+//        }
+        tabView.do { _ in
             
         }
         trendingSearchesLabel.do {
@@ -238,7 +242,8 @@ extension SearchMainView {
     func layout() {
         [searchTextField,
          searchButton,
-         segueControl,
+//         segueControl,
+         tabView,
          trendingSearchesLabel,
          autoCompleteTableView,
          recentSearchesCollectionView].forEach {
@@ -262,7 +267,7 @@ extension SearchMainView {
                 $0.widthAnchor.constraint(equalTo: searchTextField.heightAnchor)
             ])
         }
-        segueControl.do {
+        tabView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: searchTextField.bottomAnchor, constant: 3),
@@ -274,7 +279,7 @@ extension SearchMainView {
         trendingSearchesLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
-                    equalTo: segueControl.bottomAnchor, constant: 10),
+                    equalTo: tabView.bottomAnchor, constant: 10),
                 $0.leadingAnchor.constraint(
                     equalTo: view.leadingAnchor, constant: 10),
             ])

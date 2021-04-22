@@ -62,6 +62,7 @@
 		CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0412630CBB0006CC6A8 /* RandomID.swift */; };
 		CC519589263199BD00AA0536 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */; };
 		CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */; };
+		CC51960F2631EDF000AA0536 /* SearchMainCustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		CC5195C62631A00400AA0536 /* RecentSearches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataClass.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		CC5195C72631A00400AA0536 /* RecentSearches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesCollectionViewCell.swift; sourceTree = "<group>"; };
+		CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainCustomTab.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,6 +347,7 @@
 		CC0F40D4262F438E0099ABA4 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */,
 				CC0F4107262F55AA0099ABA4 /* Cells */,
 			);
 			path = Component;
@@ -679,6 +682,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC339F2426300F64006CC6A8 /* GifDetailInteractor.swift in Sources */,
+				CC51960F2631EDF000AA0536 /* SearchMainCustomTab.swift in Sources */,
 				CC0F4162262F97A50099ABA4 /* UIImageView+Ext.swift in Sources */,
 				CC0F40F0262F4A140099ABA4 /* AppConfiguration.swift in Sources */,
 				CC0F413C262F63C00099ABA4 /* Pagination.swift in Sources */,
