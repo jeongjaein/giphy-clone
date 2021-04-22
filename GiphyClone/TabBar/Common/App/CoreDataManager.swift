@@ -13,14 +13,71 @@ class CoreDataManager {
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     lazy var context = appDelegate.persistentContainer.viewContext
     
+    
+    // MARK: 최근 검색어 조회
+    
     func getRecentSearches(userID: String) -> [String] {
-        let fetchRequest: NSFetchRequest<LikeGif> = LikeGif.fetchRequest()
+        let fetchRequest: NSFetchRequest<RecentSearches> = RecentSearches.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", userID)
         
         do {
-            
-        }
+            let result = try CoreDataManager.shared.context.fetch(fetchRequest)
+            if result.isEmpty {
+                let initSearches = RecentSearches(context: context)
+                initSearches.id = userID
+                initSearches.keyword = []
+                try context.save()
+                return []
+            } else {
+                guard let searchs = result[0].keyword else { return [] }
+                return searchs
+            }
+        } catch { }
+        return []
     }
+    
+    // MARK: 검색어 추가
+    
+    func putRecentSearches(keyword: String, userID: String) -> [String] {
+        let fetchRequest: NSFetchRequest<RecentSearches> = RecentSearches.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", userID)
+        
+        do {
+            let result = try CoreDataManager.shared.context.fetch(fetchRequest)
+            if result.isEmpty {
+                let initSearches = RecentSearches(context: context)
+                initSearches.id = userID
+                initSearches.keyword = [keyword]
+                try context.save()
+                return []
+            } else {
+                guard var searchs = result[0].keyword else { return [] }
+                searchs.append(keyword)
+                try context.save()
+            }
+        } catch { }
+        return []
+    }
+    
+    // MARK: 검색어 삭제
+    
+    func removeRecentSearches(keyword: String, userID: String) -> [String] {
+        let fetchRequest: NSFetchRequest<RecentSearches> = RecentSearches.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", userID)
+        
+        do {
+            let result = try CoreDataManager.shared.context.fetch(fetchRequest)
+            if result.isEmpty {
+                return []
+            } else {
+                guard let removeIndex = result[0].keyword?.firstIndex(of: keyword) else { return [] }
+                result[0].keyword?.remove(at: removeIndex)
+                try context.save()
+            }
+        } catch { }
+        return []
+    }
+    
 }
 
 
@@ -39,9 +96,9 @@ extension CoreDataManager {
         do {
             let result = try CoreDataManager.shared.context.fetch(fetchRequest)
             if result.isEmpty {
-                let firstLike = LikeGif(context: context)
-                firstLike.id = userID
-                firstLike.gif = []
+                let initLike = LikeGif(context: context)
+                initLike.id = userID
+                initLike.gif = []
                 try context.save()
                 return false
             } else {

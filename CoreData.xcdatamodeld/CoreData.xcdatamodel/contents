@@ -6,7 +6,7 @@
     </entity>
     <entity name="RecentSearches" representedClassName="RecentSearches" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="keyword" optional="YES" attributeType="String"/>
+        <attribute name="keyword" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
     </entity>
     <elements>
         <element name="LikeGif" positionX="-54" positionY="-9" width="128" height="59"/>

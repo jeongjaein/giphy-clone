@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/LikeGif+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:GiphyClone.xcodeproj">
    </FileRef>
    <FileRef

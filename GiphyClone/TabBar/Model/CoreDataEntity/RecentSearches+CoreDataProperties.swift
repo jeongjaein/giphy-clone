@@ -17,6 +17,6 @@ extension RecentSearches {
     }
 
     @NSManaged public var id: String?
-    @NSManaged public var keyword: String?
+    @NSManaged public var keyword: [String]?
 
 }
