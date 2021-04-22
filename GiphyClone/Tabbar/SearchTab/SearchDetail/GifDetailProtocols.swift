@@ -15,9 +15,9 @@ protocol GifDetailViewProtocol: class {
 }
 
 protocol GifDetailPresenterProtocol: class {
-    var view: GifDetailViewProtocol? { get set }
+    var view:       GifDetailViewProtocol?            { get set }
     var interactor: GifDetailInteractorInputProtocol? { get set }
-    var wireFrame: GifDetailWireFrameProtocol? { get set }
+    var wireFrame:  GifDetailWireFrameProtocol?       { get set }
     
     func viewDidLoad()
     
@@ -34,7 +34,7 @@ protocol GifDetailPresenterProtocol: class {
 }
 
 protocol GifDetailInteractorInputProtocol: class {
-    var presenter: GifDetailInteractorOutputProtocol? { get set }
+    var presenter:         GifDetailInteractorOutputProtocol?       { get set }
     var remoteDataManager: GifDetailRemoteDataManagerInputProtocol? { get set }
     
     func toggleLikeButton(_ gifID: String)

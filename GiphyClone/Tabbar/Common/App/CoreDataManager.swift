@@ -51,11 +51,18 @@ class CoreDataManager {
                 try context.save()
                 return [keyword]
             } else {
-                result[0].keyword?.insert(keyword, at: 0)
-                if result[0].keyword?.count ?? 0 > 5 {
-                    result[0].keyword?.removeLast()
+                guard var searches = result[0].keyword else { return [] }
+                if searches.contains(keyword) {
+                    if let removeIndex = searches.firstIndex(of: keyword) {
+                        searches.remove(at: removeIndex)
+                        searches.insert(keyword, at: 0)
+                    }
+                } else {
+                    result[0].keyword?.insert(keyword, at: 0)
+                    if result[0].keyword?.count ?? 0 > 5 {
+                        result[0].keyword?.removeLast()
+                    }
                 }
-                guard let searches = result[0].keyword else { return [] }
                 try context.save()
                 return searches
             }

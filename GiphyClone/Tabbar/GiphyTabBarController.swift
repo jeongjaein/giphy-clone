@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UITabBarController {
+class GiphyTabBarController: UITabBarController {
     enum Tab: Int {
         case Home
         case Search
@@ -39,7 +39,7 @@ class ViewController: UITabBarController {
     }
 }
 
-extension ViewController {
+extension GiphyTabBarController {
     func attribute() {
         self.tabBar.do {
             $0.tintColor = .white

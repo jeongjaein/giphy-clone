@@ -37,10 +37,8 @@ extension GifDetailView: GifDetailViewProtocol {
     }
     
     func setLikeButton(_ state: Bool) {
-        
         guard let info = gifDetailTableView.cellForRow(at: [0,0])
                 as? UserInfoTableViewCell else { return }
-        
         info.likeButton.tintColor = state ? .systemPink : .white
     }
 }
@@ -138,11 +136,6 @@ extension GifDetailView: UICollectionViewDelegate,
         castedCell.mainImageView.setImageUrl(presenter.itemOfGifs(indexPath).mainImage)
         
         return castedCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
-        // 추후 가능 시나리오
     }
     
     func collectionView(_ collectionView: UICollectionView,

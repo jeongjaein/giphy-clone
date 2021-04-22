@@ -16,7 +16,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     var listSwitch                      = false
     var searchSugession: [String]       = []
     var recentSearhes: [String]         = []
-    var trendingGif: [String]           = []
     var autoCompletes: [AutoComplete]   = []
     
     func viewDidLoad() {
@@ -69,20 +68,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         return recentSearhes[indexPath.row]
     }
     
-    // MARK: 트렌디 gif 관련
-    
-    func numberOfTrendingGif() -> Int {
-        return trendingGif.count
-    }
-    
-    func didSelectTrendingGif(_ indexPath: IndexPath) {
-        wireFrame?.presentContentDetail()
-    }
-    
-    func itemOfTrendingGif(_ indexPath: IndexPath) -> String {
-        return trendingGif[indexPath.row]
-    }
-    
     // MARK: 검색 버튼 탭
     
     func searchKeyword(_ keyword: String) {
@@ -99,11 +84,6 @@ extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
     func retrievedAutoComplete(_ autoCompletes: [AutoComplete]) {
         self.autoCompletes = autoCompletes
         view?.topTableviewReload(nil)
-    }
-    
-    func retrievedTrendingGif() {
-        view?.hideLoading()
-        view?.didReceiveTrendingGif()
     }
     
     func retrievedRecentSearches(_ searches: [String]) {

@@ -21,9 +21,14 @@ class SearchMainView: UIViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.viewDidLoad()
+        
         attribute()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        presenter?.viewDidLoad()
     }
     
     //MARK: @objc
@@ -49,10 +54,6 @@ extension SearchMainView: SearchMainViewProtocol {
         topTableView.reloadData()
         guard let title = subTitle else { return }
         trendingSearchesLabel.text = title
-    }
-    
-    func didReceiveTrendingGif() {
-        
     }
     
     func didReceiveRecentSearches() {

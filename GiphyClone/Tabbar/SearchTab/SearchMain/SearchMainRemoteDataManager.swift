@@ -12,11 +12,6 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     
     weak var interactor: SearchMainRemoteDataManagerOutputProtocol?
     
-    func callTrendingGifAPI() {
-        interactor?.callTrendingGifResult()
-        interactor?.errorFromRemote()
-    }
-    
     func callSearchSuggesionAPI() {
         AF.request(NetworkRouter.searchSuggesion)
             .responseData { response in
@@ -28,7 +23,7 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
                     } catch {
                         
                     }
-                case .failure(let err):
+                case .failure:
                     self.interactor?.errorFromRemote()
                 }
             }
@@ -52,7 +47,6 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
                     self.interactor?.errorFromRemote()
                 }
             }
-        interactor?.errorFromRemote()
     }
     
     func callRandomIdAPI() {

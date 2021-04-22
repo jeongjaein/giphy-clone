@@ -18,7 +18,7 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     var index: Int?
     
     func viewDidLoad() {
-        
+        // 추후 확장
     }
     
     func numberOfGifs() -> Int {
@@ -26,7 +26,7 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
     }
     
     func didSelectGif(_ indexPath: IndexPath) {
-//        추후에 진행
+        // 추후 확장
     }
     
     func likeButtonDidSet() {

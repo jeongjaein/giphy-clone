@@ -11,7 +11,6 @@ protocol SearchMainViewProtocol: class {
     var presenter: SearchMainPresenterProtocol? { get set }
     
     func topTableviewReload(_ subTitle: String?)
-    func didReceiveTrendingGif()
     func didReceiveRecentSearches()
     
     func showLoading()
@@ -24,7 +23,6 @@ protocol SearchMainPresenterProtocol: class {
     var interactor: SearchMainInteractorInputProtocol? { get set }
     var wireFrame:  SearchMainWireFrameProtocol? { get set }
     var recentSearhes: [String] { get set }
-    var trendingGif: [String] { get set }
     var autoCompletes: [AutoComplete] { get set }
     
     func viewDidLoad()
@@ -39,12 +37,6 @@ protocol SearchMainPresenterProtocol: class {
     func numberOfRecentSearches() -> Int
     func didSelectRecentSearches(_ indexPath: IndexPath)
     func itemOfRecentSearches(_ indexPath: IndexPath) -> String
-    
-    /// TrendingGif
-    func numberOfTrendingGif() -> Int
-    func didSelectTrendingGif(_ indexPath: IndexPath)
-    func itemOfTrendingGif(_ indexPath: IndexPath) -> String
-    
     
     /// Search
     func searchKeyword(_ keyword: String)
@@ -65,9 +57,6 @@ protocol SearchMainInteractorInputProtocol: class {
 }
 
 protocol SearchMainInteractorOutputProtocol: class {
-    /// TrendingGif
-    func retrievedTrendingGif()
-    
     /// RecentSearches
     func retrievedRecentSearches(_ searches: [String])
     func checkKeywordResult(_ result: Bool, _ searches: String)
@@ -84,9 +73,6 @@ protocol SearchMainInteractorOutputProtocol: class {
 protocol SearchMainRemoteDataManagerInputProtocol: class {
     var interactor: SearchMainRemoteDataManagerOutputProtocol? { get set }
     
-    /// RecentSearches
-    func callTrendingGifAPI()
-    
     /// AutoComplete
     func callAutoCompleteAPI(_ keyword: String)
     
@@ -98,9 +84,6 @@ protocol SearchMainRemoteDataManagerInputProtocol: class {
 }
 
 protocol SearchMainRemoteDataManagerOutputProtocol: class {
-    /// TrendingGif
-    func callTrendingGifResult()
-    
     /// AutoComplete
     func callAutoCompleteResult(_ autoCompletes: [AutoComplete])
     

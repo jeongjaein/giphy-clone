@@ -13,6 +13,8 @@ class SearchResultInteractor: SearchResultInteractorInputProtocol {
     
     func fetchSearchGif(_ keyword: String) {
         remoteDataManager?.callSearchKeywordAPI(keyword)
+        guard let id = UserDefaults.standard.string(forKey: "id") else { return }
+        _ = CoreDataManager.shared.putRecentSearches(keyword: keyword, userID: id)
     }
 }
 

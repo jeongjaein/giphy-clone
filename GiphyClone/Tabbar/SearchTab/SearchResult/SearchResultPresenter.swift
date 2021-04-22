@@ -25,6 +25,7 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     }
     
     func searchButtonDidTap(_ keyword: String) {
+        guard !keyword.isEmpty else { return }
         view?.showLoading()
         self.keyword = keyword
         resetList()

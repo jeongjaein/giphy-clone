@@ -12,7 +12,7 @@
 		ACF93E8771A4366ADC3FDC49 /* Pods_GiphyCloneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */; };
 		CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4033262EC5430099ABA4 /* AppDelegate.swift */; };
 		CC0F4036262EC5430099ABA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */; };
-		CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4037262EC5430099ABA4 /* ViewController.swift */; };
+		CC0F4038262EC5430099ABA4 /* GiphyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F4037262EC5430099ABA4 /* GiphyTabBarController.swift */; };
 		CC0F403B262EC5430099ABA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0F4039262EC5430099ABA4 /* Main.storyboard */; };
 		CC0F403D262EC5450099ABA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC0F403C262EC5450099ABA4 /* Assets.xcassets */; };
 		CC0F4040262EC5450099ABA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */; };
@@ -94,7 +94,7 @@
 		CC0F4030262EC5430099ABA4 /* GiphyClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC0F4033262EC5430099ABA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC0F4035262EC5430099ABA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CC0F4037262EC5430099ABA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CC0F4037262EC5430099ABA4 /* GiphyTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyTabBarController.swift; sourceTree = "<group>"; };
 		CC0F403A262EC5430099ABA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CC0F403C262EC5450099ABA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CC0F403F262EC5450099ABA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -235,12 +235,7 @@
 		CC0F4032262EC5430099ABA4 /* GiphyClone */ = {
 			isa = PBXGroup;
 			children = (
-				CC0F40AC262F2C280099ABA4 /* TabBar */,
-				CC0F4039262EC5430099ABA4 /* Main.storyboard */,
-				CC0F403C262EC5450099ABA4 /* Assets.xcassets */,
-				CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */,
-				CC0F4041262EC5450099ABA4 /* Info.plist */,
-				CC33A0272630BCE6006CC6A8 /* CoreData.xcdatamodeld */,
+				CC0F40AC262F2C280099ABA4 /* Tabbar */,
 			);
 			path = GiphyClone;
 			sourceTree = "<group>";
@@ -315,18 +310,19 @@
 			path = SearchResult;
 			sourceTree = "<group>";
 		};
-		CC0F40AC262F2C280099ABA4 /* TabBar */ = {
+		CC0F40AC262F2C280099ABA4 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
-				CC0F4037262EC5430099ABA4 /* ViewController.swift */,
+				CC0F4037262EC5430099ABA4 /* GiphyTabBarController.swift */,
+				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
+				CC51963726323A0300AA0536 /* Resource */,
 				CC51962226322B2000AA0536 /* Protocols */,
 				CC0F40FE262F53A50099ABA4 /* Model */,
 				CC0F40AD262F3A1F0099ABA4 /* Extensions */,
 				CC0F40E4262F49580099ABA4 /* Common */,
 				CC0F40CB262F42910099ABA4 /* ViewComponent */,
-				CC0F4077262F0ACA0099ABA4 /* SearchTab */,
 			);
-			path = TabBar;
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		CC0F40AD262F3A1F0099ABA4 /* Extensions */ = {
@@ -455,6 +451,18 @@
 				CC51962326322B3300AA0536 /* Alertable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		CC51963726323A0300AA0536 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CC0F4039262EC5430099ABA4 /* Main.storyboard */,
+				CC0F403C262EC5450099ABA4 /* Assets.xcassets */,
+				CC0F403E262EC5450099ABA4 /* LaunchScreen.storyboard */,
+				CC0F4041262EC5450099ABA4 /* Info.plist */,
+				CC33A0272630BCE6006CC6A8 /* CoreData.xcdatamodeld */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,7 +738,7 @@
 				CC339F1A26300F4C006CC6A8 /* GifDetailView.swift in Sources */,
 				CC339F1F26300F5A006CC6A8 /* GifDetailPresenter.swift in Sources */,
 				CC0F4120262F606A0099ABA4 /* SearchResultRemoteDataManager.swift in Sources */,
-				CC0F4038262EC5430099ABA4 /* ViewController.swift in Sources */,
+				CC0F4038262EC5430099ABA4 /* GiphyTabBarController.swift in Sources */,
 				CC0F4034262EC5430099ABA4 /* AppDelegate.swift in Sources */,
 				CC0F40C2262F3D790099ABA4 /* UIImage+Ext.swift in Sources */,
 				CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */,
@@ -1091,8 +1099,7 @@
 				CC33A0282630BCE6006CC6A8 /* CoreData.xcdatamodel */,
 			);
 			currentVersion = CC33A0282630BCE6006CC6A8 /* CoreData.xcdatamodel */;
-			name = CoreData.xcdatamodeld;
-			path = ../CoreData.xcdatamodeld;
+			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
