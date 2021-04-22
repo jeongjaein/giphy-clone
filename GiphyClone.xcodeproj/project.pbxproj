@@ -63,6 +63,7 @@
 		CC519589263199BD00AA0536 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */; };
 		CC5195DD2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */; };
 		CC51960F2631EDF000AA0536 /* SearchMainCustomTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */; };
+		CC51961E263222EB00AA0536 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51961D263222EB00AA0536 /* AppColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		CC5195C72631A00400AA0536 /* RecentSearches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		CC5195DC2631A90200AA0536 /* RecentSearchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMainCustomTab.swift; sourceTree = "<group>"; };
+		CC51961D263222EB00AA0536 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,6 +380,7 @@
 				CC0F40EF262F4A140099ABA4 /* AppConfiguration.swift */,
 				CC0F4166262F98090099ABA4 /* ImageCacheManager.swift */,
 				CC33A00A2630BA9F006CC6A8 /* CoreDataManager.swift */,
+				CC51961D263222EB00AA0536 /* AppColor.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -698,6 +701,7 @@
 				CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */,
 				CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */,
 				CC33A00B2630BA9F006CC6A8 /* CoreDataManager.swift in Sources */,
+				CC51961E263222EB00AA0536 /* AppColor.swift in Sources */,
 				CC0F4148262F6FEF0099ABA4 /* GifCollectionViewLayout.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
 				CC33A0292630BCE6006CC6A8 /* CoreData.xcdatamodeld in Sources */,
