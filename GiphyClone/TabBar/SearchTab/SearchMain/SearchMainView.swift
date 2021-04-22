@@ -127,14 +127,6 @@ extension SearchMainView {
             $0.register(AutoCompleteTableViewCell.self,
                         forCellReuseIdentifier: AutoCompleteTableViewCell.id)
         }
-//        segFloatingView.do {
-//            $0.alpha = 0.5
-//            $0.backgroundColor = .purple
-//            $0.layer.cornerRadius = 10
-//            $0.layer.masksToBounds = true
-//            $0.frame = segueControl.frame
-////            $0.transform = CGAffineTransform(translationX: 0, y: 150)
-//        }
     }
     
     func layout() {

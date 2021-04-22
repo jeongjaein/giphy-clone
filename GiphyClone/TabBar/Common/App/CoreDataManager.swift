@@ -13,10 +13,26 @@ class CoreDataManager {
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     lazy var context = appDelegate.persistentContainer.viewContext
     
-    //MARK: 좋아요 상태
+    func getRecentSearches(userID: String) -> [String] {
+        let fetchRequest: NSFetchRequest<LikeGif> = LikeGif.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", userID)
+        
+        do {
+            
+        }
+    }
+}
+
+
+
+
+// MARK: LIKE
+
+extension CoreDataManager {
     
-    func getLikeState(gifID: String, userID: String) -> Bool{
-        //        removeAllLikeGif()
+    // MARK: 좋아요 상태
+    
+    func getLikeState(gifID: String, userID: String) -> Bool {
         let fetchRequest: NSFetchRequest<LikeGif> = LikeGif.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "id == %@", userID)
         
@@ -96,9 +112,5 @@ class CoreDataManager {
         do {
             try context.save()
         } catch {}
-        //        let delete = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        //        do {
-        //            try self.context.execute(delete)
-        //        } catch {}
     }
 }

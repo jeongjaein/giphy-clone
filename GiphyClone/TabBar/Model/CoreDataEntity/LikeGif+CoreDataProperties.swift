@@ -16,7 +16,7 @@ extension LikeGif {
         return NSFetchRequest<LikeGif>(entityName: "LikeGif")
     }
 
-    @NSManaged public var id: String?
     @NSManaged public var gif: [String]?
+    @NSManaged public var id: String?
 
 }

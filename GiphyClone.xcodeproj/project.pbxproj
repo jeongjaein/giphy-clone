@@ -59,9 +59,11 @@
 		CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */; };
 		CC33A00B2630BA9F006CC6A8 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A00A2630BA9F006CC6A8 /* CoreDataManager.swift */; };
 		CC33A0292630BCE6006CC6A8 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0272630BCE6006CC6A8 /* CoreData.xcdatamodeld */; };
-		CC33A0332630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0312630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift */; };
 		CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */; };
 		CC33A0422630CBB0006CC6A8 /* RandomID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC33A0412630CBB0006CC6A8 /* RandomID.swift */; };
+		CC519589263199BD00AA0536 /* LikeGif+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */; };
+		CC51958F26319C9500AA0536 /* RecentSearches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51958D26319C9500AA0536 /* RecentSearches+CoreDataProperties.swift */; };
+		CC51959026319C9500AA0536 /* RecentSearches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC51958E26319C9500AA0536 /* RecentSearches+CoreDataClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,9 +145,11 @@
 		CC339F8626307D75006CC6A8 /* GifCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC33A00A2630BA9F006CC6A8 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		CC33A0282630BCE6006CC6A8 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		CC33A0312630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikeGif+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LikeGif+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CC33A0412630CBB0006CC6A8 /* RandomID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomID.swift; sourceTree = "<group>"; };
+		CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "LikeGif+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/LikeGif+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		CC51958D26319C9500AA0536 /* RecentSearches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataProperties.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		CC51958E26319C9500AA0536 /* RecentSearches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentSearches+CoreDataClass.swift"; path = "/Users/jeongjaein/Desktop/GiphyClone/GiphyClone/TabBar/Model/CoreDataEntity/RecentSearches+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -431,7 +435,9 @@
 			isa = PBXGroup;
 			children = (
 				CC33A0322630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift */,
-				CC33A0312630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift */,
+				CC519588263199BD00AA0536 /* LikeGif+CoreDataProperties.swift */,
+				CC51958E26319C9500AA0536 /* RecentSearches+CoreDataClass.swift */,
+				CC51958D26319C9500AA0536 /* RecentSearches+CoreDataProperties.swift */,
 			);
 			path = CoreDataEntity;
 			sourceTree = "<group>";
@@ -681,6 +687,7 @@
 				CC0F4132262F63840099ABA4 /* SearchGif.swift in Sources */,
 				CC0F4167262F98090099ABA4 /* ImageCacheManager.swift in Sources */,
 				CC339F8726307D75006CC6A8 /* GifCardCollectionViewCell.swift in Sources */,
+				CC51959026319C9500AA0536 /* RecentSearches+CoreDataClass.swift in Sources */,
 				CC0F4111262F60420099ABA4 /* SearchResultView.swift in Sources */,
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CC0F4116262F604E0099ABA4 /* SearchResultPresenter.swift in Sources */,
@@ -690,7 +697,6 @@
 				CC339F5B26302E17006CC6A8 /* UserInfoTableViewCell.swift in Sources */,
 				CC0F40D6262F43EF0099ABA4 /* ContentView.swift in Sources */,
 				CC339F8226307645006CC6A8 /* UISegmentedControl+Ext.swift in Sources */,
-				CC33A0332630BDF5006CC6A8 /* LikeGif+CoreDataProperties.swift in Sources */,
 				CC33A00B2630BA9F006CC6A8 /* CoreDataManager.swift in Sources */,
 				CC0F4148262F6FEF0099ABA4 /* GifCollectionViewLayout.swift in Sources */,
 				CC0F40AF262F3A330099ABA4 /* NSObject+Do.swift in Sources */,
@@ -700,8 +706,10 @@
 				CC33A0342630BDF5006CC6A8 /* LikeGif+CoreDataClass.swift in Sources */,
 				CC0F4137262F63AE0099ABA4 /* Meta.swift in Sources */,
 				CC0F407B262F0EA10099ABA4 /* SearchMainProtocols.swift in Sources */,
+				CC519589263199BD00AA0536 /* LikeGif+CoreDataProperties.swift in Sources */,
 				CC0F4141262F66C50099ABA4 /* BaseResponse.swift in Sources */,
 				CC0F4100262F53BE0099ABA4 /* AutoComplete.swift in Sources */,
+				CC51958F26319C9500AA0536 /* RecentSearches+CoreDataProperties.swift in Sources */,
 				CC339F152630055C006CC6A8 /* GifDetailProtocols.swift in Sources */,
 				CC339F1A26300F4C006CC6A8 /* GifDetailView.swift in Sources */,
 				CC339F1F26300F5A006CC6A8 /* GifDetailPresenter.swift in Sources */,

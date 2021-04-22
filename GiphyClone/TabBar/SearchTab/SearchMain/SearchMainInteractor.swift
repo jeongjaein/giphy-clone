@@ -13,6 +13,7 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
     var remoteDataManager: SearchMainRemoteDataManagerInputProtocol?
     
     func fetchInitialElements() {
+        CoreDataManager.shared
         remoteDataManager?.callTrendingGifAPI()
         if UserDefaults.standard.object(forKey: "id") == nil {
             remoteDataManager?.callRandomIdAPI()
