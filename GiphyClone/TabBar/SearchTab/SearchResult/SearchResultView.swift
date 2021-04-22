@@ -35,9 +35,8 @@ class SearchResultView: UIViewController {
 
 extension SearchResultView: SearchResultViewProtocol {
     func didReceiveSearchGif() {
-        DispatchQueue.main.async {
-            self.searchGifCollectionView.reloadData()
-        }
+        searchGifCollectionView.scrollToItem(at: [0,0], at: .top, animated: false)
+        searchGifCollectionView.reloadData()
     }
     
     func showLoading() {

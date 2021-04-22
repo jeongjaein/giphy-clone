@@ -17,8 +17,7 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     var pagingIndex                = 0
     var keyword: String            = ""
     var gifList: [GifDetail]       = []
-    var totalGifs: [GifDetail]     = []
-    var imageHeightList: [CGSize] = []
+    var imageHeightList: [CGSize]  = []
     
     func viewDidLoad() {
         view?.showLoading()
@@ -27,7 +26,16 @@ class SearchResultPresenter: SearchResultPresenterProtocol {
     
     func searchButtonDidTap(_ keyword: String) {
         view?.showLoading()
+        self.keyword = keyword
+        resetList()
+        view?.didReceiveSearchGif()
         interactor?.fetchSearchGif(keyword)
+    }
+    
+    func resetList() {
+        pagingIndex = 0
+        gifList.removeAll()
+        imageHeightList.removeAll()
     }
     
     // MARK: SearchGif 관련

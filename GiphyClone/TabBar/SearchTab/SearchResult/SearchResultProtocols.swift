@@ -27,6 +27,7 @@ protocol SearchResultPresenterProtocol: class {
     
     func viewDidLoad()
     func searchButtonDidTap(_ keyword: String)
+    func resetList()
     func getGifImage(_ indexPath: IndexPath) -> String
     func getImageHeightList() -> [CGSize]
     func numberOfSearchGif() -> Int
