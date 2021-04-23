@@ -142,7 +142,7 @@
 <br>
 <br>
 
-## 5. 검색 제안
+## 4. 검색 제안
 <br>
 
 - GIPHY API 중  ```Search Suggesions API``` 을 통해 추천검색어를 받아와 사용자에게 보여줍니다.
@@ -158,7 +158,9 @@
 추가적인 사항으로
 
 ✔︎ AppColor를 통한 앱 내 Color관리
+
 ✔︎ NetWorkRouter를 통한 간편한 API 호출
+
 ✔︎ Extension을 통해 중복되거나, 깔끔하지 못한 코드들을 해결
 등등
 
