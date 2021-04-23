@@ -24,6 +24,8 @@ class SearchResultView: UIViewController, Alertable {
         layout()
     }
     
+    // MARK: @objc
+    
     @objc func textFieldDidChanged(_ textField: UITextField) {
         guard textField.text != nil else { return }
     }
@@ -44,11 +46,11 @@ extension SearchResultView: SearchResultViewProtocol {
     }
     
     func showLoading() {
-        //        <#code#>
+//        추후 확장
     }
     
     func hideLoading() {
-        //        <#code#>
+//        추후 확장
     }
     
     func showError() {
@@ -56,29 +58,24 @@ extension SearchResultView: SearchResultViewProtocol {
     }
 }
 
-extension SearchResultView:
-    UICollectionViewDelegate,
-    UICollectionViewDataSource
-{
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        
+// MARK: CollectionView
+
+extension SearchResultView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.numberOfSearchGif() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
-        let cell = collectionView
-            .dequeueReusableCell(
-                withReuseIdentifier:SearchGifCollectionViewCell.id,for: indexPath)
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier:SearchGifCollectionViewCell.id,for: indexPath)
         guard let castedCell = cell as? SearchGifCollectionViewCell else { return UICollectionViewCell() }
         castedCell.setData(presenter.getGifImage(indexPath))
         return castedCell
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectSearchGif(indexPath)
     }
 }
@@ -91,6 +88,8 @@ extension SearchResultView: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: TextField
 
 extension SearchResultView: GifCollectionViewDelegate {
     func collectionView(

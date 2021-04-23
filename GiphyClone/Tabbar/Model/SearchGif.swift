@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - SearchGif
 struct SearchGif: Codable {
     let type: String?
     let id: String?

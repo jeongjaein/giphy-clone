@@ -13,7 +13,6 @@ class CoreDataManager {
     let appDelegate = (UIApplication.shared.delegate as! AppDelegate)
     lazy var context = appDelegate.persistentContainer.viewContext
     
-    
     // MARK: 최근 검색어 조회
     
     func getRecentSearches(userID: String) -> [String] {

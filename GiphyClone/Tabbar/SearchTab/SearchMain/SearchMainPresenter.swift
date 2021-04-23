@@ -23,15 +23,6 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         interactor?.fetchInitialElements()
     }
     
-    func searchTextFieldChanged(_ keyword: String) {
-        listSwitch = !keyword.isEmpty
-        view?.topTableviewReload(listSwitch
-                                    ? "Search Sugession"
-                                    : "Trending Searches")
-        interactor?.fetchAutoComplete(keyword)
-    }
-    
-    
     // MARK: 상위 테이블뷰 리스트
     
     func numberOfList() -> Int{
@@ -74,8 +65,19 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
         view?.showLoading()
         interactor?.checkKeyword(keyword)
     }
+    
+    // MARK: 검색어 제안
+    
+    func searchTextFieldChanged(_ keyword: String) {
+        listSwitch = !keyword.isEmpty
+        view?.topTableviewReload(listSwitch
+                                    ? "Search Sugession"
+                                    : "Trending Searches")
+        interactor?.fetchAutoComplete(keyword)
+    }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
+    
     func retrivedSearchSugession(_ searchSuggesion: [String]) {
         searchSugession = Array(searchSuggesion[0..<5])
         view?.topTableviewReload(nil)

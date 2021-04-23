@@ -21,12 +21,12 @@ protocol GifDetailPresenterProtocol: class {
     
     func viewDidLoad()
     
+    /// 좋아요 및 컬렉션뷰 값
     func numberOfGifs() -> Int
     func didSelectGif(_ indexPath: IndexPath)
     func itemOfGifs(_ indexPath: IndexPath) -> GifDetail
-    func likeButtonDidSet()
-    
     func getGifInfo() -> GifDetail
+    func likeButtonDidSet()
     func likeButtonDidTap()
     func getOnlyOne() -> (Bool,Int)
     func toggleOnlyOne()

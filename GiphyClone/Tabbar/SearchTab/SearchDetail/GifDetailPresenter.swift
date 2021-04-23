@@ -21,12 +21,12 @@ class GifDetailPresenter: GifDetailPresenterProtocol {
         // 추후 확장
     }
     
-    func numberOfGifs() -> Int {
-        return gifs.count
-    }
-    
     func didSelectGif(_ indexPath: IndexPath) {
         // 추후 확장
+    }
+    
+    func numberOfGifs() -> Int {
+        return gifs.count
     }
     
     func likeButtonDidSet() {

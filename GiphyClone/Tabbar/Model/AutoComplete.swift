@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - AutoComplete
 struct AutoComplete: Codable {
     let name, analyticsResponsePayload: String
 

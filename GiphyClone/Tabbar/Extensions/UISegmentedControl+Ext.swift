@@ -7,15 +7,6 @@
 
 import UIKit
 
-extension UISegmentedControl {
-    func clearBG() {
-        let clearImage = UIImage().imageWithColor(color: .clear)
-        setBackgroundImage(clearImage, for: .normal, barMetrics: .default)
-        setBackgroundImage(clearImage, for: .selected, barMetrics: .default)
-        setDividerImage(clearImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
-    }
-}
-
 public extension UIImage {
     func imageWithColor(color: UIColor) -> UIImage {
         let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)

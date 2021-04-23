@@ -13,9 +13,7 @@ class GifDetailView: UIViewController, Alertable {
     let gifDetailTableView   = UITableView()
     var collectionViewLayout = UICollectionViewFlowLayout()
     var likeButton           = UIButton()
-    var imageCollectionView
-        = UICollectionView(frame: .zero,
-                           collectionViewLayout: UICollectionViewFlowLayout())
+    var imageCollectionView  = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override func viewDidLoad() {
         presenter?.viewDidLoad()
@@ -43,23 +41,22 @@ extension GifDetailView: GifDetailViewProtocol {
     }
 }
 
+// MARK: TableView
+
 extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    func tableView(_ tableView: UITableView,
-                   heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ?imageCollectionView.frame.height : 0
     }
     
-    func tableView(_ tableView: UITableView,
-                   viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return section == 0 ? imageCollectionView : nil
     }
     
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -71,15 +68,12 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView,
-                   estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
     
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
-        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: UserInfoTableViewCell.id, for: indexPath)
@@ -106,9 +100,7 @@ extension GifDetailView: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension GifDetailView: UICollectionViewDelegate,
-                         UICollectionViewDataSource,
-                         UICollectionViewDelegateFlowLayout {
+extension GifDetailView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -118,13 +110,11 @@ extension GifDetailView: UICollectionViewDelegate,
                       height: collectionView.frame.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.numberOfGifs() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
         
         let cell = collectionView.dequeueReusableCell(
@@ -148,15 +138,12 @@ extension GifDetailView: UICollectionViewDelegate,
             self.imageCollectionView.scrollToItem(
                 at: indexToScrollTo, at: .left, animated: false)
         }
-        
         presenter?.toggleOnlyOne()
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView,
-                                  willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         DispatchQueue.main.asyncAfter(
-            deadline: DispatchTime.now() + 0.1) { [weak self] in
-            
+            deadline: DispatchTime.now() + 0.1) { [weak self] in 
             let center = CGPoint(x: scrollView.contentOffset.x
                                     + (scrollView.frame.width / 2),
                                  y: (scrollView.frame.height / 2))

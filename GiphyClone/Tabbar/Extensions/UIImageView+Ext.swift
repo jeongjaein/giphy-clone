@@ -8,8 +8,6 @@
 import UIKit
 
 extension UIImageView {
-    
-    // MARK: URL -> UIImage
     func setImageUrl(_ url: String) {
         let key = NSString(string: url)
         if let cached = ImageCacheManager.shared.object(forKey: key) {

@@ -8,6 +8,7 @@
 import Foundation
 
 class SearchResultInteractor: SearchResultInteractorInputProtocol {
+    
     weak var presenter: SearchResultInteractorOutputProtocol?
     var remoteDataManager: SearchResultRemoteDataManagerInputProtocol?
     
@@ -19,6 +20,7 @@ class SearchResultInteractor: SearchResultInteractorInputProtocol {
 }
 
 extension SearchResultInteractor: SearchResultRemoteDataManageroutputProtocol {
+    
     func callSearchKeywordResult(_ searchGif: [SearchGif]) {
         presenter?.retrievedSearchKeyword(convertToGifDetail(searchGif))
     }
