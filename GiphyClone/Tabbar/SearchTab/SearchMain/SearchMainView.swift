@@ -16,13 +16,11 @@ class SearchMainView: UIViewController, Alertable {
     let tabView               = SearchMainCustomTab()
     let trendingSearchesLabel = SubHeadingLabel()
     let topTableView          = UITableView()
-    
     let recentSearchesCollectionView = UICollectionView(
         frame: .zero, collectionViewLayout: SearchMainView.recentSearchesLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         attribute()
         layout()
     }

@@ -57,9 +57,9 @@ extension UserInfoTableViewCell {
             $0.selectionStyle = .none
         }
         userProfileImageView.do {
-            $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
             $0.tintColor = .systemGray3
+            $0.contentMode = .scaleAspectFit
             $0.image = UIImage().setSFSymbols(
                 systemName: "square.dashed", weight: .regular)
         }

@@ -56,7 +56,7 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
     }
     
     func callSearchSuggesionResult(_ searchSuggesionList: [String]) {
-        presenter?.retrivedSearchSugession(searchSuggesionList)
+        presenter?.retrivedSearchSuggesion(searchSuggesionList)
     }
 }
 

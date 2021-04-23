@@ -28,7 +28,7 @@ protocol SearchMainPresenterProtocol: class {
     var wireFrame:  SearchMainWireFrameProtocol?        { get set }
     
     var listSwitch: Bool              { get set }
-    var searchSugession: [String]     { get set }
+    var searchSuggesion: [String]     { get set }
     var recentSearhes: [String]       { get set }
     var autoCompletes: [AutoComplete] { get set }
     
@@ -74,7 +74,7 @@ protocol SearchMainInteractorOutputProtocol: class {
     func retrievedAutoComplete(_ autoCompletes: [AutoComplete])
     
     /// SearchSuggesion
-    func retrivedSearchSugession(_ searchSuggesion: [String])
+    func retrivedSearchSuggesion(_ searchSuggesion: [String])
     
     func onError()
 }

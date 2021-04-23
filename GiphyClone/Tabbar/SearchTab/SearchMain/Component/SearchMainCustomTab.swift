@@ -36,15 +36,13 @@ extension SearchMainCustomTab {
         
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.changeColor(new)
-            let firstCorrection = abs(old.center.x - new.center.x) / 4.5
             self?.moveMentView.frame =
-                (self?.caculateFirst(new.frame, diff, labelWidth, firstCorrection))!
+            (self?.calculate(new.frame, diff, labelWidth, -(abs(diff) / 4.5)))!
             
         } completion: { [weak self] _ in
-            UIView.animate(withDuration: 0.15) {
-                let secondCorrection = abs(old.center.x - new.center.x) / 10
+            UIView.animate(withDuration: 0.15) { 
                 self?.moveMentView.frame =
-                    (self?.caculateSecond(new.frame, diff, labelWidth, secondCorrection))!
+                    (self?.calculate(new.frame, diff, labelWidth, abs(diff) / 10))!
                 
             } completion: { [weak self] _ in
                 UIView.animate(withDuration: 0.25, delay: 0, options: [.curveEaseOut]) {
@@ -63,24 +61,7 @@ extension SearchMainCustomTab {
         }
     }
     
-    func caculateFirst(_ rect: CGRect,
-                  _ diff: CGFloat,
-                  _ labelWith: CGFloat,
-                  _ correction: CGFloat) -> CGRect {
-        
-        let ratio = (old.frame.width - labelWith) / 2
-        
-        return CGRect(x: rect.minX
-                        + ratio
-                        + (diff < 0
-                            ? +correction
-                            : -correction),
-                      y: rect.minY,
-                      width: labelWith,
-                      height: rect.height)
-    }
-    
-    func caculateSecond(_ rect: CGRect,
+    func calculate(_ rect: CGRect,
                   _ diff: CGFloat,
                   _ labelWith: CGFloat,
                   _ correction: CGFloat) -> CGRect {
