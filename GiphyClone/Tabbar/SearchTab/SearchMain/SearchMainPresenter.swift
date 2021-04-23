@@ -14,7 +14,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     var wireFrame: SearchMainWireFrameProtocol?
     
     var listSwitch                      = false
-    var searchSugession: [String]       = []
+    var searchSuggesion: [String]       = []
     var recentSearhes: [String]         = []
     var autoCompletes: [AutoComplete]   = []
     
@@ -28,13 +28,13 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     func numberOfList() -> Int{
         return listSwitch
             ? autoCompletes.count
-            : searchSugession.count
+            : searchSuggesion.count
     }
     
     func didSelectOfList(_ indexPath: IndexPath) {
         let keyword = listSwitch
             ? autoCompletes[indexPath.row].name
-            : searchSugession[indexPath.row]
+            : searchSuggesion[indexPath.row]
         
         wireFrame?.presentSearchResult(from: view!, keyword)
     }
@@ -42,7 +42,7 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     func itemOfList(_ indexPath: IndexPath) -> (Bool, String) {
         return (listSwitch, listSwitch
                     ? autoCompletes[indexPath.row].name
-                    : searchSugession[indexPath.row])
+                    : searchSuggesion[indexPath.row])
     }
     
     // MARK: 최근 검색어 관련
@@ -71,15 +71,15 @@ class SearchMainPresenter: SearchMainPresenterProtocol {
     func searchTextFieldChanged(_ keyword: String) {
         listSwitch = !keyword.isEmpty
         view?.topTableviewReload(listSwitch
-                                    ? "Search Sugession"
+                                    ? "Search Suggesion"
                                     : "Trending Searches")
         interactor?.fetchAutoComplete(keyword)
     }
 }
 extension SearchMainPresenter: SearchMainInteractorOutputProtocol {
     
-    func retrivedSearchSugession(_ searchSuggesion: [String]) {
-        searchSugession = Array(searchSuggesion[0..<5])
+    func retrivedSearchSuggesion(_ searchSuggesion: [String]) {
+        self.searchSuggesion = Array(searchSuggesion[0..<5])
         view?.topTableviewReload(nil)
     }
     

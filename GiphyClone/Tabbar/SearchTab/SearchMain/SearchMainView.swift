@@ -22,7 +22,6 @@ class SearchMainView: UIViewController, Alertable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         attribute()
         layout()
     }
