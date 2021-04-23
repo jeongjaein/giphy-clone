@@ -25,95 +25,6 @@ class SearchMainCustomTab: UIView {
     }
 }
 
-// MARK: attribute & layout
-
-extension SearchMainCustomTab {
-    func attribute() {
-        self.do {
-            $0.backgroundColor = .black
-        }
-        leftButton.do {
-            $0.tag = 1
-            $0.backgroundColor = .clear
-            $0.setTitle("GIFs", for: .normal)
-            $0.titleLabel?.textColor = .lightGray
-            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            $0.addTarget(
-                self, action: #selector(buttonDidTap), for: .touchUpInside)
-        }
-        centerButton.do {
-            $0.tag = 2
-            $0.backgroundColor = .clear
-            $0.setTitle("Stickers", for: .normal)
-            $0.titleLabel?.textColor = .lightGray
-            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            $0.addTarget(
-                self, action: #selector(buttonDidTap), for: .touchUpInside)
-        }
-        rightButton.do {
-            $0.tag = 3
-            $0.backgroundColor = .clear
-            $0.setTitle("Text", for: .normal)
-            $0.titleLabel?.textColor = .lightGray
-            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            $0.addTarget(
-                self, action: #selector(buttonDidTap), for: .touchUpInside)
-        }
-        moveMentView.do {
-            $0.backgroundColor = AppColor.leftButton.value
-            $0.layer.cornerRadius = 20
-            $0.clipsToBounds = true
-            $0.alpha = 0.5
-            $0.center.equalTo(leftButton.center)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.0001) { [weak self] in
-                guard let labelWidth = self?.leftButton.titleLabel?.frame.width,
-                      let frameWidth = self?.leftButton.frame.width else { return }
-                let correction = labelWidth + 40
-                self?.moveMentView.frame = CGRect(x: (frameWidth - correction) / 2,
-                                            y: 0,
-                                            width: correction,
-                                            height: (self?.frame.height)!)
-                self?.old = self!.leftButton
-            }
-        }
-        
-    }
-    
-    func layout() {
-        [moveMentView,
-         leftButton,
-         centerButton,
-         rightButton].forEach {
-            addSubview($0)
-            $0.translatesAutoresizingMaskIntoConstraints = false
-         }
-        leftButton.do {
-            NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: topAnchor),
-                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
-                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
-                $0.trailingAnchor.constraint(equalTo: centerButton.leadingAnchor)
-            ])
-        }
-        centerButton.do {
-            NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: topAnchor),
-                $0.centerXAnchor.constraint(equalTo: centerXAnchor),
-                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
-                $0.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3)
-            ])
-        }
-        rightButton.do {
-            NSLayoutConstraint.activate([
-                $0.topAnchor.constraint(equalTo: topAnchor),
-                $0.trailingAnchor.constraint(equalTo: trailingAnchor),
-                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
-                $0.leadingAnchor.constraint(equalTo: centerButton.trailingAnchor)
-            ])
-        }
-    }
-}
-
 extension SearchMainCustomTab {
     func move(_ old: UIButton, _ new: UIButton) {
         [leftButton, centerButton, rightButton].forEach {
@@ -199,5 +110,94 @@ extension SearchMainCustomTab {
     @objc func buttonDidTap(_ new: UIButton) {
         move(old, new)
         old = new
+    }
+}
+
+// MARK: attribute & layout
+
+extension SearchMainCustomTab {
+    func attribute() {
+        self.do {
+            $0.backgroundColor = .black
+        }
+        leftButton.do {
+            $0.tag = 1
+            $0.backgroundColor = .clear
+            $0.setTitle("GIFs", for: .normal)
+            $0.titleLabel?.textColor = .lightGray
+            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            $0.addTarget(
+                self, action: #selector(buttonDidTap), for: .touchUpInside)
+        }
+        centerButton.do {
+            $0.tag = 2
+            $0.backgroundColor = .clear
+            $0.setTitle("Stickers", for: .normal)
+            $0.titleLabel?.textColor = .lightGray
+            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            $0.addTarget(
+                self, action: #selector(buttonDidTap), for: .touchUpInside)
+        }
+        rightButton.do {
+            $0.tag = 3
+            $0.backgroundColor = .clear
+            $0.setTitle("Text", for: .normal)
+            $0.titleLabel?.textColor = .lightGray
+            $0.titleLabel?.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
+            $0.addTarget(
+                self, action: #selector(buttonDidTap), for: .touchUpInside)
+        }
+        moveMentView.do {
+            $0.backgroundColor = AppColor.leftButton.value
+            $0.layer.cornerRadius = 20
+            $0.clipsToBounds = true
+            $0.alpha = 0.5
+            $0.center.equalTo(leftButton.center)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.001) { [weak self] in
+                guard let labelWidth = self?.leftButton.titleLabel?.frame.width,
+                      let frameWidth = self?.leftButton.frame.width else { return }
+                let correction = labelWidth + 40
+                self?.moveMentView.frame = CGRect(x: (frameWidth - correction) / 2,
+                                            y: 0,
+                                            width: correction,
+                                            height: (self?.frame.height)!)
+                self?.old = self!.leftButton
+            }
+        }
+        
+    }
+    
+    func layout() {
+        [moveMentView,
+         leftButton,
+         centerButton,
+         rightButton].forEach {
+            addSubview($0)
+            $0.translatesAutoresizingMaskIntoConstraints = false
+         }
+        leftButton.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor),
+                $0.leadingAnchor.constraint(equalTo: leadingAnchor),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
+                $0.trailingAnchor.constraint(equalTo: centerButton.leadingAnchor)
+            ])
+        }
+        centerButton.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor),
+                $0.centerXAnchor.constraint(equalTo: centerXAnchor),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
+                $0.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 3)
+            ])
+        }
+        rightButton.do {
+            NSLayoutConstraint.activate([
+                $0.topAnchor.constraint(equalTo: topAnchor),
+                $0.trailingAnchor.constraint(equalTo: trailingAnchor),
+                $0.bottomAnchor.constraint(equalTo: bottomAnchor),
+                $0.leadingAnchor.constraint(equalTo: centerButton.trailingAnchor)
+            ])
+        }
     }
 }

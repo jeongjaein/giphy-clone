@@ -54,5 +54,5 @@ class GifDetailInteractor: GifDetailInteractorInputProtocol {
 }
 
 extension GifDetailInteractor: GifDetailRetmoeDataManagerOutputProtocol {
-    
+    // 추후 확장
 }

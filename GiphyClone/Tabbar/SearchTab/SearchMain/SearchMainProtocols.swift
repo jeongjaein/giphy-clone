@@ -10,19 +10,26 @@ import UIKit
 protocol SearchMainViewProtocol: class {
     var presenter: SearchMainPresenterProtocol? { get set }
     
+    /// TableViewList
     func topTableviewReload(_ subTitle: String?)
+    
+    /// RecentSearches
     func didReceiveRecentSearches()
     
+    /// Common
     func showLoading()
     func hideLoading()
     func showError()
 }
 
 protocol SearchMainPresenterProtocol: class {
-    var view:       SearchMainViewProtocol? { get set }
-    var interactor: SearchMainInteractorInputProtocol? { get set }
-    var wireFrame:  SearchMainWireFrameProtocol? { get set }
-    var recentSearhes: [String] { get set }
+    var view:       SearchMainViewProtocol?             { get set }
+    var interactor: SearchMainInteractorInputProtocol?  { get set }
+    var wireFrame:  SearchMainWireFrameProtocol?        { get set }
+    
+    var listSwitch: Bool              { get set }
+    var searchSugession: [String]     { get set }
+    var recentSearhes: [String]       { get set }
     var autoCompletes: [AutoComplete] { get set }
     
     func viewDidLoad()
@@ -43,7 +50,7 @@ protocol SearchMainPresenterProtocol: class {
 }
 
 protocol SearchMainInteractorInputProtocol: class {
-    var presenter:          SearchMainInteractorOutputProtocol? { get set }
+    var presenter:          SearchMainInteractorOutputProtocol?       { get set }
     var remoteDataManager:  SearchMainRemoteDataManagerInputProtocol? { get set }
     
     /// Init
@@ -59,6 +66,8 @@ protocol SearchMainInteractorInputProtocol: class {
 protocol SearchMainInteractorOutputProtocol: class {
     /// RecentSearches
     func retrievedRecentSearches(_ searches: [String])
+    
+    // Search Validation
     func checkKeywordResult(_ result: Bool, _ searches: String)
     
     /// AutoComplete

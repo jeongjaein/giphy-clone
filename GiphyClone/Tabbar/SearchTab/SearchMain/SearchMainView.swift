@@ -8,6 +8,7 @@
 import UIKit
 
 class SearchMainView: UIViewController, Alertable {
+    
     var presenter: SearchMainPresenterProtocol?
     
     let searchTextField       = UITextField()
@@ -50,6 +51,7 @@ class SearchMainView: UIViewController, Alertable {
 }
 
 extension SearchMainView: SearchMainViewProtocol {
+    
     func topTableviewReload(_ subTitle: String? = nil) {
         topTableView.reloadData()
         guard let title = subTitle else { return }
@@ -61,11 +63,11 @@ extension SearchMainView: SearchMainViewProtocol {
     }
     
     func showLoading() {
-        //
+        // 추후 확장
     }
     
     func hideLoading() {
-        //
+        // 추후 확장
     }
     
     func showError() {
@@ -77,13 +79,11 @@ extension SearchMainView: SearchMainViewProtocol {
 
 extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView,
-                   numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter?.numberOfList() ?? 0
     }
     
-    func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let presenter = presenter else { return UITableViewCell() }
         let cell = tableView.dequeueReusableCell(
             withIdentifier: SearchMainTopTableViewCell.id, for: indexPath)
@@ -93,8 +93,7 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
         return castedCell
     }
     
-    func tableView(_ tableView: UITableView,
-                   didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.didSelectOfList(indexPath)
         searchTextField.endEditing(true)
     }
@@ -102,16 +101,13 @@ extension SearchMainView: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: CollectionView
 
-extension SearchMainView: UICollectionViewDelegate,
-                          UICollectionViewDataSource {
+extension SearchMainView: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter?.numberOfRecentSearches() ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let presenter = presenter else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: RecentSearchesCollectionViewCell.id, for: indexPath)
@@ -120,8 +116,7 @@ extension SearchMainView: UICollectionViewDelegate,
         return castedCell
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter?.didSelectRecentSearches(indexPath)
         searchTextField.endEditing(true)
     }
@@ -130,6 +125,7 @@ extension SearchMainView: UICollectionViewDelegate,
 // MARK: TextField
 
 extension SearchMainView: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         guard let keyword = textField.text else { return false }
         presenter?.searchKeyword(keyword)

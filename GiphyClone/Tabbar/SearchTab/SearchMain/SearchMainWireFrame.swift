@@ -10,17 +10,17 @@ import UIKit
 class SearchMainWireFrame: SearchMainWireFrameProtocol {
 
     static func createSearchMainModule() -> UIViewController {
-        let view = SearchMainView()
-        let presenter = SearchMainPresenter()
-        let interactor = SearchMainInteractor()
+        let view              = SearchMainView()
+        let presenter         = SearchMainPresenter()
+        let interactor        = SearchMainInteractor()
         let remoteDataManager = SearchMainRemoteDataManager()
-        let wireFrame = SearchMainWireFrame()
+        let wireFrame         = SearchMainWireFrame()
         
-        view.presenter = presenter
-        presenter.view = view
-        presenter.interactor = interactor
-        presenter.wireFrame = wireFrame
-        interactor.presenter = presenter
+        view.presenter               = presenter
+        presenter.view               = view
+        presenter.interactor         = interactor
+        presenter.wireFrame          = wireFrame
+        interactor.presenter         = presenter
         interactor.remoteDataManager = remoteDataManager
         remoteDataManager.interactor = interactor
         
@@ -34,6 +34,6 @@ class SearchMainWireFrame: SearchMainWireFrameProtocol {
     }
     
     func presentContentDetail() {
-        // 추후 가능 시나리오
+        // 추후 확장
     }
 }

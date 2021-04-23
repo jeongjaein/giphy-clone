@@ -31,8 +31,7 @@ class SearchMainInteractor: SearchMainInteractorInputProtocol {
             presenter?.checkKeywordResult(false,keyword)
         } else {
             let putKeyword =
-                CoreDataManager.shared.putRecentSearches(
-                    keyword: keyword, userID: id)
+                CoreDataManager.shared.putRecentSearches(keyword: keyword, userID: id)
             if !putKeyword.isEmpty {
                 presenter?.checkKeywordResult(true,keyword)
             } else {
@@ -62,6 +61,7 @@ extension SearchMainInteractor: SearchMainRemoteDataManagerOutputProtocol {
 }
 
 extension SearchMainInteractor {
+    
     func getRecentSearches() {
         guard let userID = UserDefaults.standard.string(forKey: "id") else { return }
         let recentSearches = CoreDataManager.shared.getRecentSearches(userID: userID)

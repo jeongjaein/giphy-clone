@@ -45,8 +45,8 @@ extension SearchMainTopTableViewCell {
         }
         iconImageView.do {
             $0.tintColor = .gray
-            $0.image = UIImage().setSFSymbols(systemName: "magnifyingglass",
-                                              weight: .bold)
+            $0.image = UIImage().setSFSymbols(
+                systemName: "magnifyingglass", weight: .bold)
             $0.contentMode = .scaleAspectFit
             $0.clipsToBounds = true
         }
