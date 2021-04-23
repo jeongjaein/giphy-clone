@@ -107,6 +107,7 @@
 ## 1. 상단 탭
 
 <br>
+
 - GIPHY 앱 내 있는 상다 탭바 애니메이션을 구현해보았습니다.
 
 - 이동한 거리에 따른 좌우 흔들림 폭 변화, target이 되는 View속 UILabel에 맞는 Size 동적 변화
@@ -119,7 +120,9 @@
 <br>
 
 ## 2. 최근 검색어
+
 <br>
+
 - 최근 검색어를 보여주는 좌우 paging CollectionView 입니다.
 
 - GIPHY API 중 ```Random ID``` 를 사용하여 부여받은 ID와 매핑되어있는 검색어들 입니다.
