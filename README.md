@@ -31,6 +31,7 @@
 # 📍 요구 사항
 
 ## 1️⃣ key word 검색
+
 <br>
 
 ### 총 5가지 방법으로 __Key Word__ 검색이 가능합니다.
@@ -65,6 +66,9 @@
 
 ## 2️⃣ 검색된 아이템 목록 화면
 
+<br>
+
+
 - Giphy 앱과 흡사한 세로의 길이가 Dynamic한 CollectionView로 이루어져 있습니다.
 - 리스폰스로 떨어지는 Image Size의 가로세로 비율을 통해 Cell의 높이를 계산하여 퍼포먼스를 향상 시켰습니다.
 
@@ -73,6 +77,8 @@
 <br>
 
 ## 3️⃣ 검색된 아이템 상세 화면
+
+<br>
 
 - 선택된 Image의 대표이미지는 CollectionView로 양옆으로 Swipe가 가능합니다. 
   - (추후 carousel한 Collection View로 확장시켜 사용성을 높힐 수 있다고 생각합니다.)
@@ -169,6 +175,7 @@
 ✔︎ NetWorkRouter를 통한 간편한 API 호출
 
 ✔︎ Extension을 통해 중복되거나, 깔끔하지 못한 코드들을 해결
+
 등등
 
 많은 고려사항들이 들어 있습니다!
