@@ -83,7 +83,7 @@
 - 선택된 Image의 대표이미지는 CollectionView로 양옆으로 Swipe가 가능합니다. 
   - (추후 carousel한 Collection View로 확장시켜 사용성을 높힐 수 있다고 생각합니다.)
 - 해당 이미지 업로더의 정보를 확인해볼 수 있습니다.
-  - 프로필이미지, DisplayName, userImage, isVerified, likeButton 등등..
+  - profileImage, displayName, userImage, isVerified, likeButton 등등..
 - 🧡 버튼을 통한 좋아요 기능이 구현되어 있고 아래와 같은 시나리오를 거치게 됩니다.
 
 <br>
@@ -96,7 +96,7 @@
    - 좋아요 리스트가 있다면 좋아요 리스트에 gifID를 append
 - __unlike()__ 의 동작
    - 좋아요 리스트에서 해당 gifID remove
-3. 완료 여부를 Interactor에게 Return
+3. 완료 여부를 __Interactor__ 에게 Return
 
 <br>
 <br>
