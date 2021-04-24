@@ -94,7 +94,7 @@
 - __like()__ 의 동작
    - 좋아요 리스트가 없다면 좋아요 리스트생성과 동시에 gifID를 append
    - 좋아요 리스트가 있다면 좋아요 리스트에 gifID를 append
-- __unlike()_의 동작
+- __unlike()__ 의 동작
    - 좋아요 리스트에서 해당 gifID remove
 3. 완료 여부를 Interactor에게 Return
 
