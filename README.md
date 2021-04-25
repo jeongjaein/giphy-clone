@@ -167,6 +167,23 @@
 <br>
 
 
+# 🔹 라이브러리
+
+- Alamofire
+
+<br>
+<br>
+<br>
+
+# 🔹 사용한 GIPHY API
+
+```Random ID API```
+```Trending Search Terms API```
+```Search Suggesions API```
+```Search Gif API```
+
+
+
 
 추가적인 사항으로
 
