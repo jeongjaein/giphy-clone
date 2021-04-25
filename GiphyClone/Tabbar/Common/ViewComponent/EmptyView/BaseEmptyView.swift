@@ -19,15 +19,17 @@ class BaseEmptyView: UIView {
     
     func attribute() {
         self.do {
-            $0.backgroundColor = .black
+            $0.backgroundColor  = .black
         }
         iconImageView.do {
-            $0.tintColor = .systemGray3
-            $0.contentMode = .scaleAspectFill
+            $0.clipsToBounds    = true
+            $0.tintColor        = .lightGray
+            $0.contentMode      = .scaleAspectFill
         }
         guideLabel.do {
-            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 20)
-            $0.textColor = .systemGray3
+            $0.textAlignment    = .center
+            $0.textColor        = .lightGray
+            $0.font = UIFont(name: "Apple SD Gothic Neo Bold", size: 25)
         }
     }
     
@@ -36,20 +38,20 @@ class BaseEmptyView: UIView {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
         iconImageView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: topAnchor, constant: 100),
-                $0.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                $0.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.33)
+                $0.centerXAnchor.constraint(equalTo: centerXAnchor),
+                $0.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.33),
+                $0.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 0.33)
             ])
         }
         guideLabel.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(
                     equalTo: iconImageView.bottomAnchor, constant: 50),
-                $0.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+                $0.centerXAnchor.constraint(equalTo: centerXAnchor)
             ])
         }
     }

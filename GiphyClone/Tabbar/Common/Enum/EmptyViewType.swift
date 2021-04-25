@@ -7,13 +7,13 @@
 
 import UIKit
 
-enum EptyViewType {
+enum EmptyViewType {
     case SearchGifListEmptyViewType
     
     var view: UIView {
         switch self {
         case .SearchGifListEmptyViewType:
-            return UIView()
+            return SearchGifListEmptyView()
         }
     }
 }

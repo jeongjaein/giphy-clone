@@ -7,13 +7,14 @@
 
 import UIKit
 
-class SearchGifListEmptyView:  BaseEmptyView {
+class SearchGifListEmptyView: BaseEmptyView {
     override func attribute() {
+        super.attribute()
         iconImageView.do {
             $0.setSFSymbols(systemName: "wind", weight: .bold)
         }
         guideLabel.do {
-            $0.text == "검색 결과가 없습니다."
+            $0.text = "검색 결과가 없습니다."
         }
     }
 }
