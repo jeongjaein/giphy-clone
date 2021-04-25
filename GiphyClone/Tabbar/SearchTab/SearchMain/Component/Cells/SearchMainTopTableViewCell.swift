@@ -19,6 +19,7 @@ class SearchMainTopTableViewCell: UITableViewCell {
         layout()
     }
     
+    
     func setData(state: Bool, keyword: String) {
         iconImageView.setSFSymbols(systemName: state
                                     ? "magnifyingglass"

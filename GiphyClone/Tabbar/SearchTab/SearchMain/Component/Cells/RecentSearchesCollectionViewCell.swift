@@ -60,8 +60,8 @@ extension RecentSearchesCollectionViewCell {
                 $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                 $0.leadingAnchor.constraint(
                     equalTo: contentView.leadingAnchor, constant: 8),
-                $0.heightAnchor.constraint(equalToConstant: 15),
-                $0.widthAnchor.constraint(equalToConstant: 15),
+                $0.heightAnchor.constraint(equalToConstant: 20),
+                $0.widthAnchor.constraint(equalToConstant: 20),
             ])
         }
         keywordLabel.do {

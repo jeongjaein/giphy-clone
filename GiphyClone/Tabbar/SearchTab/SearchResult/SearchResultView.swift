@@ -63,7 +63,13 @@ extension SearchResultView: SearchResultViewProtocol {
 extension SearchResultView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter?.numberOfSearchGif() ?? 0
+        let numberOfList = presenter?.numberOfSearchGif() ?? 0
+        if numberOfList == 0 {
+            collectionView.setEmptyView(type: .SearchGifListEmptyViewType)
+        } else {
+            collectionView.restore()
+        }
+        return numberOfList
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
