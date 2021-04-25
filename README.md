@@ -178,11 +178,16 @@
 # 🔹 사용한 GIPHY API
 
 ```Random ID API```
+
 ```Trending Search Terms API```
+
 ```Search Suggesions API```
+
 ```Search Gif API```
 
-
+<br>
+<br>
+<br>
 
 
 추가적인 사항으로
