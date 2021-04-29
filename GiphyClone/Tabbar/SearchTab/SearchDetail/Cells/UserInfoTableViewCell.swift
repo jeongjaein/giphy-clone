@@ -113,14 +113,6 @@ extension UserInfoTableViewCell {
             contentView.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-//        contentView.do {
-//            NSLayoutConstraint.activate([
-//                $0.topAnchor.constraint(equalTo: topAnchor),
-//                $0.heightAnchor.constraint(equalToConstant: 50),
-//                $0.bottomAnchor.constraint(equalTo: bottomAnchor)
-//            ])
-//        }
         contentView.do {
             NSLayoutConstraint.activate([
                 $0.heightAnchor.constraint(equalToConstant: 50)
@@ -129,7 +121,6 @@ extension UserInfoTableViewCell {
         userProfileImageView.do {
             NSLayoutConstraint.activate([
                 $0.topAnchor.constraint(equalTo: contentView.topAnchor),
-//                $0.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
                 $0.widthAnchor.constraint(equalTo: contentView.heightAnchor),
                 $0.widthAnchor.constraint(equalTo: contentView.heightAnchor),
                 $0.leadingAnchor.constraint(

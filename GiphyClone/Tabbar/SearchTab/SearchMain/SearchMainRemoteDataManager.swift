@@ -13,7 +13,6 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     weak var interactor: SearchMainRemoteDataManagerOutputProtocol?
     
     func callSearchSuggesionAPI() {
-        
         AF.request(NetworkRouter.searchSuggesion)
             .responseData { response in
                 switch response.result {
@@ -39,7 +38,6 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
                     do {
                         let result = try JSONDecoder()
                             .decode(BaseResponse<[AutoComplete]>.self, from: data)
-                        
                         self.interactor?.callAutoCompleteResult(result.data)
                     } catch {
                         self.interactor?.errorFromRemote()
@@ -53,10 +51,6 @@ class SearchMainRemoteDataManager: SearchMainRemoteDataManagerInputProtocol {
     func callRandomIdAPI() {
         AF.request(NetworkRouter.createRandomID)
             .responseData{ response in
-                
-                
-                
-                
                 switch response.result {
                 case .success(let data):
                     do {

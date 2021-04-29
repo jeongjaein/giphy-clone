@@ -82,7 +82,6 @@ enum NetworkRouter: URLRequestConvertible {
         default:
             break
         }
-        
         return request
     }
 }

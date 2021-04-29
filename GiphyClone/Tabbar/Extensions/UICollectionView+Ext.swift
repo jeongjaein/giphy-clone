@@ -12,7 +12,7 @@ extension UICollectionView {
         type.view.frame = CGRect(x: self.center.x, y: self.center.y, width: self.bounds.size.width, height: self.bounds.size.height)
         self.backgroundView = type.view
     }
-    
+
     func restore() {
         self.backgroundView = nil
     }

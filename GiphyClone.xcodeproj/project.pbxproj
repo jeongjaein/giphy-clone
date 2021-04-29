@@ -69,6 +69,7 @@
 		CCC5E1902635F6050011DECC /* EmptyViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC5E18F2635F6050011DECC /* EmptyViewType.swift */; };
 		CCC5E19A2635F6770011DECC /* SearchGifListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC5E1992635F6770011DECC /* SearchGifListEmptyView.swift */; };
 		CCC5E1A22635F6880011DECC /* BaseEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC5E1A12635F6880011DECC /* BaseEmptyView.swift */; };
+		CCC5E1FE263A4ACE0011DECC /* RecentSearchesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC5E1FD263A4ACE0011DECC /* RecentSearchesLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -162,6 +163,7 @@
 		CCC5E18F2635F6050011DECC /* EmptyViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewType.swift; sourceTree = "<group>"; };
 		CCC5E1992635F6770011DECC /* SearchGifListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchGifListEmptyView.swift; sourceTree = "<group>"; };
 		CCC5E1A12635F6880011DECC /* BaseEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseEmptyView.swift; sourceTree = "<group>"; };
+		CCC5E1FD263A4ACE0011DECC /* RecentSearchesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchesLayout.swift; sourceTree = "<group>"; };
 		DEBEBE25DDF900A74AAD2443 /* Pods-GiphyCloneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GiphyCloneTests.release.xcconfig"; path = "Target Support Files/Pods-GiphyCloneTests/Pods-GiphyCloneTests.release.xcconfig"; sourceTree = "<group>"; };
 		E147BD0EFF4EBE7351CA0575 /* Pods_GiphyCloneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyCloneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F154F3AB85F9CDB635C02D15 /* Pods_GiphyClone_GiphyCloneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GiphyClone_GiphyCloneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,6 +362,7 @@
 			children = (
 				CC51960E2631EDF000AA0536 /* SearchMainCustomTab.swift */,
 				CC0F4107262F55AA0099ABA4 /* Cells */,
+				CCC5E1FD263A4ACE0011DECC /* RecentSearchesLayout.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				CC0F4092262F1E270099ABA4 /* SearchMainRemoteDataManager.swift in Sources */,
 				CCC5E1A22635F6880011DECC /* BaseEmptyView.swift in Sources */,
 				CC0F4116262F604E0099ABA4 /* SearchResultPresenter.swift in Sources */,
+				CCC5E1FE263A4ACE0011DECC /* RecentSearchesLayout.swift in Sources */,
 				CC0F4083262F1E050099ABA4 /* SearchMainView.swift in Sources */,
 				CC0F4109262F55BA0099ABA4 /* SearchMainTopTableViewCell.swift in Sources */,
 				CC0F411B262F605E0099ABA4 /* SearchResultInteractor.swift in Sources */,
