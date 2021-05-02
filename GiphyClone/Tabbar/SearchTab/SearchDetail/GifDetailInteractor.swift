@@ -21,7 +21,6 @@ class GifDetailInteractor: GifDetailInteractorInputProtocol {
     func toggleLikeButton(_ gifID: String) {
         guard let userID = UserDefaults.standard.string(forKey: "id") else { return }
         let state = CoreDataManager.shared.getLikeState(gifID: gifID, userID: userID)
-        
         switch state {
         case true:
             unlikeGif(gifID)

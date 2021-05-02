@@ -17,7 +17,7 @@ class SearchMainView: UIViewController, Alertable {
     let trendingSearchesLabel = SubHeadingLabel()
     let topTableView          = UITableView()
     let recentSearchesCollectionView = UICollectionView(
-        frame: .zero, collectionViewLayout: SearchMainView.recentSearchesLayout())
+        frame: .zero, collectionViewLayout: RecentSearchesLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,31 +131,6 @@ extension SearchMainView: UITextFieldDelegate {
         return true
     }
     
-}
-
-// MARK: Static Func
-
-extension SearchMainView {
-    
-    static func recentSearchesLayout() -> UICollectionViewCompositionalLayout {
-        let size = NSCollectionLayoutSize(
-            widthDimension: .estimated(40),
-            heightDimension: .estimated(40))
-        
-        let item = NSCollectionLayoutItem(layoutSize: size)
-        
-        let group = NSCollectionLayoutGroup.vertical(
-            layoutSize: size, subitem: item, count: 1)
-        
-        let section = NSCollectionLayoutSection(group: group)
-        
-        section.contentInsets = NSDirectionalEdgeInsets(
-            top: 10, leading: 10, bottom: 10, trailing: 10)
-        section.interGroupSpacing = 10
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        
-        return UICollectionViewCompositionalLayout(section: section)
-    }
 }
 
 // MARK: attribute & layout

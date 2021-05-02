@@ -33,6 +33,7 @@ class GifCollectionViewLayout: UICollectionViewLayout {
     override func prepare() {
         contentHeight = 0
         guard let collectionView = collectionView else { return }
+        //총 가로 몇개넣을건지 정하고 넣어주고 
         let columnWidth = contentWidth / CGFloat(numberOfColumns)
         var xOffset = [CGFloat]()
         for column in 0 ..< numberOfColumns {
@@ -43,19 +44,20 @@ class GifCollectionViewLayout: UICollectionViewLayout {
         let sizeList = self.delegate.collectionView(collectionView)
         
         guard sizeList.count != 0 else { return }
+        
         for item in 0 ..< collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
             let height = self.cellPadding * 2 + sizeList[item].height
             let scaledHeight = (columnWidth / sizeList[item].width) * height
             
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: scaledHeight)
-                let insetFrame = frame.insetBy(dx: self.cellPadding, dy: self.cellPadding)
-                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-                attributes.frame = insetFrame
-                self.cache.append(attributes)
-                self.contentHeight = max(self.contentHeight, frame.maxY)
-                yOffset[column] = yOffset[column] + scaledHeight
-                column = column < (self.numberOfColumns - 1) ? (column + 1) : 0
+            let insetFrame = frame.insetBy(dx: self.cellPadding, dy: self.cellPadding)
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = insetFrame
+            self.cache.append(attributes)
+            self.contentHeight = max(self.contentHeight, frame.maxY)
+            yOffset[column] = yOffset[column] + scaledHeight
+            column = column < (self.numberOfColumns - 1) ? (column + 1) : 0
         }
     }
     
@@ -68,9 +70,5 @@ class GifCollectionViewLayout: UICollectionViewLayout {
             }
         }
         return visibleLayoutAttributes
-    }
-    
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return cache[indexPath.item]
     }
 }

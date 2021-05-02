@@ -20,7 +20,6 @@ protocol SearchResultPresenterProtocol: class {
     var view:       SearchResultViewProtocol?            { get set }
     var interactor: SearchResultInteractorInputProtocol? { get set }
     var wireFrame:  SearchResultWireFrameProtocol?       { get set }
-    
     var keyword:    String                               { get set }
     
     func viewDidLoad()
@@ -59,6 +58,3 @@ protocol SearchResultWireFrameProtocol: class {
     static func createSearchResultModule(_ keyword: String) -> UIViewController
     func presentGifDetail(from view: SearchResultViewProtocol, gif: [GifDetail], index: Int)
 }
-
-
-

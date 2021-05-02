@@ -52,7 +52,6 @@ extension SearchResultInteractor {
                                             width: width,
                                             height: height))
             }
-            
         }
         return gifDetails
     }
